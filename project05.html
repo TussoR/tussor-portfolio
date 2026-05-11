@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Project Name 05 — TussoR Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0b;
+    --bg-elev: #131316;
+    --bg-card: #1a1a1f;
+    --line: #26262c;
+    --text: #f4f4f5;
+    --text-dim: #8a8a93;
+    --text-mute: #5a5a63;
+    --accent: #ff5722;
+    --accent-glow: rgba(255, 87, 34, 0.15);
+    --display: 'Fraunces', serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");
+  }
+
+  .grid-bg {
+    position: fixed;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Nav */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    padding: 24px 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    background: rgba(10, 10, 11, 0.7);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-inner {
+    width: 100%;
+    max-width: 1600px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .logo-dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--accent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.85); }
+  }
+
+  .back-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1px solid var(--line);
+    background: var(--bg-elev);
+    transition: all 0.25s;
+  }
+
+  .back-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateX(-3px);
+  }
+
+  /* Main container */
+  main {
+    padding: 120px 48px 80px;
+    position: relative;
+    z-index: 2;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  /* Breadcrumb */
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    color: var(--text-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 32px;
+  }
+
+  .breadcrumb a {
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover { color: var(--accent); }
+
+  .breadcrumb-sep { color: var(--text-mute); }
+
+  .breadcrumb-current { color: var(--text); }
+
+  /* Project layout */
+  .project {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 48px;
+    margin-bottom: 120px;
+  }
+
+  /* Gallery (left side) */
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .main-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.4s;
+  }
+
+  .main-image .placeholder {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    color: var(--text-mute);
+  }
+
+  .main-image .placeholder svg {
+    width: 80px;
+    height: 80px;
+    opacity: 0.4;
+    stroke: var(--accent);
+  }
+
+  .main-image .placeholder .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: lowercase;
+    letter-spacing: 0.1em;
+    padding: 6px 14px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+  }
+
+  /* Image controls */
+  .img-controls {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 8px;
+    z-index: 3;
+  }
+
+  .img-control-btn {
+    width: 40px;
+    height: 40px;
+    background: rgba(10, 10, 11, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--line);
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .img-control-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .img-counter {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 6px 12px;
+    background: rgba(10, 10, 11, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--line);
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    z-index: 3;
+  }
+
+  /* Thumbnails */
+  .thumbs {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+
+  .thumb {
+    aspect-ratio: 1;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    cursor: pointer;
+    transition: all 0.25s;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .thumb:hover {
+    border-color: var(--text-dim);
+    transform: translateY(-2px);
+  }
+
+  .thumb.active {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .thumb-placeholder {
+    display: none;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-mute);
+    font-size: 10px;
+  }
+
+  .thumb-placeholder svg {
+    width: 40%;
+    height: 40%;
+    opacity: 0.5;
+    stroke: var(--text-mute);
+  }
+
+  /* Info panel (right side) */
+  .info-panel {
+    position: sticky;
+    top: 120px;
+    align-self: start;
+  }
+
+  .project-tag {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--accent-glow);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 24px;
+  }
+
+  .project-title {
+    font-family: var(--display);
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+
+  .project-title .italic {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .project-meta {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+    font-size: 11px;
+    color: var(--text-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  .project-meta span { display: flex; align-items: center; gap: 8px; }
+  .project-meta span::before {
+    content: '';
+    width: 4px; height: 4px;
+    background: var(--text-mute);
+    border-radius: 50%;
+  }
+  .project-meta span:first-child::before { display: none; }
+
+  .project-desc {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  .project-desc p { margin-bottom: 16px; }
+  .project-desc strong { color: var(--text); font-weight: 500; }
+
+  /* Specs table */
+  .specs {
+    margin-bottom: 40px;
+  }
+
+  .specs-title {
+    font-size: 11px;
+    color: var(--text-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .spec-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 13px;
+  }
+
+  .spec-label {
+    color: var(--text-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 11px;
+  }
+
+  .spec-value {
+    color: var(--text);
+    font-family: var(--display);
+    font-size: 15px;
+  }
+
+  /* Tools used */
+  .tools-used {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 40px;
+  }
+
+  .tool-chip {
+    padding: 6px 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+  }
+
+  /* CTA */
+  .cta-block {
+    padding: 28px;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-block::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+
+  .cta-label {
+    font-size: 10px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    margin-bottom: 12px;
+  }
+
+  .cta-title {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+
+  .cta-desc {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: #0a0a0b;
+    transition: all 0.25s;
+    cursor: pointer;
+    font-weight: 500;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .btn:hover {
+    background: #ff7043;
+    border-color: #ff7043;
+    transform: translateY(-2px);
+  }
+
+  /* Related projects */
+  .related {
+    padding-top: 80px;
+    border-top: 1px solid var(--line);
+  }
+
+  .related-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 48px;
+  }
+
+  .related-title {
+    font-family: var(--display);
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .related-title .italic { font-style: italic; color: var(--accent); }
+
+  .related-num {
+    font-size: 11px;
+    color: var(--text-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 12px;
+  }
+
+  .view-all {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    color: var(--text-dim);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    transition: all 0.2s;
+  }
+
+  .view-all:hover { color: var(--accent); }
+  .view-all:hover svg { transform: translateX(4px); }
+  .view-all svg { transition: transform 0.2s; }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .related-card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+  }
+
+  .related-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+
+  .related-thumb {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: var(--bg-elev);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .related-thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+  }
+
+  .related-card:hover .related-thumb img { transform: scale(1.05); }
+
+  .related-thumb .placeholder-svg {
+    width: 50%;
+    height: 50%;
+    opacity: 0.4;
+  }
+
+  .related-info {
+    padding: 16px 20px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .related-name {
+    font-family: var(--display);
+    font-size: 16px;
+  }
+
+  .related-type {
+    font-size: 10px;
+    color: var(--text-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  /* Footer */
+  footer {
+    padding: 24px 48px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    position: relative;
+    z-index: 2;
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* Responsive */
+  @media (max-width: 1000px) {
+    nav { padding: 16px 20px; }
+    main { padding: 100px 20px 60px; }
+    .project { grid-template-columns: 1fr; gap: 32px; }
+    .info-panel { position: static; }
+    .related-grid { grid-template-columns: 1fr; }
+    .thumbs { grid-template-columns: repeat(4, 1fr); }
+    footer { padding: 20px; flex-direction: column; gap: 8px; }
+    .related-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-dot"></span>
+      TussoR<span style="color: var(--text-mute); font-weight: 400; margin-left: 4px;">/Portfolio</span>
+    </a>
+    <a href="index.html#work" class="back-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      Back to Work
+    </a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <a href="index.html#work">Work</a>
+    <span class="breadcrumb-sep">/</span>
+    <span class="breadcrumb-current">Project Name 05</span>
+  </div>
+
+  <!-- Project -->
+  <div class="project">
+
+    <!-- Gallery -->
+    <div class="gallery">
+
+      <div class="main-image" id="mainImage">
+        <div class="img-counter" id="imgCounter">01 / 05</div>
+        
+        <img id="mainImg" src="renders/project05.png" alt="Project Name 05"
+             onerror="this.style.display='none'; document.getElementById('mainPlaceholder').style.display='flex';">
+        
+        <div class="placeholder" id="mainPlaceholder">
+          <svg viewBox="0 0 100 100" fill="none" stroke-width="0.8">
+            <path d="M50 10 L90 30 L90 70 L50 90 L10 70 L10 30 Z"/>
+            <path d="M50 10 L50 90 M10 30 L90 70 M90 30 L10 70"/>
+            <circle cx="50" cy="50" r="8" fill="currentColor" fill-opacity="0.3"/>
+          </svg>
+          <div class="label">renders/project05.png</div>
+        </div>
+
+        <div class="img-controls">
+          <button class="img-control-btn" id="prevBtn" title="Previous">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+          </button>
+          <button class="img-control-btn" id="nextBtn" title="Next">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="thumbs" id="thumbs">
+        <div class="thumb active" data-img="renders/project05.png">
+          <img src="renders/project05.png" alt="View 1"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="thumb-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="9" cy="9" r="2"/>
+              <path d="M21 15l-5-5L5 21"/>
+            </svg>
+          </div>
+        </div>
+        <div class="thumb" data-img="renders/project05_b.png">
+          <img src="renders/project05_b.png" alt="View 2"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="thumb-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="9" cy="9" r="2"/>
+              <path d="M21 15l-5-5L5 21"/>
+            </svg>
+          </div>
+        </div>
+        <div class="thumb" data-img="renders/project05_c.png">
+          <img src="renders/project05_c.png" alt="View 3"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="thumb-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="9" cy="9" r="2"/>
+              <path d="M21 15l-5-5L5 21"/>
+            </svg>
+          </div>
+        </div>
+        <div class="thumb" data-img="renders/project05_d.png">
+          <img src="renders/project05_d.png" alt="View 4"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="thumb-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="9" cy="9" r="2"/>
+              <path d="M21 15l-5-5L5 21"/>
+            </svg>
+          </div>
+        </div>
+        <div class="thumb" data-img="renders/project05_e.png">
+          <img src="renders/project05_e.png" alt="View 5"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="thumb-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="9" cy="9" r="2"/>
+              <path d="M21 15l-5-5L5 21"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Info Panel -->
+    <aside class="info-panel">
+      
+      <span class="project-tag">Character</span>
+
+      <h1 class="project-title">
+        Project<br>
+        <span class="italic">Name 05</span>
+      </h1>
+
+      <div class="project-meta">
+        <span>2026</span>
+        <span>Commission</span>
+        <span>Delivered</span>
+      </div>
+
+      <div class="project-desc">
+        <p>
+          <strong>A detailed low-poly environment</strong> crafted for a 
+          medieval-themed Roblox experience. Built with modularity in mind, 
+          allowing the developer to reuse assets across multiple zones.
+        </p>
+        <p>
+          Optimized for mobile performance with carefully managed poly counts 
+          and atlas-based textures. Fully UV-mapped and ready for Roblox Studio import.
+        </p>
+      </div>
+
+      <!-- Technical specs -->
+      <div class="specs">
+        <div class="specs-title">— Technical Details</div>
+        <div class="spec-row">
+          <span class="spec-label">Polygons</span>
+          <span class="spec-value">~ 2,400</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Texture</span>
+          <span class="spec-value">512 × 512</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Format</span>
+          <span class="spec-value">FBX · OBJ</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Delivery</span>
+          <span class="spec-value">3 Days</span>
+        </div>
+      </div>
+
+      <!-- Tools used -->
+      <div class="tools-used">
+        <span class="tool-chip">Blender</span>
+        <span class="tool-chip">Substance Painter</span>
+        <span class="tool-chip">Photoshop</span>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-block">
+        <div class="cta-label">— Want Something Similar?</div>
+        <div class="cta-title">Let's create your model</div>
+        <div class="cta-desc">
+          Custom commissions starting from $25. Average delivery in 3-7 days.
+        </div>
+        <a href="index.html#contact" class="btn">
+          Start a Project
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <!-- Related Projects -->
+  <section class="related">
+    <div class="related-header">
+      <div>
+        <div class="related-num">— More Work</div>
+        <h2 class="related-title">Other <span class="italic">Pieces</span></h2>
+      </div>
+      <a href="index.html#work" class="view-all">
+        View All Projects
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="related-grid">
+
+      <a href="project02.html" class="related-card">
+        <div class="related-thumb">
+          <img src="renders/project02.png" alt="Project 02"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <svg class="placeholder-svg" viewBox="0 0 100 100" fill="none" stroke="#f4f4f5" stroke-width="0.6" style="display:none;">
+            <path d="M20 80 L50 20 L80 80 Z"/>
+            <path d="M30 65 L70 65 M50 20 L50 80"/>
+            <circle cx="50" cy="50" r="3" fill="#ff5722"/>
+          </svg>
+        </div>
+        <div class="related-info">
+          <div class="related-name">Project Name 02</div>
+          <div class="related-type">Weapon / UGC</div>
+        </div>
+      </a>
+
+      <a href="project03.html" class="related-card">
+        <div class="related-thumb">
+          <img src="renders/project03.png" alt="Project 03"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <svg class="placeholder-svg" viewBox="0 0 100 100" fill="none" stroke="#f4f4f5" stroke-width="0.6" style="display:none;">
+            <rect x="25" y="25" width="50" height="50"/>
+            <rect x="35" y="35" width="30" height="30" stroke="#ff5722"/>
+            <path d="M25 25 L75 75 M75 25 L25 75"/>
+          </svg>
+        </div>
+        <div class="related-info">
+          <div class="related-name">Project Name 03</div>
+          <div class="related-type">Architecture</div>
+        </div>
+      </a>
+
+      <a href="project04.html" class="related-card">
+        <div class="related-thumb">
+          <img src="renders/project04.png" alt="Project 04"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <svg class="placeholder-svg" viewBox="0 0 100 100" fill="none" stroke="#f4f4f5" stroke-width="0.6" style="display:none;">
+            <circle cx="50" cy="50" r="35"/>
+            <circle cx="50" cy="50" r="22" stroke="#ff5722"/>
+            <circle cx="50" cy="50" r="10"/>
+          </svg>
+        </div>
+        <div class="related-info">
+          <div class="related-name">Project Name 04</div>
+          <div class="related-type">Accessory</div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div>© 2026 TussoR — All rights reserved</div>
+  <div>Crafted with intention · v1.0</div>
+</footer>
+
+<script>
+  // Gallery navigation
+  const thumbs = document.querySelectorAll('.thumb');
+  const mainImg = document.getElementById('mainImg');
+  const mainPlaceholder = document.getElementById('mainPlaceholder');
+  const counter = document.getElementById('imgCounter');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  
+  let currentIndex = 0;
+  const totalImages = thumbs.length;
+
+  function updateMainImage(index) {
+    const thumb = thumbs[index];
+    const imgSrc = thumb.dataset.img;
+    
+    // Update active state
+    thumbs.forEach(t => t.classList.remove('active'));
+    thumb.classList.add('active');
+    
+    // Update main image
+    mainImg.style.display = 'block';
+    mainPlaceholder.style.display = 'none';
+    mainImg.src = imgSrc;
+    
+    // Update counter
+    counter.textContent = `${String(index + 1).padStart(2, '0')} / ${String(totalImages).padStart(2, '0')}`;
+    
+    currentIndex = index;
+  }
+
+  thumbs.forEach((thumb, index) => {
+    thumb.addEventListener('click', () => updateMainImage(index));
+  });
+
+  prevBtn.addEventListener('click', () => {
+    const newIndex = currentIndex === 0 ? totalImages - 1 : currentIndex - 1;
+    updateMainImage(newIndex);
+  });
+
+  nextBtn.addEventListener('click', () => {
+    const newIndex = currentIndex === totalImages - 1 ? 0 : currentIndex + 1;
+    updateMainImage(newIndex);
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') prevBtn.click();
+    if (e.key === 'ArrowRight') nextBtn.click();
+  });
+</script>
+
+</body>
+</html>
