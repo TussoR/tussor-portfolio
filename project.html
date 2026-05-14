@@ -3,11 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<<<<<<< HEAD:project.html
 <title>Project — TussoR Portfolio</title>
-=======
-<title>Serpent Executioner — TussoR Portfolio</title>
->>>>>>> 0c87354f4a7e4aec7429e28bd8f91f19b40d7a5f:project01.html
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -718,237 +714,157 @@
 
 <script>
   // ========================================
-  // PROJELERİNİZİ BURADAN DÜZENLEYİN
+  // ⚠️ ÖNEMLİ: Bu liste, index.html'deki listenin TAM AYNISI olmalı!
   // ========================================
-  // ÖNEMLI: Bu liste, index.html'deki listenin AYNISI olmalı.
-  // Bir proje değiştirdiğinizde, hem index.html'de hem burada güncellemeniz lazım.
-  // (İleride istenirse tek dosyada birleştirebiliriz.)
+  //
+  // Yeni proje eklediğinizde:
+  // 1. index.html'deki "projects" listesine ekleyin
+  // 2. Bu dosyadaki (project.html) "projects" listesine de AYNISINI ekleyin
+  //
+  // İki dosya senkron olmazsa detay sayfası yanlış proje gösterir.
   // ========================================
 
   const projects = [
-    {
-      name: "Project Name 01",
-      category: "Environment",
-      image: "renders/project01.png",
-      tag: "Featured",
-      description: "A detailed low-poly environment crafted for a medieval-themed Roblox experience. Built with modularity in mind, allowing the developer to reuse assets across multiple zones.",
-      polygons: "2,400",
-      texture: "512 × 512",
-      format: "FBX · OBJ",
-      delivery: "3 Days",
-      tools: ["Blender", "Substance Painter", "Photoshop"],
-      // Galerideki ek görseller (max 5):
-      extraImages: [
-        "renders/project01_b.png",
-        "renders/project01_c.png",
-        "renders/project01_d.png",
-        "renders/project01_e.png"
-      ]
-    },
-    {
-      name: "Project Name 02",
-      category: "Weapon · UGC",
-      image: "renders/project02.png",
-      tag: "",
-      description: "A stylized weapon model designed for the Roblox UGC Marketplace. Clean topology, optimized for first-person view.",
-      polygons: "1,200",
-      texture: "256 × 256",
-      format: "FBX · OBJ",
-      delivery: "2 Days",
-      tools: ["Blender", "Substance Painter"],
-      extraImages: ["renders/project02_b.png", "renders/project02_c.png"]
-    },
-    {
-      name: "Project Name 03",
-      category: "Architecture · High Poly",
-      image: "renders/project03.png",
-      tag: "",
-      description: "High-detail architectural showcase model for renders and promotional artwork.",
-      polygons: "8,500",
-      texture: "1024 × 1024",
-      format: "FBX · OBJ",
-      delivery: "5 Days",
-      tools: ["Blender", "Substance Painter"],
-      extraImages: []
-    },
-    {
-      name: "Project Name 04",
-      category: "Accessory · UGC",
-      image: "renders/project04.png",
-      tag: "",
-      description: "Wearable accessory designed for Roblox avatars. Marketplace-ready.",
-      polygons: "450",
-      texture: "128 × 128",
-      format: "FBX",
-      delivery: "1 Day",
-      tools: ["Blender"],
-      extraImages: []
-    },
-    {
-      name: "Project Name 05",
-      category: "Character",
-      image: "renders/project05.png",
-      tag: "",
-      description: "Full character model with custom proportions and styling.",
-      polygons: "3,200",
-      texture: "512 × 512",
-      format: "FBX",
-      delivery: "4 Days",
-      tools: ["Blender", "ZBrush", "Substance Painter"],
-      extraImages: []
-    },
-    {
-      name: "Project Name 06",
-      category: "Map · Environment",
-      image: "renders/project06.png",
-      tag: "Latest",
-      description: "Complete map environment with modular assets and atmospheric lighting setup.",
-      polygons: "12,000",
-      texture: "1024 × 1024",
-      format: "FBX",
-      delivery: "7 Days",
-      tools: ["Blender", "Substance Painter", "Photoshop"],
-      extraImages: []
-    },
-    {
-      name: "Project Name 07",
-      category: "Nature Asset",
-      image: "renders/project07.png",
-      tag: "",
-      description: "Low-poly nature pack featuring trees, rocks, and foliage. Game-ready.",
-      polygons: "600 each",
-      texture: "256 × 256",
-      format: "FBX",
-      delivery: "2 Days",
-      tools: ["Blender"],
-      extraImages: []
-    }
+    // 👆 BURAYA, index.html'deki listenin AYNISINI yapıştırın
   ];
 
   // ========================================
-  // (Aşağıya dokunmayın — proje sayfasını otomatik oluşturur)
+  // ⚙️ (Aşağıya dokunmayın)
   // ========================================
 
   const urlParams = new URLSearchParams(window.location.search);
   const projectId = parseInt(urlParams.get('id')) || 0;
-  const project = projects[projectId] || projects[0];
+  const project = projects[projectId];
 
-  // Set title
-  document.title = `${project.name} — TussoR Portfolio`;
-  document.getElementById('breadcrumbName').textContent = project.name;
-
-  // Set tag
-  const tagEl = document.getElementById('projectTag');
-  tagEl.textContent = project.tag ? `${project.category} · ${project.tag}` : project.category;
-
-  // Set name (split into 2 lines if possible)
-  const titleEl = document.getElementById('projectTitle');
-  const nameParts = project.name.split(' ');
-  if (nameParts.length >= 2) {
-    const lastPart = nameParts.pop();
-    titleEl.innerHTML = `${nameParts.join(' ')}<br><span class="italic">${lastPart}</span>`;
-  } else {
-    titleEl.innerHTML = `<span class="italic">${project.name}</span>`;
-  }
-
-  // Description
-  document.getElementById('projectDesc').textContent = project.description;
-
-  // Specs
-  document.getElementById('specPolygons').textContent = project.polygons;
-  document.getElementById('specTexture').textContent = project.texture;
-  document.getElementById('specFormat').textContent = project.format;
-  document.getElementById('specDelivery').textContent = project.delivery;
-
-  // Tools
-  document.getElementById('toolsUsed').innerHTML = project.tools.map(t => 
-    `<span class="tool-chip">${t}</span>`
-  ).join('');
-
-  // Gallery setup
-  const allImages = [project.image, ...(project.extraImages || [])].slice(0, 5);
-  const totalImages = allImages.length;
-  let currentIndex = 0;
-
-  // Build thumbnails
-  const thumbsContainer = document.getElementById('thumbs');
-  thumbsContainer.innerHTML = allImages.map((img, i) => `
-    <div class="thumb ${i === 0 ? 'active' : ''}" data-index="${i}">
-      <img src="${img}" alt="View ${i+1}"
-           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-      <div class="thumb-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="3" y="3" width="18" height="18" rx="2"/>
-          <circle cx="9" cy="9" r="2"/>
-          <path d="M21 15l-5-5L5 21"/>
-        </svg>
+  // Proje yoksa hata göster
+  if (!project) {
+    document.querySelector('main').innerHTML = `
+      <div style="text-align: center; padding: 80px 20px;">
+        <h1 style="font-family: var(--display); font-size: 48px; margin-bottom: 16px;">Project Not Found</h1>
+        <p style="color: var(--text-dim); margin-bottom: 32px;">This project doesn't exist or has been removed.</p>
+        <a href="index.html#work" class="back-btn" style="display: inline-flex;">← Back to Work</a>
       </div>
-    </div>
-  `).join('');
+    `;
+  } else {
 
-  // Main image
-  const mainImg = document.getElementById('mainImg');
-  const mainPlaceholder = document.getElementById('mainPlaceholder');
-  const placeholderLabel = document.getElementById('placeholderLabel');
-  const counter = document.getElementById('imgCounter');
+    // Set title
+    document.title = `${project.name} — TussoR Portfolio`;
+    document.getElementById('breadcrumbName').textContent = project.name;
 
-  function updateMainImage(index) {
-    currentIndex = index;
-    const imgSrc = allImages[index];
-    
-    document.querySelectorAll('.thumb').forEach((t, i) => {
-      t.classList.toggle('active', i === index);
-    });
-    
-    mainImg.style.display = 'block';
-    mainPlaceholder.style.display = 'none';
-    mainImg.src = imgSrc;
-    placeholderLabel.textContent = imgSrc;
-    counter.textContent = `${String(index + 1).padStart(2, '0')} / ${String(totalImages).padStart(2, '0')}`;
-  }
-  updateMainImage(0);
+    // Set tag
+    const tagEl = document.getElementById('projectTag');
+    tagEl.textContent = project.tag ? `${project.categoryLabel} · ${project.tag}` : project.categoryLabel;
 
-  // Click thumbnails
-  document.querySelectorAll('.thumb').forEach((thumb, i) => {
-    thumb.addEventListener('click', () => updateMainImage(i));
-  });
+    // Set name (split into 2 lines if possible)
+    const titleEl = document.getElementById('projectTitle');
+    const nameParts = project.name.split(' ');
+    if (nameParts.length >= 2) {
+      const lastPart = nameParts.pop();
+      titleEl.innerHTML = `${nameParts.join(' ')}<br><span class="italic">${lastPart}</span>`;
+    } else {
+      titleEl.innerHTML = `<span class="italic">${project.name}</span>`;
+    }
 
-  // Navigation buttons
-  document.getElementById('prevBtn').addEventListener('click', () => {
-    updateMainImage(currentIndex === 0 ? totalImages - 1 : currentIndex - 1);
-  });
-  document.getElementById('nextBtn').addEventListener('click', () => {
-    updateMainImage(currentIndex === totalImages - 1 ? 0 : currentIndex + 1);
-  });
+    // Description
+    document.getElementById('projectDesc').textContent = project.description || '';
 
-  // Keyboard
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') document.getElementById('prevBtn').click();
-    if (e.key === 'ArrowRight') document.getElementById('nextBtn').click();
-  });
+    // Specs
+    document.getElementById('specPolygons').textContent = project.polygons || '—';
+    document.getElementById('specTexture').textContent = project.texture || '—';
+    document.getElementById('specFormat').textContent = project.format || '—';
+    document.getElementById('specDelivery').textContent = project.delivery || '—';
 
-  // Related projects (show 3 others, not current)
-  const relatedGrid = document.getElementById('relatedGrid');
-  const others = projects.filter((_, i) => i !== projectId).slice(0, 3);
-  relatedGrid.innerHTML = others.map((p, i) => {
-    const realIndex = projects.indexOf(p);
-    return `
-      <a href="project.html?id=${realIndex}" class="related-card">
-        <div class="related-thumb">
-          <img src="${p.image}" alt="${p.name}"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-          <svg class="placeholder-svg" viewBox="0 0 100 100" fill="none" stroke="#f4f4f5" stroke-width="0.6">
-            <rect x="25" y="25" width="50" height="50"/>
-            <circle cx="50" cy="50" r="8" fill="#ff5722"/>
+    // Tools
+    document.getElementById('toolsUsed').innerHTML = (project.tools || []).map(t => 
+      `<span class="tool-chip">${t}</span>`
+    ).join('');
+
+    // Gallery setup
+    const allImages = [project.image, ...(project.extraImages || [])].slice(0, 5);
+    const totalImages = allImages.length;
+    let currentIndex = 0;
+
+    // Build thumbnails
+    const thumbsContainer = document.getElementById('thumbs');
+    thumbsContainer.innerHTML = allImages.map((img, i) => `
+      <div class="thumb ${i === 0 ? 'active' : ''}" data-index="${i}">
+        <img src="${img}" alt="View ${i+1}"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="thumb-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="9" cy="9" r="2"/>
+            <path d="M21 15l-5-5L5 21"/>
           </svg>
         </div>
-        <div class="related-info">
-          <div class="related-name">${p.name}</div>
-          <div class="related-type">${p.category}</div>
-        </div>
-      </a>
-    `;
-  }).join('');
+      </div>
+    `).join('');
+
+    // Main image
+    const mainImg = document.getElementById('mainImg');
+    const mainPlaceholder = document.getElementById('mainPlaceholder');
+    const placeholderLabel = document.getElementById('placeholderLabel');
+    const counter = document.getElementById('imgCounter');
+
+    function updateMainImage(index) {
+      currentIndex = index;
+      const imgSrc = allImages[index];
+      
+      document.querySelectorAll('.thumb').forEach((t, i) => {
+        t.classList.toggle('active', i === index);
+      });
+      
+      mainImg.style.display = 'block';
+      mainPlaceholder.style.display = 'none';
+      mainImg.src = imgSrc;
+      placeholderLabel.textContent = imgSrc;
+      counter.textContent = `${String(index + 1).padStart(2, '0')} / ${String(totalImages).padStart(2, '0')}`;
+    }
+    updateMainImage(0);
+
+    // Click thumbnails
+    document.querySelectorAll('.thumb').forEach((thumb, i) => {
+      thumb.addEventListener('click', () => updateMainImage(i));
+    });
+
+    // Navigation buttons
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      updateMainImage(currentIndex === 0 ? totalImages - 1 : currentIndex - 1);
+    });
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      updateMainImage(currentIndex === totalImages - 1 ? 0 : currentIndex + 1);
+    });
+
+    // Keyboard
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') document.getElementById('prevBtn').click();
+      if (e.key === 'ArrowRight') document.getElementById('nextBtn').click();
+    });
+
+    // Related projects (show 3 others, not current)
+    const relatedGrid = document.getElementById('relatedGrid');
+    const others = projects.filter((_, i) => i !== projectId).slice(0, 3);
+    relatedGrid.innerHTML = others.map((p) => {
+      const realIndex = projects.indexOf(p);
+      return `
+        <a href="project.html?id=${realIndex}" class="related-card">
+          <div class="related-thumb">
+            <img src="${p.image}" alt="${p.name}"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <svg class="placeholder-svg" viewBox="0 0 100 100" fill="none" stroke="#f4f4f5" stroke-width="0.6">
+              <rect x="25" y="25" width="50" height="50"/>
+              <circle cx="50" cy="50" r="8" fill="#ff5722"/>
+            </svg>
+          </div>
+          <div class="related-info">
+            <div class="related-name">${p.name}</div>
+            <div class="related-type">${p.categoryLabel || p.categoryKey}</div>
+          </div>
+        </a>
+      `;
+    }).join('');
+
+  } // end if (project)
 </script>
 
 </body>

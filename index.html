@@ -390,6 +390,111 @@
     letter-spacing: -0.01em;
   }
 
+  /* Pagination */
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+  }
+
+  .pagination:empty { display: none; }
+
+  .page-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    color: var(--text-dim);
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .page-btn:hover:not(:disabled) {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .page-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .page-numbers {
+    display: flex;
+    gap: 8px;
+  }
+
+  .page-num {
+    width: 40px;
+    height: 40px;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    color: var(--text-dim);
+    font-family: var(--mono);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .page-num:hover {
+    border-color: var(--text-dim);
+    color: var(--text);
+  }
+
+  .page-num.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #0a0a0b;
+    font-weight: 500;
+  }
+
+  /* Empty state */
+  .empty-state {
+    grid-column: 1 / -1;
+    padding: 80px 40px;
+    text-align: center;
+    background: var(--bg-card);
+    border: 1px dashed var(--line);
+  }
+
+  .empty-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 24px;
+    color: var(--text-mute);
+    opacity: 0.5;
+  }
+
+  .empty-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .empty-title {
+    font-family: var(--display);
+    font-size: 24px;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .empty-desc {
+    font-size: 13px;
+    color: var(--text-mute);
+  }
+
   /* Work grid */
   .work-grid {
     display: grid;
@@ -1048,6 +1153,7 @@
     .message-form { padding: 24px; }
     .form-row { grid-template-columns: 1fr; gap: 0; }
     .form-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .pagination { flex-direction: column; gap: 16px; }
     footer { padding: 20px; flex-direction: column; gap: 8px; }
   }
 
@@ -1172,171 +1278,11 @@
     </div>
   </div>
 
-<<<<<<< HEAD
   <div class="work-grid" id="workGrid">
     <!-- Projects are populated by JavaScript from the 'projects' array at the bottom -->
-=======
-  <div class="work-grid">
-
-    <a href="project01.html" class="work-link">
-    <div class="work-item large reveal">
-      <div class="work-tag">Featured</div>
-      <div class="work-thumb">
-        <!-- Önce burada SVG placeholder vardı. Şimdi gerçek render: -->
-        <!-- renders/ klasörüne PNG koyduktan sonra src'yi değiştir -->
-        <img src="renders/project01.png" alt="Project 01" 
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-        <!-- Eğer resim yoksa bu fallback SVG gösterilir: -->
-        <div class="placeholder-fallback">
-          <div class="shape-grad"></div>
-          <svg viewBox="0 0 100 100" fill="none" stroke="#ff5722" stroke-width="0.8">
-            <path d="M50 10 L90 30 L90 70 L50 90 L10 70 L10 30 Z"/>
-            <path d="M50 10 L50 90 M10 30 L90 70 M90 30 L10 70"/>
-            <circle cx="50" cy="50" r="8" fill="#ff5722" fill-opacity="0.3"/>
-          </svg>
-          <div class="placeholder-label">renders/project01.png</div>
-        </div>
-      </div>
-      <div class="work-info">
-        <div class="work-name">Serpent Executioner</div>
-        <div class="work-type">UGC</div>
-      </div>
-    </div>
-    </a>
-
-    <a href="project02.html" class="work-link">
-    <div class="work-item medium reveal">
-      <div class="work-thumb">
-        <img src="renders/project02.png" alt="Project 02" 
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-        <div class="placeholder-fallback">
-          <div class="shape-grad"></div>
-          <svg viewBox="0 0 100 100" fill="none" stroke="#f4f4f5" stroke-width="0.6">
-            <path d="M20 80 L50 20 L80 80 Z"/>
-            <path d="M30 65 L70 65 M50 20 L50 80"/>
-            <circle cx="50" cy="50" r="3" fill="#ff5722"/>
-          </svg>
-          <div class="placeholder-label">renders/project02.png</div>
-        </div>
-      </div>
-      <div class="work-info">
-        <div class="work-name">Project Name 02</div>
-        <div class="work-type">Weapon / UGC</div>
-      </div>
-    </div>
-    </a>
-
-    <a href="project03.html" class="work-link">
-    <div class="work-item small reveal">
-      <div class="work-thumb">
-        <img src="renders/project03.png" alt="Project 03" 
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-        <div class="placeholder-fallback">
-          <div class="shape-grad"></div>
-          <svg viewBox="0 0 100 100" fill="none" stroke="#f4f4f5" stroke-width="0.6">
-            <rect x="25" y="25" width="50" height="50"/>
-            <rect x="35" y="35" width="30" height="30" stroke="#ff5722"/>
-            <path d="M25 25 L75 75 M75 25 L25 75"/>
-          </svg>
-          <div class="placeholder-label">renders/project03.png</div>
-        </div>
-      </div>
-      <div class="work-info">
-        <div class="work-name">Project Name 03</div>
-        <div class="work-type">Architecture</div>
-      </div>
-    </div>
-    </a>
-
-    <a href="project04.html" class="work-link">
-    <div class="work-item small reveal">
-      <div class="work-thumb">
-        <img src="renders/project04.png" alt="Project 04" 
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-        <div class="placeholder-fallback">
-          <div class="shape-grad"></div>
-          <svg viewBox="0 0 100 100" fill="none" stroke="#f4f4f5" stroke-width="0.6">
-            <circle cx="50" cy="50" r="35"/>
-            <circle cx="50" cy="50" r="22" stroke="#ff5722"/>
-            <circle cx="50" cy="50" r="10"/>
-          </svg>
-          <div class="placeholder-label">renders/project04.png</div>
-        </div>
-      </div>
-      <div class="work-info">
-        <div class="work-name">Project Name 04</div>
-        <div class="work-type">Accessory</div>
-      </div>
-    </div>
-    </a>
-
-    <a href="project05.html" class="work-link">
-    <div class="work-item small reveal">
-      <div class="work-thumb">
-        <img src="renders/project05.png" alt="Project 05" 
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-        <div class="placeholder-fallback">
-          <div class="shape-grad"></div>
-          <svg viewBox="0 0 100 100" fill="none" stroke="#f4f4f5" stroke-width="0.6">
-            <path d="M50 15 L85 50 L50 85 L15 50 Z"/>
-            <path d="M50 35 L65 50 L50 65 L35 50 Z" stroke="#ff5722"/>
-          </svg>
-          <div class="placeholder-label">renders/project05.png</div>
-        </div>
-      </div>
-      <div class="work-info">
-        <div class="work-name">Project Name 05</div>
-        <div class="work-type">Character</div>
-      </div>
-    </div>
-    </a>
-
-    <a href="project06.html" class="work-link">
-    <div class="work-item wide reveal">
-      <div class="work-tag">Latest</div>
-      <div class="work-thumb">
-        <img src="renders/project06.png" alt="Project 06" 
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-        <div class="placeholder-fallback">
-          <div class="shape-grad"></div>
-          <svg viewBox="0 0 100 100" fill="none" stroke="#ff5722" stroke-width="0.6">
-            <path d="M10 60 L30 40 L50 55 L70 35 L90 50 L90 80 L10 80 Z" fill="#ff5722" fill-opacity="0.1"/>
-            <circle cx="25" cy="25" r="6"/>
-            <path d="M50 55 L50 80 M70 35 L70 80 M30 40 L30 80"/>
-          </svg>
-          <div class="placeholder-label">renders/project06.png</div>
-        </div>
-      </div>
-      <div class="work-info">
-        <div class="work-name">Project Name 06</div>
-        <div class="work-type">Map / Environment</div>
-      </div>
-    </div>
-    </a>
-
-    <a href="project07.html" class="work-link">
-    <div class="work-item small reveal">
-      <div class="work-thumb">
-        <img src="renders/project07.png" alt="Project 07" 
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-        <div class="placeholder-fallback">
-          <div class="shape-grad"></div>
-          <svg viewBox="0 0 100 100" fill="none" stroke="#f4f4f5" stroke-width="0.6">
-            <path d="M20 70 L50 30 L80 70 Z" fill="#ff5722" fill-opacity="0.15"/>
-            <path d="M35 70 L50 50 L65 70"/>
-          </svg>
-          <div class="placeholder-label">renders/project07.png</div>
-        </div>
-      </div>
-      <div class="work-info">
-        <div class="work-name">Project Name 07</div>
-        <div class="work-type">Nature Asset</div>
-      </div>
-    </div>
-    </a>
-
->>>>>>> 0c87354f4a7e4aec7429e28bd8f91f19b40d7a5f
   </div>
+
+  <div class="pagination" id="pagination"></div>
 </section>
 
 <!-- CATEGORIES -->
@@ -1352,87 +1298,7 @@
   </div>
 
   <div class="cat-grid">
-
-    <div class="cat-card reveal">
-      <div class="cat-icon">
-        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2">
-          <path d="M30 70 Q30 30 50 30 Q70 30 70 70"/>
-          <path d="M25 65 Q20 50 30 40 M75 65 Q80 50 70 40"/>
-          <ellipse cx="50" cy="75" rx="20" ry="6"/>
-        </svg>
-      </div>
-      <div class="cat-name">Low Poly Hairs</div>
-      <div class="cat-count-large">12 items</div>
-      <div class="cat-desc">Stylized hair models optimized for Roblox avatars and UGC marketplace.</div>
-    </div>
-
-    <div class="cat-card reveal">
-      <div class="cat-icon">
-        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2">
-          <path d="M50 15 L70 35 L70 70 L50 85 L30 70 L30 35 Z"/>
-          <path d="M50 15 L50 85 M30 35 L70 35 M30 70 L70 70"/>
-          <circle cx="50" cy="50" r="5" fill="currentColor"/>
-        </svg>
-      </div>
-      <div class="cat-name">UGC Models</div>
-      <div class="cat-count-large">8 items</div>
-      <div class="cat-desc">Wearable accessories: hats, wings, masks, back items ready for Marketplace.</div>
-    </div>
-
-    <div class="cat-card reveal">
-      <div class="cat-icon">
-        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2">
-          <circle cx="50" cy="50" r="30"/>
-          <circle cx="50" cy="50" r="22"/>
-          <circle cx="50" cy="50" r="14"/>
-          <circle cx="50" cy="50" r="6" fill="currentColor"/>
-          <path d="M50 20 L50 80 M20 50 L80 50"/>
-        </svg>
-      </div>
-      <div class="cat-name">High Poly</div>
-      <div class="cat-count-large">5 items</div>
-      <div class="cat-desc">Detailed showcase models for renders, cinematics, and promotional artwork.</div>
-    </div>
-
-    <div class="cat-card reveal">
-      <div class="cat-icon">
-        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2">
-          <path d="M20 80 L40 60 L50 70 L65 25 L80 80 Z"/>
-          <path d="M40 60 L50 70 M55 50 L65 25"/>
-          <circle cx="35" cy="75" r="3" fill="currentColor"/>
-        </svg>
-      </div>
-      <div class="cat-name">Weapons</div>
-      <div class="cat-count-large">9 items</div>
-      <div class="cat-desc">Swords, guns, melee gear — game-ready with clean topology and proper pivots.</div>
-    </div>
-
-    <div class="cat-card reveal">
-      <div class="cat-icon">
-        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2">
-          <path d="M10 75 L25 55 L40 65 L55 40 L70 55 L90 35 L90 80 L10 80 Z"/>
-          <circle cx="78" cy="22" r="5"/>
-          <path d="M30 80 L30 65 M50 80 L50 55 M70 80 L70 60"/>
-        </svg>
-      </div>
-      <div class="cat-name">Environments</div>
-      <div class="cat-count-large">6 items</div>
-      <div class="cat-desc">Maps, terrains, and modular asset packs for full Roblox game worlds.</div>
-    </div>
-
-    <div class="cat-card reveal">
-      <div class="cat-icon">
-        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2">
-          <circle cx="50" cy="30" r="12"/>
-          <path d="M35 45 L35 70 L40 85 M65 45 L65 70 L60 85"/>
-          <path d="M50 42 L50 70 M35 55 L65 55"/>
-        </svg>
-      </div>
-      <div class="cat-name">Characters</div>
-      <div class="cat-count-large">4 items</div>
-      <div class="cat-desc">Full character rigs and avatar designs with custom proportions and styling.</div>
-    </div>
-
+    <!-- Categories populated by JavaScript, counts auto-update -->
   </div>
 
 <!-- ABOUT -->
@@ -1672,86 +1538,110 @@
 
 <script>
   // ========================================
-  // PROJELERİNİZİ BURADAN DÜZENLEYİN
+  // 📦 PROJELERİNİZİ BURADAN YÖNETİN
   // ========================================
-  // Yeni proje eklemek için: aşağıdaki listeye yeni bir obje ekleyin.
-  // Silmek için: o objeyi silin. Sıra önemli — üstteki kart sol üstte görünür.
   //
-  // size: "large" | "medium" | "small" | "wide"
-  //   - large: Featured büyük kart (sayfa başında öne çıkanlar için)
-  //   - wide: Geniş yatay kart (Map/Environment için ideal)
-  //   - medium: Orta boy kart
-  //   - small: Standart kare kart
+  // YENİ PROJE EKLEMEK İÇİN:
+  //   Aşağıdaki örneği kopyala, listenin İÇİNE yapıştır.
+  //   Sonunda virgül koymayı unutma! (son projeden sonra virgül olmasın)
   //
-  // image: "renders/dosyaadi.png" — kendi koyduğun dosya adı
-  // tag: "Featured", "Latest" gibi köşede çıkacak rozet (boş bırakırsan görünmez)
+  // PROJE SİLMEK İÇİN:
+  //   O projenin tüm bloğunu sil (üstteki { 'dan altındaki }'ya kadar)
+  //
+  // ALAN AÇIKLAMALARI:
+  //   name:        Modelin adı (örn: "Dragon Sword")
+  //   categoryKey: Kategori (TEK BAŞINA — bu kategoriler otomatik sayılır)
+  //                Mevcut: "hair", "ugc", "high-poly", "weapon", "environment", "character", "other"
+  //   categoryLabel: Kart altında görünen yazı (örn: "Weapon · UGC")
+  //   image:       Render dosyasının yolu (örn: "renders/dragon_sword.png")
+  //   size:        Kart boyutu — "small" çoğunlukla iyidir
+  //                Seçenekler: "large" (büyük featured), "wide" (geniş), "medium", "small"
+  //   tag:         Köşe rozeti — "Featured", "Latest", "New" veya boş ""
+  //   description: Detay sayfasındaki açıklama
+  //   polygons, texture, format, delivery: Teknik bilgiler
+  //   tools:       Kullandığın programlar listesi
+  //   extraImages: Detay sayfası galerisi için ek görseller (en fazla 4 tane)
+  //
+  // ========================================
+  // 📋 ÖRNEK (kopyala kullan):
+  // ========================================
+  // {
+  //   name: "Dragon Sword",
+  //   categoryKey: "weapon",
+  //   categoryLabel: "Weapon · UGC",
+  //   image: "renders/dragon_sword.png",
+  //   size: "small",
+  //   tag: "",
+  //   description: "Custom medieval sword with detailed engravings.",
+  //   polygons: "1,200",
+  //   texture: "256 × 256",
+  //   format: "FBX · OBJ",
+  //   delivery: "2 Days",
+  //   tools: ["Blender", "Substance Painter"],
+  //   extraImages: ["renders/dragon_sword_b.png", "renders/dragon_sword_c.png"]
+  // },
   // ========================================
 
   const projects = [
-    {
-      name: "Project Name 01",
-      category: "Environment",
-      image: "renders/project01.png",
-      size: "large",
-      tag: "Featured"
-    },
-    {
-      name: "Project Name 02",
-      category: "Weapon / UGC",
-      image: "renders/project02.png",
-      size: "medium",
-      tag: ""
-    },
-    {
-      name: "Project Name 03",
-      category: "Architecture",
-      image: "renders/project03.png",
-      size: "small",
-      tag: ""
-    },
-    {
-      name: "Project Name 04",
-      category: "Accessory",
-      image: "renders/project04.png",
-      size: "small",
-      tag: ""
-    },
-    {
-      name: "Project Name 05",
-      category: "Character",
-      image: "renders/project05.png",
-      size: "small",
-      tag: ""
-    },
-    {
-      name: "Project Name 06",
-      category: "Map / Environment",
-      image: "renders/project06.png",
-      size: "wide",
-      tag: "Latest"
-    },
-    {
-      name: "Project Name 07",
-      category: "Nature Asset",
-      image: "renders/project07.png",
-      size: "small",
-      tag: ""
-    }
+    // 👆 BURAYA YENİ PROJELERİNİZİ EKLEYİN
+    // Şimdilik boş — ilk projeni eklediğinde site otomatik canlanacak
   ];
 
+  // Kategori başlıkları (Categories bölümü için)
+  // categoryKey'leri otomatik sayar, sayıyı buradan kontrol etmen gerekmez
+  const categoryMeta = {
+    "hair":        { name: "Low Poly Hairs", desc: "Stylized hair models optimized for Roblox avatars and UGC marketplace." },
+    "ugc":         { name: "UGC Models",     desc: "Wearable accessories: hats, wings, masks, back items ready for Marketplace." },
+    "high-poly":   { name: "High Poly",      desc: "Detailed showcase models for renders, cinematics, and promotional artwork." },
+    "weapon":      { name: "Weapons",        desc: "Swords, guns, melee gear — game-ready with clean topology and proper pivots." },
+    "environment": { name: "Environments",   desc: "Maps, terrains, and modular asset packs for full Roblox game worlds." },
+    "character":   { name: "Characters",     desc: "Full character rigs and avatar designs with custom proportions and styling." }
+  };
+
+  // Sayfalama ayarları
+  const PROJECTS_PER_PAGE = 10;  // Her sayfada gösterilecek proje sayısı
+
   // ========================================
-  // (Aşağıya dokunmayın — proje kartlarını otomatik oluşturur)
+  // ⚙️ (Aşağıya dokunmayın — sistem otomatik çalışıyor)
   // ========================================
+
+  let currentPage = 1;
 
   function renderProjects() {
     const grid = document.getElementById('workGrid');
     if (!grid) return;
     
-    grid.innerHTML = projects.map((p, index) => {
+    const totalPages = Math.max(1, Math.ceil(projects.length / PROJECTS_PER_PAGE));
+    if (currentPage > totalPages) currentPage = totalPages;
+    
+    const startIdx = (currentPage - 1) * PROJECTS_PER_PAGE;
+    const endIdx = startIdx + PROJECTS_PER_PAGE;
+    const pageProjects = projects.slice(startIdx, endIdx);
+
+    if (projects.length === 0) {
+      grid.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-icon">
+            <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1">
+              <rect x="20" y="20" width="60" height="60" rx="4"/>
+              <path d="M20 60 L40 45 L55 55 L80 35"/>
+              <circle cx="65" cy="32" r="4"/>
+            </svg>
+          </div>
+          <div class="empty-title">No projects yet</div>
+          <div class="empty-desc">Projects will appear here as soon as they're added.</div>
+        </div>
+      `;
+      renderPagination(0);
+      return;
+    }
+    
+    grid.innerHTML = pageProjects.map((p, i) => {
+      const realIndex = startIdx + i;
       const tagHtml = p.tag ? `<div class="work-tag">${p.tag}</div>` : '';
       return `
-        <a href="project.html?id=${index}" class="work-link">
-          <div class="work-item ${p.size} reveal">
+        <a href="project.html?id=${realIndex}" class="work-link">
+          <div class="work-item ${p.size || 'small'} reveal">
             ${tagHtml}
             <div class="work-thumb">
               <img src="${p.image}" alt="${p.name}"
@@ -1767,15 +1657,99 @@
             </div>
             <div class="work-info">
               <div class="work-name">${p.name}</div>
-              <div class="work-type">${p.category}</div>
+              <div class="work-type">${p.categoryLabel || p.categoryKey}</div>
             </div>
           </div>
         </a>
       `;
     }).join('');
 
-    // Re-trigger scroll reveal for new elements
+    renderPagination(totalPages);
     document.querySelectorAll('#workGrid .reveal').forEach(el => observer.observe(el));
+  }
+
+  function renderPagination(totalPages) {
+    let paginationEl = document.getElementById('pagination');
+    if (!paginationEl) return;
+    
+    if (totalPages <= 1) {
+      paginationEl.innerHTML = '';
+      return;
+    }
+
+    let html = `
+      <button class="page-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="goToPage(${currentPage - 1})">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+        Previous
+      </button>
+      <div class="page-numbers">
+    `;
+    
+    for (let i = 1; i <= totalPages; i++) {
+      html += `<button class="page-num ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+    }
+    
+    html += `
+      </div>
+      <button class="page-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="goToPage(${currentPage + 1})">
+        Next
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </button>
+    `;
+    
+    paginationEl.innerHTML = html;
+  }
+
+  function goToPage(page) {
+    currentPage = page;
+    renderProjects();
+    document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function renderCategories() {
+    const grid = document.querySelector('.cat-grid');
+    if (!grid) return;
+
+    // Her kategoriyi say
+    const counts = {};
+    projects.forEach(p => {
+      if (p.categoryKey) {
+        counts[p.categoryKey] = (counts[p.categoryKey] || 0) + 1;
+      }
+    });
+
+    // Kategori kartlarını yeniden oluştur
+    grid.innerHTML = Object.entries(categoryMeta).map(([key, meta]) => {
+      const count = counts[key] || 0;
+      // Her kategori için bir SVG ikon
+      const iconSvg = getCategoryIcon(key);
+      return `
+        <div class="cat-card reveal">
+          <div class="cat-icon">${iconSvg}</div>
+          <div class="cat-name">${meta.name}</div>
+          <div class="cat-count-large">${count} item${count !== 1 ? 's' : ''}</div>
+          <div class="cat-desc">${meta.desc}</div>
+        </div>
+      `;
+    }).join('');
+
+    document.querySelectorAll('.cat-grid .reveal').forEach(el => observer.observe(el));
+  }
+
+  function getCategoryIcon(key) {
+    const icons = {
+      "hair": `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M30 70 Q30 30 50 30 Q70 30 70 70"/><path d="M25 65 Q20 50 30 40 M75 65 Q80 50 70 40"/><ellipse cx="50" cy="75" rx="20" ry="6"/></svg>`,
+      "ugc": `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M50 15 L70 35 L70 70 L50 85 L30 70 L30 35 Z"/><path d="M50 15 L50 85 M30 35 L70 35 M30 70 L70 70"/><circle cx="50" cy="50" r="5" fill="currentColor"/></svg>`,
+      "high-poly": `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="50" cy="50" r="30"/><circle cx="50" cy="50" r="22"/><circle cx="50" cy="50" r="14"/><circle cx="50" cy="50" r="6" fill="currentColor"/><path d="M50 20 L50 80 M20 50 L80 50"/></svg>`,
+      "weapon": `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20 80 L40 60 L50 70 L65 25 L80 80 Z"/><path d="M40 60 L50 70 M55 50 L65 25"/><circle cx="35" cy="75" r="3" fill="currentColor"/></svg>`,
+      "environment": `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M10 75 L25 55 L40 65 L55 40 L70 55 L90 35 L90 80 L10 80 Z"/><circle cx="78" cy="22" r="5"/><path d="M30 80 L30 65 M50 80 L50 55 M70 80 L70 60"/></svg>`,
+      "character": `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="50" cy="30" r="12"/><path d="M35 45 L35 70 L40 85 M65 45 L65 70 L60 85"/><path d="M50 42 L50 70 M35 55 L65 55"/></svg>`
+    };
+    return icons[key] || icons["ugc"];
   }
 
   // Scroll reveal
@@ -1791,6 +1765,7 @@
 
   // Render projects from the data array above
   renderProjects();
+  renderCategories();
 
   // Discord copy
   const card = document.getElementById('discordCard');
