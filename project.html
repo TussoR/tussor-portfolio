@@ -507,6 +507,119 @@
     color: var(--text-dim);
   }
 
+  /* For Sale banner */
+  .sale-banner {
+    margin-bottom: 32px;
+    padding: 24px;
+    background: linear-gradient(135deg, rgba(74, 222, 128, 0.15) 0%, rgba(34, 197, 94, 0.08) 100%);
+    border: 1px solid #4ade80;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sale-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #4ade80, transparent);
+    animation: salebar 2.5s ease-in-out infinite;
+  }
+
+  @keyframes salebar {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  .sale-banner-glow {
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(74, 222, 128, 0.4) 0%, transparent 60%);
+    pointer-events: none;
+    animation: salepulse 3s ease-in-out infinite;
+  }
+
+  @keyframes salepulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 0.9; transform: scale(1.15); }
+  }
+
+  .sale-banner-content {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    z-index: 2;
+  }
+
+  .sale-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: #4ade80;
+    color: #0a0a0b;
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    font-weight: 700;
+  }
+
+  .sale-tag-dot {
+    width: 7px;
+    height: 7px;
+    background: #0a0a0b;
+    border-radius: 50%;
+    animation: pulse-dot 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.7); }
+  }
+
+  .sale-price {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 400;
+    color: #4ade80;
+    letter-spacing: -0.01em;
+  }
+
+  .buy-now-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 16px 24px;
+    background: #4ade80;
+    border: 1px solid #4ade80;
+    color: #0a0a0b;
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.25s;
+    position: relative;
+    z-index: 2;
+  }
+
+  .buy-now-btn:hover {
+    background: #22c55e;
+    border-color: #22c55e;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(74, 222, 128, 0.4);
+  }
+
   .cta-block {
     padding: 28px;
     background: var(--bg-card);
@@ -794,6 +907,26 @@
     </div>
 
     <aside class="info-panel">
+      <div id="forSaleBlock" style="display:none;">
+        <div class="sale-banner">
+          <div class="sale-banner-glow"></div>
+          <div class="sale-banner-content">
+            <div class="sale-tag">
+              <span class="sale-tag-dot"></span>
+              For Sale
+            </div>
+            <div class="sale-price" id="salePrice">—</div>
+          </div>
+          <a href="index.html#contact" class="buy-now-btn" id="buyNowBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.3 2.3a1 1 0 0 0 .7 1.7H17"/>
+              <circle cx="9" cy="20" r="1"/>
+              <circle cx="18" cy="20" r="1"/>
+            </svg>
+            Buy This Model
+          </a>
+        </div>
+      </div>
       <span class="project-tag" id="projectTag"></span>
       <h1 class="project-title" id="projectTitle">Loading...</h1>
       <div class="project-desc" id="projectDesc"></div>
@@ -1550,10 +1683,10 @@
     prevBtnEl.title = `Previous: ${projects[prevId].name}`;
     nextBtnEl.title = `Next: ${projects[nextId].name}`;
     
-    // Set background image (skip videos/youtube)
+    // Set background image (skip videos/gifs/youtube)
     function setBtnBg(btn, proj) {
       const img = proj.image;
-      if (img && !img.endsWith('.mp4') && !img.endsWith('.webm') && !img.endsWith('.mov')) {
+      if (img && !img.endsWith('.mp4') && !img.endsWith('.webm') && !img.endsWith('.mov') && !img.endsWith('.gif')) {
         if (img.includes('youtu.be/') || img.includes('youtube.com/')) {
           // Extract YouTube ID for thumbnail
           const ytMatch = img.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([a-zA-Z0-9_-]{11})/);
@@ -1604,6 +1737,18 @@
     document.getElementById('toolsUsed').innerHTML = (project.tools || []).map(t => 
       `<span class="tool-chip">${t}</span>`
     ).join('');
+
+    // For Sale banner (only if forSale: true)
+    if (project.forSale) {
+      const forSaleBlock = document.getElementById('forSaleBlock');
+      const salePriceEl = document.getElementById('salePrice');
+      const buyBtn = document.getElementById('buyNowBtn');
+      
+      forSaleBlock.style.display = 'block';
+      salePriceEl.textContent = project.price || 'Inquire for price';
+      // Pass product name to contact via hash
+      buyBtn.href = `index.html?buy=${encodeURIComponent(project.name)}&price=${encodeURIComponent(project.price || '')}#contact`;
+    }
 
     // Gallery setup
     const allImages = [project.image, ...(project.extraImages || [])].slice(0, 5);

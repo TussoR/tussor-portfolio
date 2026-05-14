@@ -3444,6 +3444,20 @@
   initHeroSlideshow();
   initShopBanner();
 
+  // Auto-open inquiry modal if redirected from "Buy This Model" button
+  (function checkBuyParam() {
+    const params = new URLSearchParams(window.location.search);
+    const buyProduct = params.get('buy');
+    const buyPrice = params.get('price');
+    if (buyProduct) {
+      setTimeout(() => {
+        openInquiryModal(buyProduct, buyPrice || '');
+        const cleanUrl = window.location.pathname + (window.location.hash || '');
+        history.replaceState(null, '', cleanUrl);
+      }, 600);
+    }
+  })();
+
   function initShopBanner() {
     const banner = document.getElementById('shopBanner');
     const track = document.getElementById('shopBannerTrack');
