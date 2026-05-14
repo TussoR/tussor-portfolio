@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Project Name 04 — TussoR Portfolio</title>
+<title>Project — TussoR Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -56,7 +56,6 @@
     z-index: 0;
   }
 
-  /* Nav */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -124,7 +123,6 @@
     transform: translateX(-3px);
   }
 
-  /* Main container */
   main {
     padding: 120px 48px 80px;
     position: relative;
@@ -133,7 +131,6 @@
     margin: 0 auto;
   }
 
-  /* Breadcrumb */
   .breadcrumb {
     display: flex;
     align-items: center;
@@ -152,12 +149,8 @@
   }
 
   .breadcrumb a:hover { color: var(--accent); }
-
-  .breadcrumb-sep { color: var(--text-mute); }
-
   .breadcrumb-current { color: var(--text); }
 
-  /* Project layout */
   .project {
     display: grid;
     grid-template-columns: 1fr 420px;
@@ -165,7 +158,6 @@
     margin-bottom: 120px;
   }
 
-  /* Gallery (left side) */
   .gallery {
     display: flex;
     flex-direction: column;
@@ -216,7 +208,6 @@
     border: 1px solid var(--line);
   }
 
-  /* Image controls */
   .img-controls {
     position: absolute;
     bottom: 20px;
@@ -260,7 +251,6 @@
     z-index: 3;
   }
 
-  /* Thumbnails */
   .thumbs {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -300,7 +290,6 @@
     align-items: center;
     justify-content: center;
     color: var(--text-mute);
-    font-size: 10px;
   }
 
   .thumb-placeholder svg {
@@ -310,7 +299,6 @@
     stroke: var(--text-mute);
   }
 
-  /* Info panel (right side) */
   .info-panel {
     position: sticky;
     top: 120px;
@@ -335,7 +323,7 @@
     font-weight: 300;
     line-height: 1;
     letter-spacing: -0.03em;
-    margin-bottom: 16px;
+    margin-bottom: 32px;
   }
 
   .project-title .italic {
@@ -343,38 +331,15 @@
     color: var(--accent);
   }
 
-  .project-meta {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 32px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid var(--line);
-    font-size: 11px;
-    color: var(--text-mute);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-  }
-
-  .project-meta span { display: flex; align-items: center; gap: 8px; }
-  .project-meta span::before {
-    content: '';
-    width: 4px; height: 4px;
-    background: var(--text-mute);
-    border-radius: 50%;
-  }
-  .project-meta span:first-child::before { display: none; }
-
   .project-desc {
     font-size: 14px;
     color: var(--text-dim);
     line-height: 1.7;
     margin-bottom: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
   }
 
-  .project-desc p { margin-bottom: 16px; }
-  .project-desc strong { color: var(--text); font-weight: 500; }
-
-  /* Specs table */
   .specs {
     margin-bottom: 40px;
   }
@@ -410,7 +375,6 @@
     font-size: 15px;
   }
 
-  /* Tools used */
   .tools-used {
     display: flex;
     flex-wrap: wrap;
@@ -428,7 +392,6 @@
     color: var(--text-dim);
   }
 
-  /* CTA */
   .cta-block {
     padding: 28px;
     background: var(--bg-card);
@@ -494,7 +457,6 @@
     transform: translateY(-2px);
   }
 
-  /* Related projects */
   .related {
     padding-top: 80px;
     border-top: 1px solid var(--line);
@@ -583,6 +545,7 @@
   .related-card:hover .related-thumb img { transform: scale(1.05); }
 
   .related-thumb .placeholder-svg {
+    display: none;
     width: 50%;
     height: 50%;
     opacity: 0.4;
@@ -608,7 +571,6 @@
     letter-spacing: 0.15em;
   }
 
-  /* Footer */
   footer {
     padding: 24px 48px;
     border-top: 1px solid var(--line);
@@ -625,7 +587,6 @@
     width: 100%;
   }
 
-  /* Responsive */
   @media (max-width: 1000px) {
     nav { padding: 16px 20px; }
     main { padding: 100px 20px 60px; }
@@ -659,43 +620,37 @@
 
 <main>
 
-  <!-- Breadcrumb -->
   <div class="breadcrumb">
     <a href="index.html">Home</a>
-    <span class="breadcrumb-sep">/</span>
+    <span>/</span>
     <a href="index.html#work">Work</a>
-    <span class="breadcrumb-sep">/</span>
-    <span class="breadcrumb-current">Project Name 04</span>
+    <span>/</span>
+    <span class="breadcrumb-current" id="breadcrumbName">Loading...</span>
   </div>
 
-  <!-- Project -->
   <div class="project">
 
-    <!-- Gallery -->
     <div class="gallery">
 
       <div class="main-image" id="mainImage">
         <div class="img-counter" id="imgCounter">01 / 05</div>
-        
-        <img id="mainImg" src="renders/project04.png" alt="Project Name 04"
+        <img id="mainImg" src="" alt=""
              onerror="this.style.display='none'; document.getElementById('mainPlaceholder').style.display='flex';">
-        
         <div class="placeholder" id="mainPlaceholder">
           <svg viewBox="0 0 100 100" fill="none" stroke-width="0.8">
             <path d="M50 10 L90 30 L90 70 L50 90 L10 70 L10 30 Z"/>
             <path d="M50 10 L50 90 M10 30 L90 70 M90 30 L10 70"/>
             <circle cx="50" cy="50" r="8" fill="currentColor" fill-opacity="0.3"/>
           </svg>
-          <div class="label">renders/project04.png</div>
+          <div class="label" id="placeholderLabel"></div>
         </div>
-
         <div class="img-controls">
-          <button class="img-control-btn" id="prevBtn" title="Previous">
+          <button class="img-control-btn" id="prevBtn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M15 18l-6-6 6-6"/>
             </svg>
           </button>
-          <button class="img-control-btn" id="nextBtn" title="Next">
+          <button class="img-control-btn" id="nextBtn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M9 18l6-6-6-6"/>
             </svg>
@@ -703,129 +658,26 @@
         </div>
       </div>
 
-      <div class="thumbs" id="thumbs">
-        <div class="thumb active" data-img="renders/project04.png">
-          <img src="renders/project04.png" alt="View 1"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="thumb-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="3" y="3" width="18" height="18" rx="2"/>
-              <circle cx="9" cy="9" r="2"/>
-              <path d="M21 15l-5-5L5 21"/>
-            </svg>
-          </div>
-        </div>
-        <div class="thumb" data-img="renders/project04_b.png">
-          <img src="renders/project04_b.png" alt="View 2"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="thumb-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="3" y="3" width="18" height="18" rx="2"/>
-              <circle cx="9" cy="9" r="2"/>
-              <path d="M21 15l-5-5L5 21"/>
-            </svg>
-          </div>
-        </div>
-        <div class="thumb" data-img="renders/project04_c.png">
-          <img src="renders/project04_c.png" alt="View 3"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="thumb-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="3" y="3" width="18" height="18" rx="2"/>
-              <circle cx="9" cy="9" r="2"/>
-              <path d="M21 15l-5-5L5 21"/>
-            </svg>
-          </div>
-        </div>
-        <div class="thumb" data-img="renders/project04_d.png">
-          <img src="renders/project04_d.png" alt="View 4"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="thumb-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="3" y="3" width="18" height="18" rx="2"/>
-              <circle cx="9" cy="9" r="2"/>
-              <path d="M21 15l-5-5L5 21"/>
-            </svg>
-          </div>
-        </div>
-        <div class="thumb" data-img="renders/project04_e.png">
-          <img src="renders/project04_e.png" alt="View 5"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="thumb-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="3" y="3" width="18" height="18" rx="2"/>
-              <circle cx="9" cy="9" r="2"/>
-              <path d="M21 15l-5-5L5 21"/>
-            </svg>
-          </div>
-        </div>
-      </div>
+      <div class="thumbs" id="thumbs"></div>
 
     </div>
 
-    <!-- Info Panel -->
     <aside class="info-panel">
-      
-      <span class="project-tag">Accessory · UGC</span>
-
-      <h1 class="project-title">
-        Project<br>
-        <span class="italic">Name 04</span>
-      </h1>
-
-      <div class="project-meta">
-        <span>2026</span>
-        <span>Commission</span>
-        <span>Delivered</span>
-      </div>
-
-      <div class="project-desc">
-        <p>
-          <strong>A detailed low-poly environment</strong> crafted for a 
-          medieval-themed Roblox experience. Built with modularity in mind, 
-          allowing the developer to reuse assets across multiple zones.
-        </p>
-        <p>
-          Optimized for mobile performance with carefully managed poly counts 
-          and atlas-based textures. Fully UV-mapped and ready for Roblox Studio import.
-        </p>
-      </div>
-
-      <!-- Technical specs -->
+      <span class="project-tag" id="projectTag"></span>
+      <h1 class="project-title" id="projectTitle">Loading...</h1>
+      <div class="project-desc" id="projectDesc"></div>
       <div class="specs">
         <div class="specs-title">— Technical Details</div>
-        <div class="spec-row">
-          <span class="spec-label">Polygons</span>
-          <span class="spec-value">~ 2,400</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-label">Texture</span>
-          <span class="spec-value">512 × 512</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-label">Format</span>
-          <span class="spec-value">FBX · OBJ</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-label">Delivery</span>
-          <span class="spec-value">3 Days</span>
-        </div>
+        <div class="spec-row"><span class="spec-label">Polygons</span><span class="spec-value" id="specPolygons">—</span></div>
+        <div class="spec-row"><span class="spec-label">Texture</span><span class="spec-value" id="specTexture">—</span></div>
+        <div class="spec-row"><span class="spec-label">Format</span><span class="spec-value" id="specFormat">—</span></div>
+        <div class="spec-row"><span class="spec-label">Delivery</span><span class="spec-value" id="specDelivery">—</span></div>
       </div>
-
-      <!-- Tools used -->
-      <div class="tools-used">
-        <span class="tool-chip">Blender</span>
-        <span class="tool-chip">Substance Painter</span>
-        <span class="tool-chip">Photoshop</span>
-      </div>
-
-      <!-- CTA -->
+      <div class="tools-used" id="toolsUsed"></div>
       <div class="cta-block">
         <div class="cta-label">— Want Something Similar?</div>
         <div class="cta-title">Let's create your model</div>
-        <div class="cta-desc">
-          Custom commissions starting from $25. Average delivery in 3-7 days.
-        </div>
+        <div class="cta-desc">Custom commissions starting from $25. Average delivery in 3-7 days.</div>
         <a href="index.html#contact" class="btn">
           Start a Project
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -833,12 +685,10 @@
           </svg>
         </a>
       </div>
-
     </aside>
 
   </div>
 
-  <!-- Related Projects -->
   <section class="related">
     <div class="related-header">
       <div>
@@ -852,58 +702,7 @@
         </svg>
       </a>
     </div>
-
-    <div class="related-grid">
-
-      <a href="project02.html" class="related-card">
-        <div class="related-thumb">
-          <img src="renders/project02.png" alt="Project 02"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-          <svg class="placeholder-svg" viewBox="0 0 100 100" fill="none" stroke="#f4f4f5" stroke-width="0.6" style="display:none;">
-            <path d="M20 80 L50 20 L80 80 Z"/>
-            <path d="M30 65 L70 65 M50 20 L50 80"/>
-            <circle cx="50" cy="50" r="3" fill="#ff5722"/>
-          </svg>
-        </div>
-        <div class="related-info">
-          <div class="related-name">Project Name 02</div>
-          <div class="related-type">Weapon / UGC</div>
-        </div>
-      </a>
-
-      <a href="project03.html" class="related-card">
-        <div class="related-thumb">
-          <img src="renders/project03.png" alt="Project 03"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-          <svg class="placeholder-svg" viewBox="0 0 100 100" fill="none" stroke="#f4f4f5" stroke-width="0.6" style="display:none;">
-            <rect x="25" y="25" width="50" height="50"/>
-            <rect x="35" y="35" width="30" height="30" stroke="#ff5722"/>
-            <path d="M25 25 L75 75 M75 25 L25 75"/>
-          </svg>
-        </div>
-        <div class="related-info">
-          <div class="related-name">Project Name 03</div>
-          <div class="related-type">Architecture</div>
-        </div>
-      </a>
-
-      <a href="project04.html" class="related-card">
-        <div class="related-thumb">
-          <img src="renders/project04.png" alt="Project 04"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-          <svg class="placeholder-svg" viewBox="0 0 100 100" fill="none" stroke="#f4f4f5" stroke-width="0.6" style="display:none;">
-            <circle cx="50" cy="50" r="35"/>
-            <circle cx="50" cy="50" r="22" stroke="#ff5722"/>
-            <circle cx="50" cy="50" r="10"/>
-          </svg>
-        </div>
-        <div class="related-info">
-          <div class="related-name">Project Name 04</div>
-          <div class="related-type">Accessory</div>
-        </div>
-      </a>
-
-    </div>
+    <div class="related-grid" id="relatedGrid"></div>
   </section>
 
 </main>
@@ -914,55 +713,238 @@
 </footer>
 
 <script>
-  // Gallery navigation
-  const thumbs = document.querySelectorAll('.thumb');
+  // ========================================
+  // PROJELERİNİZİ BURADAN DÜZENLEYİN
+  // ========================================
+  // ÖNEMLI: Bu liste, index.html'deki listenin AYNISI olmalı.
+  // Bir proje değiştirdiğinizde, hem index.html'de hem burada güncellemeniz lazım.
+  // (İleride istenirse tek dosyada birleştirebiliriz.)
+  // ========================================
+
+  const projects = [
+    {
+      name: "Project Name 01",
+      category: "Environment",
+      image: "renders/project01.png",
+      tag: "Featured",
+      description: "A detailed low-poly environment crafted for a medieval-themed Roblox experience. Built with modularity in mind, allowing the developer to reuse assets across multiple zones.",
+      polygons: "2,400",
+      texture: "512 × 512",
+      format: "FBX · OBJ",
+      delivery: "3 Days",
+      tools: ["Blender", "Substance Painter", "Photoshop"],
+      // Galerideki ek görseller (max 5):
+      extraImages: [
+        "renders/project01_b.png",
+        "renders/project01_c.png",
+        "renders/project01_d.png",
+        "renders/project01_e.png"
+      ]
+    },
+    {
+      name: "Project Name 02",
+      category: "Weapon · UGC",
+      image: "renders/project02.png",
+      tag: "",
+      description: "A stylized weapon model designed for the Roblox UGC Marketplace. Clean topology, optimized for first-person view.",
+      polygons: "1,200",
+      texture: "256 × 256",
+      format: "FBX · OBJ",
+      delivery: "2 Days",
+      tools: ["Blender", "Substance Painter"],
+      extraImages: ["renders/project02_b.png", "renders/project02_c.png"]
+    },
+    {
+      name: "Project Name 03",
+      category: "Architecture · High Poly",
+      image: "renders/project03.png",
+      tag: "",
+      description: "High-detail architectural showcase model for renders and promotional artwork.",
+      polygons: "8,500",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "5 Days",
+      tools: ["Blender", "Substance Painter"],
+      extraImages: []
+    },
+    {
+      name: "Project Name 04",
+      category: "Accessory · UGC",
+      image: "renders/project04.png",
+      tag: "",
+      description: "Wearable accessory designed for Roblox avatars. Marketplace-ready.",
+      polygons: "450",
+      texture: "128 × 128",
+      format: "FBX",
+      delivery: "1 Day",
+      tools: ["Blender"],
+      extraImages: []
+    },
+    {
+      name: "Project Name 05",
+      category: "Character",
+      image: "renders/project05.png",
+      tag: "",
+      description: "Full character model with custom proportions and styling.",
+      polygons: "3,200",
+      texture: "512 × 512",
+      format: "FBX",
+      delivery: "4 Days",
+      tools: ["Blender", "ZBrush", "Substance Painter"],
+      extraImages: []
+    },
+    {
+      name: "Project Name 06",
+      category: "Map · Environment",
+      image: "renders/project06.png",
+      tag: "Latest",
+      description: "Complete map environment with modular assets and atmospheric lighting setup.",
+      polygons: "12,000",
+      texture: "1024 × 1024",
+      format: "FBX",
+      delivery: "7 Days",
+      tools: ["Blender", "Substance Painter", "Photoshop"],
+      extraImages: []
+    },
+    {
+      name: "Project Name 07",
+      category: "Nature Asset",
+      image: "renders/project07.png",
+      tag: "",
+      description: "Low-poly nature pack featuring trees, rocks, and foliage. Game-ready.",
+      polygons: "600 each",
+      texture: "256 × 256",
+      format: "FBX",
+      delivery: "2 Days",
+      tools: ["Blender"],
+      extraImages: []
+    }
+  ];
+
+  // ========================================
+  // (Aşağıya dokunmayın — proje sayfasını otomatik oluşturur)
+  // ========================================
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const projectId = parseInt(urlParams.get('id')) || 0;
+  const project = projects[projectId] || projects[0];
+
+  // Set title
+  document.title = `${project.name} — TussoR Portfolio`;
+  document.getElementById('breadcrumbName').textContent = project.name;
+
+  // Set tag
+  const tagEl = document.getElementById('projectTag');
+  tagEl.textContent = project.tag ? `${project.category} · ${project.tag}` : project.category;
+
+  // Set name (split into 2 lines if possible)
+  const titleEl = document.getElementById('projectTitle');
+  const nameParts = project.name.split(' ');
+  if (nameParts.length >= 2) {
+    const lastPart = nameParts.pop();
+    titleEl.innerHTML = `${nameParts.join(' ')}<br><span class="italic">${lastPart}</span>`;
+  } else {
+    titleEl.innerHTML = `<span class="italic">${project.name}</span>`;
+  }
+
+  // Description
+  document.getElementById('projectDesc').textContent = project.description;
+
+  // Specs
+  document.getElementById('specPolygons').textContent = project.polygons;
+  document.getElementById('specTexture').textContent = project.texture;
+  document.getElementById('specFormat').textContent = project.format;
+  document.getElementById('specDelivery').textContent = project.delivery;
+
+  // Tools
+  document.getElementById('toolsUsed').innerHTML = project.tools.map(t => 
+    `<span class="tool-chip">${t}</span>`
+  ).join('');
+
+  // Gallery setup
+  const allImages = [project.image, ...(project.extraImages || [])].slice(0, 5);
+  const totalImages = allImages.length;
+  let currentIndex = 0;
+
+  // Build thumbnails
+  const thumbsContainer = document.getElementById('thumbs');
+  thumbsContainer.innerHTML = allImages.map((img, i) => `
+    <div class="thumb ${i === 0 ? 'active' : ''}" data-index="${i}">
+      <img src="${img}" alt="View ${i+1}"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <circle cx="9" cy="9" r="2"/>
+          <path d="M21 15l-5-5L5 21"/>
+        </svg>
+      </div>
+    </div>
+  `).join('');
+
+  // Main image
   const mainImg = document.getElementById('mainImg');
   const mainPlaceholder = document.getElementById('mainPlaceholder');
+  const placeholderLabel = document.getElementById('placeholderLabel');
   const counter = document.getElementById('imgCounter');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  
-  let currentIndex = 0;
-  const totalImages = thumbs.length;
 
   function updateMainImage(index) {
-    const thumb = thumbs[index];
-    const imgSrc = thumb.dataset.img;
+    currentIndex = index;
+    const imgSrc = allImages[index];
     
-    // Update active state
-    thumbs.forEach(t => t.classList.remove('active'));
-    thumb.classList.add('active');
+    document.querySelectorAll('.thumb').forEach((t, i) => {
+      t.classList.toggle('active', i === index);
+    });
     
-    // Update main image
     mainImg.style.display = 'block';
     mainPlaceholder.style.display = 'none';
     mainImg.src = imgSrc;
-    
-    // Update counter
+    placeholderLabel.textContent = imgSrc;
     counter.textContent = `${String(index + 1).padStart(2, '0')} / ${String(totalImages).padStart(2, '0')}`;
-    
-    currentIndex = index;
   }
+  updateMainImage(0);
 
-  thumbs.forEach((thumb, index) => {
-    thumb.addEventListener('click', () => updateMainImage(index));
+  // Click thumbnails
+  document.querySelectorAll('.thumb').forEach((thumb, i) => {
+    thumb.addEventListener('click', () => updateMainImage(i));
   });
 
-  prevBtn.addEventListener('click', () => {
-    const newIndex = currentIndex === 0 ? totalImages - 1 : currentIndex - 1;
-    updateMainImage(newIndex);
+  // Navigation buttons
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    updateMainImage(currentIndex === 0 ? totalImages - 1 : currentIndex - 1);
+  });
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    updateMainImage(currentIndex === totalImages - 1 ? 0 : currentIndex + 1);
   });
 
-  nextBtn.addEventListener('click', () => {
-    const newIndex = currentIndex === totalImages - 1 ? 0 : currentIndex + 1;
-    updateMainImage(newIndex);
-  });
-
-  // Keyboard navigation
+  // Keyboard
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') prevBtn.click();
-    if (e.key === 'ArrowRight') nextBtn.click();
+    if (e.key === 'ArrowLeft') document.getElementById('prevBtn').click();
+    if (e.key === 'ArrowRight') document.getElementById('nextBtn').click();
   });
+
+  // Related projects (show 3 others, not current)
+  const relatedGrid = document.getElementById('relatedGrid');
+  const others = projects.filter((_, i) => i !== projectId).slice(0, 3);
+  relatedGrid.innerHTML = others.map((p, i) => {
+    const realIndex = projects.indexOf(p);
+    return `
+      <a href="project.html?id=${realIndex}" class="related-card">
+        <div class="related-thumb">
+          <img src="${p.image}" alt="${p.name}"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <svg class="placeholder-svg" viewBox="0 0 100 100" fill="none" stroke="#f4f4f5" stroke-width="0.6">
+            <rect x="25" y="25" width="50" height="50"/>
+            <circle cx="50" cy="50" r="8" fill="#ff5722"/>
+          </svg>
+        </div>
+        <div class="related-info">
+          <div class="related-name">${p.name}</div>
+          <div class="related-type">${p.category}</div>
+        </div>
+      </a>
+    `;
+  }).join('');
 </script>
 
 </body>
