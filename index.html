@@ -390,6 +390,112 @@
     letter-spacing: -0.01em;
   }
 
+  /* Filter banner */
+  .filter-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+    background: var(--accent-glow);
+    border: 1px solid var(--accent);
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .filter-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .filter-label {
+    font-size: 10px;
+    color: var(--text-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+  }
+
+  .filter-info strong {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+  }
+
+  .filter-count {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 4px 10px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+  }
+
+  .filter-clear {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .filter-clear:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Clickable category cards */
+  .cat-card {
+    user-select: none;
+  }
+
+  .cat-card.active {
+    border-color: var(--accent);
+    background: var(--accent-glow);
+  }
+
+  .cat-card.active .cat-icon {
+    color: var(--accent);
+  }
+
+  .cat-card.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .cat-card.disabled:hover {
+    border-color: var(--line);
+    background: var(--bg-card);
+    transform: none;
+  }
+
+  .cat-arrow {
+    position: absolute;
+    bottom: 24px;
+    right: 28px;
+    color: var(--text-mute);
+    font-family: var(--display);
+    font-size: 20px;
+    transition: all 0.3s;
+  }
+
+  .cat-card:hover:not(.disabled) .cat-arrow {
+    color: var(--accent);
+    transform: translateX(4px);
+  }
+
   /* Pagination */
   .pagination {
     display: flex;
@@ -1226,7 +1332,7 @@
 
   <div class="hero-stats">
     <div>
-      <div class="stat-num">10+</div>
+      <div class="stat-num">22+</div>
       <div class="stat-label">Models Crafted</div>
     </div>
     <div>
@@ -1251,6 +1357,8 @@
       Click any item<br>to view details
     </div>
   </div>
+
+  <div class="filter-banner" id="filterBanner" style="display:none;"></div>
 
   <div class="tools-bar reveal">
     <div class="tools-label">Crafted with</div>
@@ -1599,397 +1707,393 @@
   // },
   // ========================================
 
-   const projects = [
-    {
-      name: "Serpent Executioner",
-      categoryKey: "ugc",
-      categoryLabel: "Weapon · UGC",
-      image: "renders/1.png",
-      size: "small",
-      tag: "",
-      description: "Created for horror theme group.",
-      polygons: "3,950",
-      texture: "1024 × 1024",
-      format: "FBX · OBJ",
-      delivery: "2 Days",
-      tools: ["Blender", "Substance Painter"],
-      extraImages: [
-        "renders/2.png",
-        "https://youtu.be/-7k_x9CzkKw"
-      ]      
-    },
-
-    {
-      name: "VKEI Hair",
-      categoryKey: "hair",
-      categoryLabel: "Hair",
-      image: "renders/image-f6b1af010f2be782.png",
-      size: "small",
-      tag: "",
-      description: "Created for roblox group",
-      polygons: "3,456",
-      texture: "1024 × 1024",
-      format: "FBX · OBJ",
-      delivery: "1 Days",
-      tools: ["Blender", "Substance Painter"],
-      extraImages: [
-      "renders/image-bbbd42c48ff55fa9.png"
-      ]    
-    },
-    {
-      name: "Punky Hair",
-      categoryKey: "hair",
-      categoryLabel: "Hair",
-      image: "renders/image-bd2fc6091255927a.png",
-      size: "small",
-      tag: "",
-      description: "Created for roblox group",
-      polygons: "3,999",
-      texture: "1024 × 1024",
-      format: "FBX · OBJ",
-      delivery: "1 Days",
-      tools: ["Blender", "Substance Painter"],
-      extraImages: [
-      "renders/image-94b37a6dc1f17377.png"
-      ]    
-    },    
-    {
-      name: "Messy Boy Hair",
-      categoryKey: "hair",
-      categoryLabel: "Hair",
-      image: "renders/image-c08e4930fe3f5c7e.png",
-      size: "small",
-      tag: "",
-      description: "Created for roblox group.",
-      polygons: "3,742",
-      texture: "1024 × 1024",
-      format: "FBX · OBJ",
-      delivery: "1 Days",
-      tools: ["Blender", "Substance Painter"],
-      extraImages: [
-      "renders/12.gif",
-      "renders/image-318ecabc57091c32.png",
-      "renders/Screenshot_2026-03-13_135953-37ce376bfa081c57.png"
-      ]    
-    },    
-    {
-      name: "Emo Hair",
-      categoryKey: "hair",
-      categoryLabel: "Hair",
-      image: "renders/image-f5d7302657d31529.png",
-      size: "small",
-      tag: "",
-      description: "Created for roblox group.",
-      polygons: "3,973",
-      texture: "1024 × 1024",
-      format: "FBX · OBJ",
-      delivery: "1 Days",
-      tools: ["Blender", "Substance Painter"],
-      extraImages: [
-      "renders/image-05595b8e166bc1b3.png",
-      "renders/image-6b45e3e05ddc66fd.png"
-      ]    
-    },
-    {
-      name: "Vkei Hair",
-      categoryKey: "hair",
-      categoryLabel: "Hair",
-      image: "renders/image-4e5b91cba7062612.png",
-      size: "small",
-      tag: "",
-      description: "Created for roblox group.",
-      polygons: "3,993",
-      texture: "1024 × 1024",
-      format: "FBX · OBJ",
-      delivery: "1 Days",
-      tools: ["Blender", "Substance Painter"],
-      extraImages: [
-      "renders/cover-8385eeccf99ed66c.gif",
-      "renders/image-253af8aebb75c253.png"
-      ]    
-     },  
-    {
-      name: "Emo Hair",
-      categoryKey: "hair",
-      categoryLabel: "Hair",
-      image: "renders/image-b1eede11a43d6333.png",
-      size: "small",
-      tag: "",
-      description: "Created for roblox group.",
-      polygons: "3,993",
-      texture: "1024 × 1024",
-      format: "FBX · OBJ",
-      delivery: "1 Days",
-      tools: ["Blender", "Substance Painter"],
-      extraImages: [
-      "renders/image-a3abe74c5d506c44.gif",
-      "renders/image-8593d410b248db8d.png",
-      "renders/image-f7b42b961469237e.png"
-      ]    
-     },
-  
+  const projects = [
       {
-      name: "Vkei Hair",
-      categoryKey: "hair",
-      categoryLabel: "Hair",
-      image: "renders/Screenshot 2026-03-07 211723.png",
-      size: "small",
-      tag: "",
-      description: "Created for roblox group.",
-      polygons: "3,512",
-      texture: "1024 × 1024",
-      format: "FBX · OBJ",
-      delivery: "1 Days",
-      tools: ["Blender", "Substance Painter"],
-      extraImages: [
-      "renders/Screenshot 2026-03-07 211744.png",
-      "renders/cover.gif",
-      "renders/Screenshot 2026-03-07 212255.png"
-      ]    
-     },
+        name: "Serpent Executioner",
+        categoryKey: "ugc",
+        categoryLabel: "Weapon · UGC",
+        image: "renders/1.png",
+        size: "small",
+        tag: "",
+        description: "Created for horror theme group.",
+        polygons: "3,950",
+        texture: "1024 × 1024",
+        format: "FBX · OBJ",
+        delivery: "2 Days",
+        tools: ["Blender", "Substance Painter"],
+        extraImages: [
+          "renders/2.png",
+          "https://youtu.be/-7k_x9CzkKw"
+        ]      
+      },
       {
-      name: "Long Vkei Hair",
-      categoryKey: "hair",
-      categoryLabel: "Hair",
-      image: "renders/Screenshot 2026-04-04 223719.png",
-      size: "small",
-      tag: "",
-      description: "Created for roblox group.",
-      polygons: "3,512",
-      texture: "1024 × 1024",
-      format: "FBX · OBJ",
-      delivery: "1 Days",
-      tools: ["Blender", "Substance Painter"],
-      extraImages: [
-      "renders/Screenshot 2026-04-04 223743.png",
-      "renders/Screenshot 2026-04-04 224014.png",
-      "renders/Screenshot 2026-04-04 231936.png"
-      ]    
-     }, 
+        name: "VKEI Hair",
+        categoryKey: "hair",
+        categoryLabel: "Hair",
+        image: "renders/image-f6b1af010f2be782.png",
+        size: "small",
+        tag: "",
+        description: "Created for roblox group",
+        polygons: "3,456",
+        texture: "1024 × 1024",
+        format: "FBX · OBJ",
+        delivery: "1 Days",
+        tools: ["Blender", "Substance Painter"],
+        extraImages: [
+        "renders/image-bbbd42c48ff55fa9.png"
+        ]    
+      },
       {
-      name: "Punk Hair Style",
-      categoryKey: "hair",
-      categoryLabel: "Hair",
-      image: "renders/image3-75c5e0065796d53d.gif",
-      size: "small",
-      tag: "",
-      description: "Created for roblox group.",
-      polygons: "3,512",
-      texture: "1024 × 1024",
-      format: "FBX · OBJ",
-      delivery: "1 Days",
-      tools: ["Blender", "Substance Painter"],
-      extraImages: [
-      "renders/image-761c9918e4e183ad.png",
-      "renders/image-90730382563936c3.png",
-      "renders/Screenshot_2026-02-06_043120-30a0d9f3599d2724.png"
-      ]    
-     },
-     {
-      name: "Emo Hair Style",
-      categoryKey: "hair",
-      categoryLabel: "Hair",
-      image: "renders/image-070d73f4ac13ff61.png",
-      size: "small",
-      tag: "",
-      description: "Created for roblox group.",
-      polygons: "3,712",
-      texture: "1024 × 1024",
-      format: "FBX · OBJ",
-      delivery: "1 Days",
-      tools: ["Blender", "Substance Painter"],
-      extraImages: [
-      "renders/image-7ec76c19a146afec.png",
-      "renders/image-8ae1f70a2a758933.gif",
-      ]    
-     },
-     {
-      name: "VKEI Hair Style",
-      categoryKey: "hair",
-      categoryLabel: "Hair",
-      image: "renders/image-3c6c8b33f7ee3aaf.png",
-      size: "small",
-      tag: "",
-      description: "Created for roblox group.",
-      polygons: "3,982",
-      texture: "1024 × 1024",
-      format: "FBX · OBJ",
-      delivery: "1 Days",
-      tools: ["Blender", "Substance Painter"],
-      extraImages: [
-      "renders/thumbnail-c2bd81b507372ae6.gif",
-      ]    
-     }, 
- 
-         {
-      name: "Emo Hair Style",
-      categoryKey: "hair",
-      categoryLabel: "Hair",
-      image: "renders/image2-45807f1f64e60263.gif",
-      size: "small",
-      tag: "",
-      description: "Created for roblox group.",
-      polygons: "3,712",
-      texture: "1024 × 1024",
-      format: "FBX · OBJ",
-      delivery: "1 Days",
-      tools: ["Blender", "Substance Painter"],
-      extraImages: [
-      "renders/image-7acd85d393135bf7.png",
-      "renders/image-7bc8f6ae07133d72.png",
-      ]    
-     },     
-     
+        name: "Punky Hair",
+        categoryKey: "hair",
+        categoryLabel: "Hair",
+        image: "renders/image-bd2fc6091255927a.png",
+        size: "small",
+        tag: "",
+        description: "Created for roblox group",
+        polygons: "3,999",
+        texture: "1024 × 1024",
+        format: "FBX · OBJ",
+        delivery: "1 Days",
+        tools: ["Blender", "Substance Painter"],
+        extraImages: [
+        "renders/image-94b37a6dc1f17377.png"
+        ]    
+      },    
+      {
+        name: "Messy Boy Hair",
+        categoryKey: "hair",
+        categoryLabel: "Hair",
+        image: "renders/image-c08e4930fe3f5c7e.png",
+        size: "small",
+        tag: "",
+        description: "Created for roblox group.",
+        polygons: "3,742",
+        texture: "1024 × 1024",
+        format: "FBX · OBJ",
+        delivery: "1 Days",
+        tools: ["Blender", "Substance Painter"],
+        extraImages: [
+        "renders/12.gif",
+        "renders/image-318ecabc57091c32.png",
+        "renders/Screenshot_2026-03-13_135953-37ce376bfa081c57.png"
+        ]    
+      },    
+      {
+        name: "Emo Hair",
+        categoryKey: "hair",
+        categoryLabel: "Hair",
+        image: "renders/image-f5d7302657d31529.png",
+        size: "small",
+        tag: "",
+        description: "Created for roblox group.",
+        polygons: "3,973",
+        texture: "1024 × 1024",
+        format: "FBX · OBJ",
+        delivery: "1 Days",
+        tools: ["Blender", "Substance Painter"],
+        extraImages: [
+        "renders/image-05595b8e166bc1b3.png",
+        "renders/image-6b45e3e05ddc66fd.png"
+        ]    
+      },
+      {
+        name: "Vkei Hair",
+        categoryKey: "hair",
+        categoryLabel: "Hair",
+        image: "renders/image-4e5b91cba7062612.png",
+        size: "small",
+        tag: "",
+        description: "Created for roblox group.",
+        polygons: "3,993",
+        texture: "1024 × 1024",
+        format: "FBX · OBJ",
+        delivery: "1 Days",
+        tools: ["Blender", "Substance Painter"],
+        extraImages: [
+        "renders/cover-8385eeccf99ed66c.gif",
+        "renders/image-253af8aebb75c253.png"
+        ]    
+       },  
+      {
+        name: "Emo Hair",
+        categoryKey: "hair",
+        categoryLabel: "Hair",
+        image: "renders/image-b1eede11a43d6333.png",
+        size: "small",
+        tag: "",
+        description: "Created for roblox group.",
+        polygons: "3,993",
+        texture: "1024 × 1024",
+        format: "FBX · OBJ",
+        delivery: "1 Days",
+        tools: ["Blender", "Substance Painter"],
+        extraImages: [
+        "renders/image-a3abe74c5d506c44.gif",
+        "renders/image-8593d410b248db8d.png",
+        "renders/image-f7b42b961469237e.png"
+        ]    
+       },
+      {
+        name: "Vkei Hair",
+        categoryKey: "hair",
+        categoryLabel: "Hair",
+        image: "renders/Screenshot 2026-03-07 211723.png",
+        size: "small",
+        tag: "",
+        description: "Created for roblox group.",
+        polygons: "3,512",
+        texture: "1024 × 1024",
+        format: "FBX · OBJ",
+        delivery: "1 Days",
+        tools: ["Blender", "Substance Painter"],
+        extraImages: [
+        "renders/Screenshot 2026-03-07 211744.png",
+        "renders/cover.gif",
+        "renders/Screenshot 2026-03-07 212255.png"
+        ]    
+       },
+      {
+        name: "Long Vkei Hair",
+        categoryKey: "hair",
+        categoryLabel: "Hair",
+        image: "renders/Screenshot 2026-04-04 223719.png",
+        size: "small",
+        tag: "",
+        description: "Created for roblox group.",
+        polygons: "3,512",
+        texture: "1024 × 1024",
+        format: "FBX · OBJ",
+        delivery: "1 Days",
+        tools: ["Blender", "Substance Painter"],
+        extraImages: [
+        "renders/Screenshot 2026-04-04 223743.png",
+        "renders/Screenshot 2026-04-04 224014.png",
+        "renders/Screenshot 2026-04-04 231936.png"
+        ]    
+       }, 
+      {
+        name: "Punk Hair Style",
+        categoryKey: "hair",
+        categoryLabel: "Hair",
+        image: "renders/image3-75c5e0065796d53d.gif",
+        size: "small",
+        tag: "",
+        description: "Created for roblox group.",
+        polygons: "3,512",
+        texture: "1024 × 1024",
+        format: "FBX · OBJ",
+        delivery: "1 Days",
+        tools: ["Blender", "Substance Painter"],
+        extraImages: [
+        "renders/image-761c9918e4e183ad.png",
+        "renders/image-90730382563936c3.png",
+        "renders/Screenshot_2026-02-06_043120-30a0d9f3599d2724.png"
+        ]    
+       },
        {
-      name: "VKEI Hair Style",
-      categoryKey: "hair",
-      categoryLabel: "Hair",
-      image: "renders/image2-9407536a54f0122a.gif",
-      size: "small",
-      tag: "",
-      description: "Created for roblox group.",
-      polygons: "3,712",
-      texture: "1024 × 1024",
-      format: "FBX · OBJ",
-      delivery: "1 Days",
-      tools: ["Blender", "Substance Painter"],
-      extraImages: [
-      "renders/image-48f09f50ce25bc78.png",
-      "renders/Screenshot_2026-02-08_102000-29e11a1485c1969a.png",
-      ]    
-     }, 
+        name: "Emo Hair Style",
+        categoryKey: "hair",
+        categoryLabel: "Hair",
+        image: "renders/image-070d73f4ac13ff61.png",
+        size: "small",
+        tag: "",
+        description: "Created for roblox group.",
+        polygons: "3,712",
+        texture: "1024 × 1024",
+        format: "FBX · OBJ",
+        delivery: "1 Days",
+        tools: ["Blender", "Substance Painter"],
+        extraImages: [
+        "renders/image-7ec76c19a146afec.png",
+        "renders/image-8ae1f70a2a758933.gif"
+        ]    
+       },
        {
-      name: "VKEI Hair Style",
-      categoryKey: "hair",
-      categoryLabel: "Hair",
-      image: "renders/image-ad31e3faa716a93d.png",
-      size: "small",
-      tag: "",
-      description: "Created for roblox group.",
-      polygons: "3,712",
-      texture: "1024 × 1024",
-      format: "FBX · OBJ",
-      delivery: "1 Days",
-      tools: ["Blender", "Substance Painter"],
-      extraImages: [
-      "renders/image-0f8e9786b57b3e4e.png",
-      ]    
-     }, 
-       {
-      name: "VKEI Hair Style",
-      categoryKey: "hair",
-      categoryLabel: "Hair",
-      image: "renders/image2-72269328e33c968c.gif",
-      size: "small",
-      tag: "",
-      description: "Created for roblox group.",
-      polygons: "3,712",
-      texture: "1024 × 1024",
-      format: "FBX · OBJ",
-      delivery: "1 Days",
-      tools: ["Blender", "Substance Painter"],
-      extraImages: [
-      "renders/image-3a2d2e5353d1f2d2.png",
-      "renders/Screenshot_2026-01-31_214943-bd9c84c1913eb340.png",
-      ]    
-     },  
-       {
-      name: "VKEI Hair Style",
-      categoryKey: "hair",
-      categoryLabel: "Hair",
-      image: "renders/image-35f36b3ad79a78e6.gif",
-      size: "small",
-      tag: "",
-      description: "Created for roblox group.",
-      polygons: "3,712",
-      texture: "1024 × 1024",
-      format: "FBX · OBJ",
-      delivery: "1 Days",
-      tools: ["Blender", "Substance Painter"],
-      extraImages: [
-      "renders/image-7b0c786c7266dc48.png",
-      "renders/Screenshot_2026-01-26_200357-e32ae568c54a8b5c.png",
-      ]    
-     }, 
-       {
-      name: "VKEI Hair Style",
-      categoryKey: "hair",
-      categoryLabel: "Hair",
-      image: "renders/image-06821adef0f6e0bb.gif",
-      size: "small",
-      tag: "",
-      description: "Created for roblox group.",
-      polygons: "3,712",
-      texture: "1024 × 1024",
-      format: "FBX · OBJ",
-      delivery: "1 Days",
-      tools: ["Blender", "Substance Painter"],
-      extraImages: [
-      "renders/image-5bf9d83b85e0f2bb.png",
-      "renders/image-4d178239ecf843ce.png",
-      "renders/Screenshot_2026-01-12_021100-2c2f6d2be82f2c1e.png",
-      ]    
-     }, 
-       {
-      name: "VKEI Hair Style",
-      categoryKey: "hair",
-      categoryLabel: "Hair",
-      image: "renders/gif-6b8ded64f9171172.gif",
-      size: "small",
-      tag: "",
-      description: "Created for roblox group.",
-      polygons: "3,712",
-      texture: "1024 × 1024",
-      format: "FBX · OBJ",
-      delivery: "1 Days",
-      tools: ["Blender", "Substance Painter"],
-      extraImages: [
-      "renders/image-445bf6d3f06084b6.png",
-      "renders/image-eb947529378541e0.png",
-      "renders/Screenshot_2026-01-07_134156-3dfb80e18be57bed.png",
-      ]    
-     }, 
-          {
-      name: "Long Girl Hair",
-      categoryKey: "hair",
-      categoryLabel: "Hair",
-      image: "renders/Screenshot 2026-03-02 174413.png",
-      size: "small",
-      tag: "",
-      description: "Created for roblox group.",
-      polygons: "3,993",
-      texture: "1024 × 1024",
-      format: "FBX · OBJ",
-      delivery: "1 Days",
-      tools: ["Blender", "Substance Painter"],
-      extraImages: [
-      "renders/Screenshot 2026-03-02 174436.png",
-      "renders/Screenshot 2026-03-02 174727.png",
-      "renders/Screenshot 2026-03-02 195751.png",
-      "renders/Screenshot 2026-03-02 211854.png"
-      ]    
-     },
-          {
-      name: "Curly Girl Hair",
-      categoryKey: "hair",
-      categoryLabel: "Hair",
-      image: "renders/Screenshot 2026-03-02 182858.png",
-      size: "small",
-      tag: "",
-      description: "Created for roblox group.",
-      polygons: "3,972",
-      texture: "1024 × 1024",
-      format: "FBX · OBJ",
-      delivery: "1 Days",
-      tools: ["Blender", "Substance Painter"],
-      extraImages: [
-      "renders/Screenshot 2026-03-02 182805.png",
-      "renders/Screenshot 2026-03-02 212226.png",
-      "renders/Screenshot 2026-03-02 212217.png",
-      "renders/Screenshot 2026-03-02 195812.png"
-      ]    
-     }, 
-  ];
+        name: "VKEI Hair Style",
+        categoryKey: "hair",
+        categoryLabel: "Hair",
+        image: "renders/image-3c6c8b33f7ee3aaf.png",
+        size: "small",
+        tag: "",
+        description: "Created for roblox group.",
+        polygons: "3,982",
+        texture: "1024 × 1024",
+        format: "FBX · OBJ",
+        delivery: "1 Days",
+        tools: ["Blender", "Substance Painter"],
+        extraImages: [
+        "renders/thumbnail-c2bd81b507372ae6.gif"
+        ]    
+       }, 
+      {
+        name: "Emo Hair Style",
+        categoryKey: "hair",
+        categoryLabel: "Hair",
+        image: "renders/image2-45807f1f64e60263.gif",
+        size: "small",
+        tag: "",
+        description: "Created for roblox group.",
+        polygons: "3,712",
+        texture: "1024 × 1024",
+        format: "FBX · OBJ",
+        delivery: "1 Days",
+        tools: ["Blender", "Substance Painter"],
+        extraImages: [
+        "renders/image-7acd85d393135bf7.png",
+        "renders/image-7bc8f6ae07133d72.png"
+        ]    
+       },     
+      {
+        name: "VKEI Hair Style",
+        categoryKey: "hair",
+        categoryLabel: "Hair",
+        image: "renders/image2-9407536a54f0122a.gif",
+        size: "small",
+        tag: "",
+        description: "Created for roblox group.",
+        polygons: "3,712",
+        texture: "1024 × 1024",
+        format: "FBX · OBJ",
+        delivery: "1 Days",
+        tools: ["Blender", "Substance Painter"],
+        extraImages: [
+        "renders/image-48f09f50ce25bc78.png",
+        "renders/Screenshot_2026-02-08_102000-29e11a1485c1969a.png"
+        ]    
+       }, 
+      {
+        name: "VKEI Hair Style",
+        categoryKey: "hair",
+        categoryLabel: "Hair",
+        image: "renders/image-ad31e3faa716a93d.png",
+        size: "small",
+        tag: "",
+        description: "Created for roblox group.",
+        polygons: "3,712",
+        texture: "1024 × 1024",
+        format: "FBX · OBJ",
+        delivery: "1 Days",
+        tools: ["Blender", "Substance Painter"],
+        extraImages: [
+        "renders/image-0f8e9786b57b3e4e.png"
+        ]    
+       }, 
+      {
+        name: "VKEI Hair Style",
+        categoryKey: "hair",
+        categoryLabel: "Hair",
+        image: "renders/image2-72269328e33c968c.gif",
+        size: "small",
+        tag: "",
+        description: "Created for roblox group.",
+        polygons: "3,712",
+        texture: "1024 × 1024",
+        format: "FBX · OBJ",
+        delivery: "1 Days",
+        tools: ["Blender", "Substance Painter"],
+        extraImages: [
+        "renders/image-3a2d2e5353d1f2d2.png",
+        "renders/Screenshot_2026-01-31_214943-bd9c84c1913eb340.png"
+        ]    
+       },  
+      {
+        name: "VKEI Hair Style",
+        categoryKey: "hair",
+        categoryLabel: "Hair",
+        image: "renders/image-35f36b3ad79a78e6.gif",
+        size: "small",
+        tag: "",
+        description: "Created for roblox group.",
+        polygons: "3,712",
+        texture: "1024 × 1024",
+        format: "FBX · OBJ",
+        delivery: "1 Days",
+        tools: ["Blender", "Substance Painter"],
+        extraImages: [
+        "renders/image-7b0c786c7266dc48.png",
+        "renders/Screenshot_2026-01-26_200357-e32ae568c54a8b5c.png"
+        ]    
+       }, 
+      {
+        name: "VKEI Hair Style",
+        categoryKey: "hair",
+        categoryLabel: "Hair",
+        image: "renders/image-06821adef0f6e0bb.gif",
+        size: "small",
+        tag: "",
+        description: "Created for roblox group.",
+        polygons: "3,712",
+        texture: "1024 × 1024",
+        format: "FBX · OBJ",
+        delivery: "1 Days",
+        tools: ["Blender", "Substance Painter"],
+        extraImages: [
+        "renders/image-5bf9d83b85e0f2bb.png",
+        "renders/image-4d178239ecf843ce.png",
+        "renders/Screenshot_2026-01-12_021100-2c2f6d2be82f2c1e.png"
+        ]    
+       }, 
+      {
+        name: "VKEI Hair Style",
+        categoryKey: "hair",
+        categoryLabel: "Hair",
+        image: "renders/gif-6b8ded64f9171172.gif",
+        size: "small",
+        tag: "",
+        description: "Created for roblox group.",
+        polygons: "3,712",
+        texture: "1024 × 1024",
+        format: "FBX · OBJ",
+        delivery: "1 Days",
+        tools: ["Blender", "Substance Painter"],
+        extraImages: [
+        "renders/image-445bf6d3f06084b6.png",
+        "renders/image-eb947529378541e0.png",
+        "renders/Screenshot_2026-01-07_134156-3dfb80e18be57bed.png"
+        ]    
+       }, 
+      {
+        name: "Long Girl Hair",
+        categoryKey: "hair",
+        categoryLabel: "Hair",
+        image: "renders/Screenshot 2026-03-02 174413.png",
+        size: "small",
+        tag: "",
+        description: "Created for roblox group.",
+        polygons: "3,993",
+        texture: "1024 × 1024",
+        format: "FBX · OBJ",
+        delivery: "1 Days",
+        tools: ["Blender", "Substance Painter"],
+        extraImages: [
+        "renders/Screenshot 2026-03-02 174436.png",
+        "renders/Screenshot 2026-03-02 174727.png",
+        "renders/Screenshot 2026-03-02 195751.png",
+        "renders/Screenshot 2026-03-02 211854.png"
+        ]    
+       },
+      {
+        name: "Curly Girl Hair",
+        categoryKey: "hair",
+        categoryLabel: "Hair",
+        image: "renders/Screenshot 2026-03-02 182858.png",
+        size: "small",
+        tag: "",
+        description: "Created for roblox group.",
+        polygons: "3,972",
+        texture: "1024 × 1024",
+        format: "FBX · OBJ",
+        delivery: "1 Days",
+        tools: ["Blender", "Substance Painter"],
+        extraImages: [
+        "renders/Screenshot 2026-03-02 182805.png",
+        "renders/Screenshot 2026-03-02 212226.png",
+        "renders/Screenshot 2026-03-02 212217.png",
+        "renders/Screenshot 2026-03-02 195812.png"
+        ]    
+       }
+    ];
 
   // Kategori başlıkları (Categories bölümü için)
   // categoryKey'leri otomatik sayar, sayıyı buradan kontrol etmen gerekmez
@@ -2003,26 +2107,82 @@
   };
 
   // Sayfalama ayarları
-  const PROJECTS_PER_PAGE = 10;  // Her sayfada gösterilecek proje sayısı
+  const PROJECTS_PER_PAGE = 9;  // Her sayfada gösterilecek proje sayısı
 
   // ========================================
   // ⚙️ (Aşağıya dokunmayın — sistem otomatik çalışıyor)
   // ========================================
 
   let currentPage = 1;
+  let currentCategory = null;  // null = show all, 'hair' = only hair, etc.
+
+  function getFilteredProjects() {
+    if (!currentCategory) return projects;
+    return projects.filter(p => p.categoryKey === currentCategory);
+  }
+
+  function setCategory(catKey) {
+    currentCategory = catKey;
+    currentPage = 1;
+    // Update URL hash
+    if (catKey) {
+      window.location.hash = 'category=' + catKey;
+    } else {
+      history.replaceState(null, '', window.location.pathname);
+    }
+    renderProjects();
+    renderCategories();
+    document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Read category from URL on load
+  function readCategoryFromUrl() {
+    const hash = window.location.hash;
+    const m = hash.match(/category=([a-z\-]+)/);
+    if (m) currentCategory = m[1];
+  }
 
   function renderProjects() {
     const grid = document.getElementById('workGrid');
     if (!grid) return;
     
-    const totalPages = Math.max(1, Math.ceil(projects.length / PROJECTS_PER_PAGE));
+    const filtered = getFilteredProjects();
+    const totalPages = Math.max(1, Math.ceil(filtered.length / PROJECTS_PER_PAGE));
     if (currentPage > totalPages) currentPage = totalPages;
     
     const startIdx = (currentPage - 1) * PROJECTS_PER_PAGE;
     const endIdx = startIdx + PROJECTS_PER_PAGE;
-    const pageProjects = projects.slice(startIdx, endIdx);
+    const pageProjectsRaw = filtered.slice(startIdx, endIdx);
+    // Keep real index (for project.html?id=X link)
+    const pageProjects = pageProjectsRaw.map(p => ({ ...p, _realIndex: projects.indexOf(p) }));
 
-    if (projects.length === 0) {
+    // Update filter banner
+    const banner = document.getElementById('filterBanner');
+    if (banner) {
+      if (currentCategory && categoryMeta[currentCategory]) {
+        banner.innerHTML = `
+          <div class="filter-info">
+            <span class="filter-label">Filtered by</span>
+            <strong>${categoryMeta[currentCategory].name}</strong>
+            <span class="filter-count">${filtered.length} item${filtered.length !== 1 ? 's' : ''}</span>
+          </div>
+          <button class="filter-clear" onclick="setCategory(null)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Show All Models
+          </button>
+        `;
+        banner.style.display = 'flex';
+      } else {
+        banner.style.display = 'none';
+      }
+    }
+
+    if (filtered.length === 0) {
+      const emptyMsg = currentCategory 
+        ? `No projects in ${categoryMeta[currentCategory]?.name || 'this category'} yet.`
+        : "Projects will appear here as soon as they're added.";
       grid.innerHTML = `
         <div class="empty-state">
           <div class="empty-icon">
@@ -2032,8 +2192,8 @@
               <circle cx="65" cy="32" r="4"/>
             </svg>
           </div>
-          <div class="empty-title">No projects yet</div>
-          <div class="empty-desc">Projects will appear here as soon as they're added.</div>
+          <div class="empty-title">${currentCategory ? 'No projects here' : 'No projects yet'}</div>
+          <div class="empty-desc">${emptyMsg}</div>
         </div>
       `;
       renderPagination(0);
@@ -2041,7 +2201,7 @@
     }
     
     grid.innerHTML = pageProjects.map((p, i) => {
-      const realIndex = startIdx + i;
+      const realIndex = p._realIndex;
       const tagHtml = p.tag ? `<div class="work-tag">${p.tag}</div>` : '';
       const isVideo = p.image && (p.image.endsWith('.mp4') || p.image.endsWith('.webm') || p.image.endsWith('.mov'));
       const isYoutube = p.image && (p.image.includes('youtube.com/') || p.image.includes('youtu.be/'));
@@ -2172,12 +2332,16 @@
       const count = counts[key] || 0;
       // Her kategori için bir SVG ikon
       const iconSvg = getCategoryIcon(key);
+      const isActive = currentCategory === key;
+      const isClickable = count > 0;
       return `
-        <div class="cat-card reveal">
+        <div class="cat-card reveal ${isActive ? 'active' : ''} ${!isClickable ? 'disabled' : ''}" 
+             ${isClickable ? `onclick="setCategory('${key}')"` : ''}>
           <div class="cat-icon">${iconSvg}</div>
           <div class="cat-name">${meta.name}</div>
           <div class="cat-count-large">${count} item${count !== 1 ? 's' : ''}</div>
           <div class="cat-desc">${meta.desc}</div>
+          ${isClickable ? '<div class="cat-arrow">→</div>' : ''}
         </div>
       `;
     }).join('');
@@ -2209,6 +2373,7 @@
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
   // Render projects from the data array above
+  readCategoryFromUrl();
   renderProjects();
   renderCategories();
 
