@@ -620,6 +620,72 @@
     box-shadow: 0 8px 24px rgba(74, 222, 128, 0.4);
   }
 
+  /* Roblox available button (detail page) */
+  .roblox-available-btn {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #e2231a 0%, #c1180f 100%);
+    border: 1px solid #e2231a;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 32px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .roblox-available-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transition: left 0.6s;
+  }
+
+  .roblox-available-btn:hover::before {
+    left: 100%;
+  }
+
+  .roblox-available-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(226, 35, 26, 0.4);
+    background: linear-gradient(135deg, #ed3329 0%, #d11d13 100%);
+  }
+
+  .roblox-btn-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .roblox-btn-text {
+    flex: 1;
+  }
+
+  .roblox-btn-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 4px;
+  }
+
+  .roblox-btn-action {
+    font-family: var(--display);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
   .cta-block {
     padding: 28px;
     background: var(--bg-card);
@@ -927,6 +993,22 @@
           </a>
         </div>
       </div>
+
+      <!-- Roblox available block (only shows if project.robloxUrl exists) -->
+      <div id="robloxAvailableBlock" style="display:none;">
+        <a href="#" target="_blank" rel="noopener" class="roblox-available-btn" id="robloxAvailableBtn">
+          <div class="roblox-btn-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M3.6 2.1L2.1 20.4l18.3 1.5L21.9 3.6 3.6 2.1zm10.86 14.27l-5.46-1.4 1.4-5.46 5.46 1.4-1.4 5.46z"/>
+            </svg>
+          </div>
+          <div class="roblox-btn-text">
+            <div class="roblox-btn-label">Already on Roblox</div>
+            <div class="roblox-btn-action">Available on Roblox →</div>
+          </div>
+        </a>
+      </div>
+
       <span class="project-tag" id="projectTag"></span>
       <h1 class="project-title" id="projectTitle">Loading...</h1>
       <div class="project-desc" id="projectDesc"></div>
@@ -1250,7 +1332,7 @@
         tools: ["Blender", "Substance Painter"],
         extraImages: [
         "renders/image-48f09f50ce25bc78.png",
-        "renders/Screenshot_2026-02-08_102000-29e11a1485c1969a.png",
+        "renders/Screenshot_2026-02-08_102000-29e11a1485c1969a.png"
         ]    
        }, 
       {
@@ -1269,7 +1351,6 @@
         extraImages: [
         "renders/image-0f8e9786b57b3e4e.png",
         "renders/2026-02-04_07-27-48-8678178695bd1d46.mp4"
-
         ]    
        }, 
       {
@@ -1572,7 +1653,7 @@
         "renders/image-6ed365f90d2237bf.png",
         ]    
        }, 
-               {
+          {
         name: "Theatre Mask[32]",
         categoryKey: "ugc",
         categoryLabel: "UGC",
@@ -1589,10 +1670,10 @@
         tools: ["Blender", "Substance Painter"],
         extraImages: [
         "renders/Screenshot 2026-05-14 192227.png",
-        "renders/2026-05-14 19-22-48.mp4"
+        "renders/2026-05-14 19-22-48.mp4",
         ]    
        }, 
-               {
+          {
         name: "Pigtails w/ Star & Cross Cap[33]",
         categoryKey: "ugc",
         categoryLabel: "UGC",
@@ -1600,7 +1681,7 @@
         size: "small",
         tag: "",
         description: "Created for roblox group.",
-        polygons: "3,485",
+        polygons: "3,986",
         texture: "1024 × 1024",
         format: "FBX · OBJ",
         delivery: "2 Days",
@@ -1611,7 +1692,7 @@
         "renders/2026-05-14 19-34-48.mp4"
         ]    
        }, 
-          {
+         {
         name: "Streetwear Hat Hair Set[34]",
         categoryKey: "ugc",
         categoryLabel: "UGC",
@@ -1628,8 +1709,8 @@
         "renders/Screenshot 2026-05-14 194340.png",
         "renders/2026-05-14 19-44-05.mp4"
         ]    
-       },
-               {
+       }, 
+        {
         name: "Clown Hair w/ Cowboy Hat[35]",
         categoryKey: "ugc",
         categoryLabel: "UGC",
@@ -1640,6 +1721,7 @@
         polygons: "3,895",
         texture: "1024 × 1024",
         format: "FBX · OBJ",
+        robloxUrl: "https://www.roblox.com/catalog?Keyword=clown&taxonomy=tZsUsd2BqGViQrJ9Vs3Wah&CreatorName=Las+Nochesz&CreatorType=Group&salesTypeFilter=1",
         delivery: "3 Days",
         tools: ["Blender", "Substance Painter"],
         extraImages: [
@@ -1748,6 +1830,14 @@
       salePriceEl.textContent = project.price || 'Inquire for price';
       // Pass product name to contact via hash
       buyBtn.href = `index.html?buy=${encodeURIComponent(project.name)}&price=${encodeURIComponent(project.price || '')}#contact`;
+    }
+
+    // Roblox availability button (only if robloxUrl exists)
+    if (project.robloxUrl) {
+      const robloxBlock = document.getElementById('robloxAvailableBlock');
+      const robloxBtn = document.getElementById('robloxAvailableBtn');
+      robloxBlock.style.display = 'block';
+      robloxBtn.href = project.robloxUrl;
     }
 
     // Gallery setup

@@ -1071,7 +1071,38 @@
   .cat-card-sale.active::after {
     background: linear-gradient(135deg, rgba(74, 222, 128, 0.3) 0%, rgba(26, 26, 31, 0.5) 100%) !important;
   }
-
+/* Roblox available badge on cards */
+  .roblox-card-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    background: #e2231a;
+    color: white;
+    font-family: var(--mono);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    z-index: 3;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .roblox-card-badge:hover {
+    background: #c1180f;
+    transform: scale(1.05);
+  }
+  .roblox-card-badge svg {
+    width: 11px;
+    height: 11px;
+  }
+  /* If both work-tag and roblox-card-badge exist, push work-tag down */
+  .work-item:has(.roblox-card-badge) .work-tag {
+    top: 50px;
+  }
   /* Pagination */
   .pagination {
     display: flex;
@@ -3036,6 +3067,7 @@
         texture: "1024 × 1024",
         format: "FBX · OBJ",
         delivery: "3 Days",
+        robloxUrl: "https://www.roblox.com/catalog?Keyword=clown&taxonomy=tZsUsd2BqGViQrJ9Vs3Wah&CreatorName=Las+Nochesz&CreatorType=Group&salesTypeFilter=1",
         tools: ["Blender", "Substance Painter"],
         extraImages: [
         "renders/Screenshot 2026-05-14 203037.png",
@@ -3185,6 +3217,12 @@
     
     grid.innerHTML = pageProjects.map((p, i) => {
       const realIndex = p._realIndex;
+      const robloxBadgeHtml = p.robloxUrl
+        ? `<a href="${p.robloxUrl}" target="_blank" rel="noopener" class="roblox-card-badge" onclick="event.stopPropagation();" title="Available on Roblox">
+             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.1L2.1 20.4l18.3 1.5L21.9 3.6 3.6 2.1zm10.86 14.27l-5.46-1.4 1.4-5.46 5.46 1.4-1.4 5.46z"/></svg>
+             On Roblox
+           </a>`
+        : '';
       const tagHtml = p.tag ? `<div class="work-tag">${p.tag}</div>` : '';
       const isVideo = p.image && (p.image.endsWith('.mp4') || p.image.endsWith('.webm') || p.image.endsWith('.mov'));
       const isYoutube = p.image && (p.image.includes('youtube.com/') || p.image.includes('youtu.be/'));
@@ -3252,6 +3290,7 @@
         <a href="project.html?id=${realIndex}" class="work-link">
           <div class="work-item ${p.size || 'small'} reveal ${p.forSale ? 'for-sale' : ''}">
             ${tagHtml}
+            ${robloxBadgeHtml}
             ${saleHtml}
             <div class="work-thumb">
               ${mediaHtml}
