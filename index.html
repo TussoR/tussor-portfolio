@@ -316,6 +316,34 @@
     margin-top: 6px;
   }
 
+  .hero-payment {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .payment-methods {
+    display: flex;
+    gap: 6px;
+    margin-top: 4px;
+  }
+
+  .payment-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    font-family: var(--display);
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  .payment-chip svg {
+    color: var(--accent);
+  }
+
   /* Section heading */
   .section {
     padding: 120px 48px;
@@ -587,6 +615,214 @@
   .cat-card:hover:not(.disabled) .cat-arrow {
     color: var(--accent);
     transform: translateX(4px);
+  }
+
+  /* For Sale badge & buy button */
+  .for-sale-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: #4ade80;
+    color: #0a0a0b;
+    padding: 5px 10px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 3;
+    border: 1px solid #4ade80;
+  }
+
+  .for-sale-badge svg {
+    color: #0a0a0b;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .work-item.for-sale {
+    border-color: rgba(74, 222, 128, 0.3);
+  }
+
+  .work-item.for-sale:hover {
+    border-color: #4ade80;
+  }
+
+  .buy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: #4ade80;
+    border: 1px solid #4ade80;
+    color: #0a0a0b;
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .buy-btn:hover {
+    background: #22c55e;
+    border-color: #22c55e;
+    transform: translateY(-1px);
+  }
+
+  /* Override work-info layout when buy button exists */
+  .work-item.for-sale .work-info {
+    align-items: center;
+  }
+
+  /* Inquiry modal */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.25s ease-out;
+  }
+
+  .modal-backdrop.visible {
+    display: flex;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .modal {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    max-width: 560px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: slideUp 0.3s ease-out;
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .modal::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+
+  .modal-header {
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .modal-title {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 400;
+  }
+
+  .modal-close {
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    padding: 8px;
+    transition: color 0.2s;
+  }
+
+  .modal-close:hover {
+    color: var(--accent);
+  }
+
+  .modal-body {
+    padding: 28px 32px;
+  }
+
+  .modal-product {
+    padding: 14px 16px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    margin-bottom: 24px;
+    font-size: 13px;
+  }
+
+  .modal-product-label {
+    font-size: 10px;
+    color: var(--text-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 4px;
+  }
+
+  .modal-product-name {
+    font-family: var(--display);
+    font-size: 18px;
+    color: var(--text);
+  }
+
+  .modal-quick-contact {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .quick-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .quick-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .quick-link svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .modal .form-group { margin-bottom: 14px; }
+
+  @media (max-width: 700px) {
+    .modal-header { padding: 18px 20px; }
+    .modal-body { padding: 20px; }
   }
 
   /* Pagination */
@@ -1433,9 +1669,18 @@
       <div class="stat-num">24h</div>
       <div class="stat-label">Avg. Response</div>
     </div>
-    <div>
-      <div class="stat-num">∞</div>
-      <div class="stat-label">Revisions</div>
+    <div class="hero-payment">
+      <div class="stat-label" style="margin-top:0;">Payment</div>
+      <div class="payment-methods">
+        <div class="payment-chip">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="3"/><text x="12" y="16" text-anchor="middle" font-family="serif" font-size="10" font-weight="bold" fill="#0a0a0b">R$</text></svg>
+          Robux
+        </div>
+        <div class="payment-chip">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4h6.5c2.8 0 4.5 1.5 4.5 4s-1.7 4-4.5 4H10l-1 7H6L7 4zm3 6h2.5c1.4 0 2-.6 2-2s-.6-2-2-2H10v4z"/></svg>
+          PayPal
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1452,23 +1697,6 @@
     </div>
   </div>
 
-  <div class="cat-grid">
-    <!-- Categories populated by JavaScript, counts auto-update -->
-  </div>
-
-<!-- WORK -->
-<section class="section" id="work">
-  <div class="section-header reveal">
-    <div>
-      <div class="section-num">— 02 / Selected Work</div>
-      <h2 class="section-title">Recent <span class="italic">Pieces</span></h2>
-    </div>
-    <div class="section-meta">
-      Click any item<br>to view details
-    </div>
-  </div>
-
-  <div class="filter-banner" id="filterBanner" style="display:none;"></div>
 
   <div class="tools-bar reveal">
     <div class="tools-label">Crafted with</div>
@@ -1512,6 +1740,24 @@
 
     </div>
   </div>
+  <div class="cat-grid">
+    <!-- Categories populated by JavaScript, counts auto-update -->
+  </div>
+
+<!-- WORK -->
+<section class="section" id="work">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-num">— 02 / Selected Work</div>
+      <h2 class="section-title">Recent <span class="italic">Pieces</span></h2>
+    </div>
+    <div class="section-meta">
+      Click any item<br>to view details
+    </div>
+  </div>
+
+  <div class="filter-banner" id="filterBanner" style="display:none;"></div>
+
 
   <div class="work-grid" id="workGrid">
     <!-- ABOUT -->
@@ -1749,6 +1995,75 @@
     </form>
   </div>
 </section>
+
+
+<!-- INQUIRY MODAL -->
+<div class="modal-backdrop" id="inquiryModal" onclick="if(event.target===this) closeInquiryModal()">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Send Inquiry</div>
+      <button class="modal-close" onclick="closeInquiryModal()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-product" id="modalProduct" style="display:none;">
+        <div class="modal-product-label">Inquiring about</div>
+        <div class="modal-product-name" id="modalProductName"></div>
+      </div>
+
+      <div class="modal-quick-contact">
+        <a class="quick-link" onclick="navigator.clipboard.writeText('tussor'); this.querySelector('.q-text').textContent='Copied!'; setTimeout(()=>this.querySelector('.q-text').textContent='Discord: tussor', 1500)">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+          <span class="q-text">Discord: tussor</span>
+        </a>
+        <a href="https://x.com/ulqssor" target="_blank" class="quick-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          @ulqssor
+        </a>
+        <a href="mailto:tussoramv@gmail.com" class="quick-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          Email
+        </a>
+      </div>
+
+      <form id="modalForm" onsubmit="handleModalSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-group-label">Your Name / Nickname</label>
+            <input type="text" id="modalName" class="form-input" placeholder="John or @johnny" required>
+          </div>
+          <div class="form-group">
+            <label class="form-group-label">Email or Discord</label>
+            <input type="text" id="modalContact" class="form-input" placeholder="you@example.com or @discord" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-group-label">Reason</label>
+          <select id="modalReason" class="form-select" required>
+            <option value="">Select a reason</option>
+            <option value="buy">Buy this model</option>
+            <option value="custom">Custom commission</option>
+            <option value="price">Ask about pricing</option>
+            <option value="other">Other inquiry</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-group-label">Message</label>
+          <textarea id="modalMessage" class="form-textarea" placeholder="Tell me more about what you need..." required></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">
+          Send Message
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
 
 <footer>
   <div>© 2026 TussoR — All rights reserved</div>
@@ -2346,16 +2661,32 @@
            </div>`;
       }
       
+      const saleHtml = p.forSale 
+        ? `<div class="for-sale-badge">
+             <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="11"/></svg>
+             For Sale${p.price ? ` · ${p.price}` : ''}
+           </div>`
+        : '';
+      const buyBtnHtml = p.forSale
+        ? `<button class="buy-btn" onclick="event.preventDefault(); event.stopPropagation(); openInquiryModal('${p.name.replace(/'/g, "\\'")}', '${p.price || ''}')">
+             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.3 2.3a1 1 0 0 0 .7 1.7H17"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+             Inquire to Buy
+           </button>`
+        : '';
       return `
         <a href="project.html?id=${realIndex}" class="work-link">
-          <div class="work-item ${p.size || 'small'} reveal">
+          <div class="work-item ${p.size || 'small'} reveal ${p.forSale ? 'for-sale' : ''}">
             ${tagHtml}
+            ${saleHtml}
             <div class="work-thumb">
               ${mediaHtml}
             </div>
             <div class="work-info">
-              <div class="work-name">${p.name}</div>
-              <div class="work-type">${p.categoryLabel || p.categoryKey}</div>
+              <div>
+                <div class="work-name">${p.name}</div>
+                <div class="work-type">${p.categoryLabel || p.categoryKey}</div>
+              </div>
+              ${buyBtnHtml}
             </div>
           </div>
         </a>
@@ -2607,6 +2938,65 @@ ${message}
       successEl.classList.remove('visible');
     }, 4000);
   }
+
+  // Inquiry Modal
+  let currentInquiryProduct = null;
+  
+  function openInquiryModal(productName, price) {
+    currentInquiryProduct = productName;
+    const modal = document.getElementById('inquiryModal');
+    const productBlock = document.getElementById('modalProduct');
+    const productNameEl = document.getElementById('modalProductName');
+    
+    if (productName) {
+      productBlock.style.display = 'block';
+      productNameEl.textContent = price ? `${productName} — ${price}` : productName;
+      // Pre-select "buy"
+      document.getElementById('modalReason').value = 'buy';
+      document.getElementById('modalMessage').placeholder = `Hi! I'm interested in buying "${productName}". Can you share more details?`;
+    } else {
+      productBlock.style.display = 'none';
+      document.getElementById('modalReason').value = '';
+      document.getElementById('modalMessage').placeholder = 'Tell me more about what you need...';
+    }
+    
+    modal.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function closeInquiryModal() {
+    document.getElementById('inquiryModal').classList.remove('visible');
+    document.body.style.overflow = '';
+    currentInquiryProduct = null;
+  }
+  
+  function handleModalSubmit(event) {
+    event.preventDefault();
+    const name = document.getElementById('modalName').value;
+    const contact = document.getElementById('modalContact').value;
+    const reason = document.getElementById('modalReason').value;
+    const message = document.getElementById('modalMessage').value;
+    
+    const reasonLabels = {
+      'buy': 'Buy this model',
+      'custom': 'Custom commission',
+      'price': 'Ask about pricing',
+      'other': 'Other inquiry'
+    };
+    
+    const productLine = currentInquiryProduct ? `\nProduct: ${currentInquiryProduct}` : '';
+    const subject = `[${reasonLabels[reason] || 'Inquiry'}] ${currentInquiryProduct || 'New message'} — ${name}`;
+    const body = `Hi TussoR,\n\nName: ${name}\nContact: ${contact}\nReason: ${reasonLabels[reason]}${productLine}\n\nMessage:\n${message}\n\n— Sent via tussor.portfolio`;
+    
+    window.location.href = `mailto:tussoramv@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setTimeout(closeInquiryModal, 500);
+  }
+
+  // Close modal on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeInquiryModal();
+  });
+
 </script>
 
 </body>
