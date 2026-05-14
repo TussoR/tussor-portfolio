@@ -843,6 +843,62 @@
     align-items: center;
   }
 
+  /* Floating message button */
+  .floating-msg-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 20px;
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    color: #0a0a0b;
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 8px 32px rgba(255, 87, 34, 0.35);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(0);
+  }
+
+  .floating-msg-btn:hover {
+    background: #ff7043;
+    border-color: #ff7043;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 36px rgba(255, 87, 34, 0.5);
+  }
+
+  .floating-msg-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .floating-msg-btn .msg-badge {
+    width: 8px;
+    height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #4ade80;
+    animation: pulse 2s ease-in-out infinite;
+    margin-left: 4px;
+  }
+
+  @media (max-width: 600px) {
+    .floating-msg-btn {
+      bottom: 16px;
+      right: 16px;
+      padding: 12px 16px;
+      font-size: 10px;
+    }
+    .floating-msg-btn .msg-text { display: none; }
+  }
+
   /* Inquiry modal */
   .modal-backdrop {
     position: fixed;
@@ -2237,6 +2293,15 @@
 </div>
 
 
+<!-- FLOATING MESSAGE BUTTON -->
+<button class="floating-msg-btn" onclick="openInquiryModal('', '')">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+  </svg>
+  <span class="msg-text">Send Message</span>
+  <span class="msg-badge"></span>
+</button>
+
 <footer>
   <div>© 2026 TussoR — All rights reserved</div>
   <div>Crafted with intention · v1.0</div>
@@ -3156,6 +3221,8 @@
     const email = document.getElementById('email').value;
     const projectType = document.getElementById('projectType').value;
     const message = document.getElementById('message').value;
+    const submitBtn = document.getElementById('submitBtn');
+    const successEl = document.getElementById('formSuccess');
     
     const projectLabels = {
       'ugc': 'UGC Item',
@@ -3167,31 +3234,43 @@
       'other': 'Other / Custom'
     };
     
-    const subject = `[Commission Inquiry] ${projectLabels[projectType] || 'Project'} — ${name}`;
-    const body = `Hi TussoR,
-
-Name: ${name}
-Email: ${email}
-Project Type: ${projectLabels[projectType] || projectType}
-
-Details:
-${message}
-
-— Sent via tussor.portfolio`;
-
-    const mailtoLink = `mailto:tussoramv@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    submitBtn.disabled = true;
+    const originalBtnHtml = submitBtn.innerHTML;
+    submitBtn.innerHTML = 'Sending...';
     
-    // Show success message
-    const successEl = document.getElementById('formSuccess');
-    successEl.classList.add('visible');
-    
-    // Open mail client
-    window.location.href = mailtoLink;
-    
-    // Reset after a moment
-    setTimeout(() => {
-      successEl.classList.remove('visible');
-    }, 4000);
+    fetch('https://formspree.io/f/xjgldjwy', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        projectType: projectLabels[projectType] || projectType,
+        message: message,
+        _subject: `[Commission Inquiry] ${projectLabels[projectType] || 'Project'} — ${name}`
+      })
+    })
+    .then(response => {
+      if (response.ok) {
+        successEl.textContent = '✓ Message sent! I will reply within 24 hours.';
+        successEl.classList.add('visible');
+        document.getElementById('contactForm').reset();
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHtml;
+        setTimeout(() => successEl.classList.remove('visible'), 6000);
+      } else {
+        throw new Error('Send failed');
+      }
+    })
+    .catch(error => {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnHtml;
+      // Fallback to mailto
+      const body = `Hi TussoR,\n\nName: ${name}\nEmail: ${email}\nProject Type: ${projectLabels[projectType] || projectType}\n\nDetails:\n${message}\n\n— Sent via tussor.portfolio`;
+      window.location.href = `mailto:tussoramv@gmail.com?subject=${encodeURIComponent(`[Commission Inquiry] ${projectLabels[projectType] || 'Project'} — ${name}`)}&body=${encodeURIComponent(body)}`;
+    });
   }
 
   // Inquiry Modal
@@ -3231,6 +3310,7 @@ ${message}
     const contact = document.getElementById('modalContact').value;
     const reason = document.getElementById('modalReason').value;
     const message = document.getElementById('modalMessage').value;
+    const submitBtn = event.target.querySelector('button[type="submit"]');
     
     const reasonLabels = {
       'buy': 'Buy this model',
@@ -3239,12 +3319,61 @@ ${message}
       'other': 'Other inquiry'
     };
     
-    const productLine = currentInquiryProduct ? `\nProduct: ${currentInquiryProduct}` : '';
-    const subject = `[${reasonLabels[reason] || 'Inquiry'}] ${currentInquiryProduct || 'New message'} — ${name}`;
-    const body = `Hi TussoR,\n\nName: ${name}\nContact: ${contact}\nReason: ${reasonLabels[reason]}${productLine}\n\nMessage:\n${message}\n\n— Sent via tussor.portfolio`;
+    // Disable button while sending
+    const originalBtnHtml = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = 'Sending...';
     
-    window.location.href = `mailto:tussoramv@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setTimeout(closeInquiryModal, 500);
+    // Send to Formspree
+    fetch('https://formspree.io/f/xjgldjwy', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        contact: contact,
+        reason: reasonLabels[reason] || reason,
+        product: currentInquiryProduct || 'General inquiry',
+        message: message,
+        _subject: `[${reasonLabels[reason] || 'Inquiry'}] ${currentInquiryProduct || 'New message'} — ${name}`
+      })
+    })
+    .then(response => {
+      if (response.ok) {
+        // Show success state
+        const modalBody = document.querySelector('.modal-body');
+        modalBody.innerHTML = `
+          <div style="text-align: center; padding: 40px 20px;">
+            <div style="width: 64px; height: 64px; margin: 0 auto 24px; background: rgba(74, 222, 128, 0.15); border: 1px solid #4ade80; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+            </div>
+            <div style="font-family: var(--display); font-size: 28px; margin-bottom: 12px;">Message Sent!</div>
+            <div style="color: var(--text-dim); font-size: 14px; line-height: 1.6; max-width: 380px; margin: 0 auto 32px;">
+              Thanks for reaching out. I'll get back to you within <strong style="color: var(--text);">24 hours</strong> via the contact info you provided.
+            </div>
+            <button class="form-submit" onclick="closeInquiryModal()" style="max-width: 200px; margin: 0 auto;">Close</button>
+          </div>
+        `;
+        // Auto-close after 4s
+        setTimeout(closeInquiryModal, 4000);
+      } else {
+        throw new Error('Send failed');
+      }
+    })
+    .catch(error => {
+      // Show error, fallback to mailto
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnHtml;
+      alert('Could not send via the website. Opening your email app instead...');
+      const productLine = currentInquiryProduct ? `\nProduct: ${currentInquiryProduct}` : '';
+      const subject = `[${reasonLabels[reason] || 'Inquiry'}] ${currentInquiryProduct || 'New message'} — ${name}`;
+      const body = `Hi TussoR,\n\nName: ${name}\nContact: ${contact}\nReason: ${reasonLabels[reason]}${productLine}\n\nMessage:\n${message}\n\n— Sent via tussor.portfolio`;
+      window.location.href = `mailto:tussoramv@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
   }
 
   // Close modal on Escape
@@ -3253,20 +3382,6 @@ ${message}
   });
 
 </script>
-
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6a05870126c47a1c3468a2c9/1joipenk4';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
 
 </body>
 </html>
