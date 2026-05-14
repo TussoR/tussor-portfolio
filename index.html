@@ -1673,16 +1673,44 @@
       const realIndex = startIdx + i;
       const tagHtml = p.tag ? `<div class="work-tag">${p.tag}</div>` : '';
       const isVideo = p.image && (p.image.endsWith('.mp4') || p.image.endsWith('.webm') || p.image.endsWith('.mov'));
+      const isYoutube = p.image && (p.image.includes('youtube.com/') || p.image.includes('youtu.be/'));
       
-      const mediaHtml = isVideo
-        ? `<video muted loop playsinline autoplay preload="metadata" style="width:100%; height:100%; object-fit:cover;">
+      let mediaHtml;
+      
+      if (isYoutube) {
+        // YouTube — use thumbnail image (not embed, to keep page fast)
+        const patterns = [
+          /youtu\.be\/([a-zA-Z0-9_-]{11})/,
+          /youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})/,
+          /youtube\.com\/embed\/([a-zA-Z0-9_-]{11})/,
+          /youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})/
+        ];
+        let ytId = null;
+        for (const pat of patterns) {
+          const m = p.image.match(pat);
+          if (m) { ytId = m[1]; break; }
+        }
+        mediaHtml = ytId
+          ? `<img src="https://img.youtube.com/vi/${ytId}/maxresdefault.jpg" alt="${p.name}"
+                  onerror="this.src='https://img.youtube.com/vi/${ytId}/hqdefault.jpg'"
+                  style="width:100%; height:100%; object-fit:cover;">
+             <div class="card-video-badge" style="background: #ff0000; color: white;">
+               <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+               YouTube
+             </div>`
+          : `<div class="placeholder-fallback" style="display:flex;">
+               <div class="placeholder-label">Invalid YouTube URL</div>
+             </div>`;
+      } else if (isVideo) {
+        mediaHtml = `<video muted loop playsinline autoplay preload="metadata" style="width:100%; height:100%; object-fit:cover;">
              <source src="${p.image}" type="video/mp4">
            </video>
            <div class="card-video-badge">
              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
              Video
-           </div>`
-        : `<img src="${p.image}" alt="${p.name}"
+           </div>`;
+      } else {
+        mediaHtml = `<img src="${p.image}" alt="${p.name}"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
            <div class="placeholder-fallback">
              <div class="shape-grad"></div>
@@ -1692,6 +1720,7 @@
              </svg>
              <div class="placeholder-label">${p.image}</div>
            </div>`;
+      }
       
       return `
         <a href="project.html?id=${realIndex}" class="work-link">
