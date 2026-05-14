@@ -160,7 +160,11 @@
 
   .hero-slideshow {
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 100%;
     z-index: -1;
     overflow: hidden;
     pointer-events: none;
@@ -180,14 +184,20 @@
   }
 
   .hero-slide.active {
-    opacity: 0.18;
+    opacity: 0.22;
   }
 
   .hero::after {
     content: '';
     position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(10,10,11,0.4) 0%, rgba(10,10,11,0.7) 60%, rgba(10,10,11,1) 100%);
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 100%;
+    background: 
+      radial-gradient(ellipse at center, transparent 30%, rgba(10,10,11,0.85) 90%),
+      linear-gradient(180deg, rgba(10,10,11,0.5) 0%, rgba(10,10,11,0.6) 50%, rgba(10,10,11,0.98) 100%);
     z-index: -1;
     pointer-events: none;
   }
@@ -2427,7 +2437,7 @@
       const shuffled = catProjects.slice().sort(() => Math.random() - 0.5);
       const bgImages = shuffled.slice(0, 4)
         .map(p => p.image)
-        .filter(img => img && !img.includes('youtube.com') && !img.includes('youtu.be') && !img.endsWith('.mp4') && !img.endsWith('.webm'));
+        .filter(img => img && !img.includes('youtube.com') && !img.includes('youtu.be') && !img.endsWith('.mp4') && !img.endsWith('.webm') && !img.endsWith('.gif'));
       
       const slideshowHtml = bgImages.length > 0
         ? `<div class="cat-slideshow">
@@ -2506,10 +2516,10 @@
     const container = document.getElementById('heroSlideshow');
     if (!container) return;
     
-    // All project images that are not videos
+    // All project images that are not videos or gifs
     const imgs = projects
       .map(p => p.image)
-      .filter(img => img && !img.endsWith('.mp4') && !img.endsWith('.webm') && !img.endsWith('.mov'))
+      .filter(img => img && !img.endsWith('.mp4') && !img.endsWith('.webm') && !img.endsWith('.mov') && !img.endsWith('.gif'))
       .map(img => {
         if (img.includes('youtu.be/') || img.includes('youtube.com/')) {
           const m = img.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([a-zA-Z0-9_-]{11})/);
