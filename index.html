@@ -1040,6 +1040,37 @@
     .modal-header { padding: 18px 20px; }
     .modal-body { padding: 20px; }
   }
+/* For Sale special category card */
+  .cat-card-sale {
+    border-color: rgba(74, 222, 128, 0.4);
+    position: relative;
+  }
+  .cat-card-sale::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #4ade80, transparent);
+    z-index: 3;
+    animation: slidebar 3s ease-in-out infinite;
+  }
+  @keyframes slidebar {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+  .cat-card-sale::after {
+    background: linear-gradient(135deg, rgba(74, 222, 128, 0.15) 0%, rgba(26, 26, 31, 0.5) 100%) !important;
+  }
+  .cat-card-sale .cat-icon,
+  .cat-card-sale .cat-name,
+  .cat-card-sale .cat-count-large { color: #4ade80; }
+  .cat-card-sale:hover:not(.disabled) { border-color: #4ade80; }
+  .cat-card-sale:hover:not(.disabled) .cat-arrow { color: #4ade80; }
+  .cat-card-sale.active { border-color: #4ade80; }
+  .cat-card-sale.active::after {
+    background: linear-gradient(135deg, rgba(74, 222, 128, 0.3) 0%, rgba(26, 26, 31, 0.5) 100%) !important;
+  }
 
   /* Pagination */
   .pagination {
@@ -2993,6 +3024,24 @@
         "renders/2026-05-14 19-44-05.mp4"
         ]    
        }, 
+        {
+        name: "Clown Hair w/ Cowboy Hat[35]",
+        categoryKey: "ugc",
+        categoryLabel: "UGC",
+        image: "renders/Screenshot 2026-05-14 203023.png",
+        size: "small",
+        tag: "",
+        description: "Created for roblox group.",
+        polygons: "3,895",
+        texture: "1024 × 1024",
+        format: "FBX · OBJ",
+        delivery: "3 Days",
+        tools: ["Blender", "Substance Painter"],
+        extraImages: [
+        "renders/Screenshot 2026-05-14 203037.png",
+        "renders/2026-05-14 20-33-00.mp4"
+        ]    
+       }, 
     ];
 
   // Kategori başlıkları (Categories bölümü için)
@@ -3315,6 +3364,33 @@
         </div>
       `;
     }).join('');
+
+    // For Sale özel kartı (en sona ekle)
+    const forSaleProjects = projects.filter(p => p.forSale);
+    const forSaleCount = forSaleProjects.length;
+    const forSaleIsActive = currentShopFilter;
+    const forSaleClickable = forSaleCount > 0;
+    const forSaleShuffled = forSaleProjects.slice().sort(() => Math.random() - 0.5);
+    const forSaleBgImages = forSaleShuffled.slice(0, 4)
+      .map(p => p.image)
+      .filter(img => img && !img.includes('youtube.com') && !img.includes('youtu.be') && !img.endsWith('.mp4') && !img.endsWith('.webm') && !img.endsWith('.gif'));
+    const forSaleSlideshow = forSaleBgImages.length > 0
+      ? `<div class="cat-slideshow">${forSaleBgImages.map((img, i) => `<img src="${img}" alt="" class="cat-slide ${i === 0 ? 'active' : ''}" data-slide="${i}">`).join('')}</div>`
+      : '';
+    const forSaleIcon = `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M25 30 L75 30 L70 75 L30 75 Z"/><path d="M38 30 L38 22 Q38 14 50 14 Q62 14 62 22 L62 30"/><circle cx="42" cy="50" r="2" fill="currentColor"/><circle cx="58" cy="50" r="2" fill="currentColor"/></svg>`;
+    grid.innerHTML += `
+      <div class="cat-card cat-card-sale reveal ${forSaleIsActive ? 'active' : ''} ${!forSaleClickable ? 'disabled' : ''}"
+           ${forSaleClickable ? `onclick="setShopFilter()"` : ''}>
+        ${forSaleSlideshow}
+        <div class="cat-content">
+          <div class="cat-icon">${forSaleIcon}</div>
+          <div class="cat-name">For Sale</div>
+          <div class="cat-count-large">${forSaleCount} item${forSaleCount !== 1 ? 's' : ''}</div>
+          <div class="cat-desc">${forSaleClickable ? 'Available now — ready to purchase. Click to view all listings.' : 'No models for sale right now. Check back soon!'}</div>
+          ${forSaleClickable ? '<div class="cat-arrow">→</div>' : ''}
+        </div>
+      </div>
+    `;
 
     document.querySelectorAll('.cat-grid .reveal').forEach(el => observer.observe(el));
     startCategorySlideshows();
