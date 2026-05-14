@@ -123,6 +123,80 @@
     transform: translateX(-3px);
   }
 
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Project nav (prev/next) — positioned inside gallery, above main image */
+  .gallery-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 12px;
+  }
+
+  .project-nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--text);
+    text-decoration: none;
+    border: 1px solid var(--line);
+    background-color: var(--bg-elev);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 0.25s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    min-width: 140px;
+    z-index: 1;
+  }
+
+  .project-nav-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--bg-elev);
+    opacity: 0.7;
+    z-index: -1;
+    transition: opacity 0.25s;
+  }
+
+  .project-nav-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .project-nav-btn:hover::before {
+    opacity: 0.4;
+  }
+
+  .project-nav-prev:hover {
+    transform: translateX(-4px);
+  }
+
+  .project-nav-next:hover {
+    transform: translateX(4px);
+  }
+
+  .project-nav-next {
+    margin-left: auto;
+  }
+
+  @media (max-width: 700px) {
+    .project-nav-label { display: none; }
+    .project-nav-btn { padding: 12px; min-width: auto; }
+  }
+
   main {
     padding: 120px 48px 80px;
     position: relative;
@@ -650,11 +724,14 @@
       <span class="logo-dot"></span>
       TussoR<span style="color: var(--text-mute); font-weight: 400; margin-left: 4px;">/Portfolio</span>
     </a>
-    <a href="index.html#work" class="back-btn">
+    <a href="index.html#work" class="back-btn" title="All Works">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M19 12H5M12 19l-7-7 7-7"/>
+        <rect x="3" y="3" width="7" height="7"/>
+        <rect x="14" y="3" width="7" height="7"/>
+        <rect x="3" y="14" width="7" height="7"/>
+        <rect x="14" y="14" width="7" height="7"/>
       </svg>
-      Back to Work
+      All Works
     </a>
   </div>
 </nav>
@@ -672,6 +749,21 @@
   <div class="project">
 
     <div class="gallery">
+
+      <div class="gallery-nav">
+        <a href="#" class="project-nav-btn project-nav-prev" id="prevProjectBtn" title="Previous project">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+          <span class="project-nav-label">Prev</span>
+        </a>
+        <a href="#" class="project-nav-btn project-nav-next" id="nextProjectBtn" title="Next project">
+          <span class="project-nav-label">Next</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </a>
+      </div>
 
       <div class="main-image" id="mainImage">
         <div class="img-counter" id="imgCounter">01 / 05</div>
@@ -695,19 +787,7 @@
           </svg>
           <div class="label" id="placeholderLabel"></div>
         </div>
-        <div class="img-controls">
-          <button class="img-control-btn" id="prevBtn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M15 18l-6-6 6-6"/>
-            </svg>
-          </button>
-          <button class="img-control-btn" id="nextBtn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M9 18l6-6-6-6"/>
-            </svg>
-          </button>
         </div>
-      </div>
 
       <div class="thumbs" id="thumbs"></div>
 
@@ -1186,6 +1266,44 @@
     document.title = `${project.name} — TussoR Portfolio`;
     document.getElementById('breadcrumbName').textContent = project.name;
 
+    // Set prev/next project navigation
+    const totalProjects = projects.length;
+    const prevId = (projectId - 1 + totalProjects) % totalProjects;
+    const nextId = (projectId + 1) % totalProjects;
+    const prevBtnEl = document.getElementById('prevProjectBtn');
+    const nextBtnEl = document.getElementById('nextProjectBtn');
+    prevBtnEl.href = `project.html?id=${prevId}`;
+    nextBtnEl.href = `project.html?id=${nextId}`;
+    prevBtnEl.title = `Previous: ${projects[prevId].name}`;
+    nextBtnEl.title = `Next: ${projects[nextId].name}`;
+    
+    // Set background image (skip videos/youtube)
+    function setBtnBg(btn, proj) {
+      const img = proj.image;
+      if (img && !img.endsWith('.mp4') && !img.endsWith('.webm') && !img.endsWith('.mov')) {
+        if (img.includes('youtu.be/') || img.includes('youtube.com/')) {
+          // Extract YouTube ID for thumbnail
+          const ytMatch = img.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([a-zA-Z0-9_-]{11})/);
+          if (ytMatch) {
+            btn.style.backgroundImage = `url(https://img.youtube.com/vi/${ytMatch[1]}/mqdefault.jpg)`;
+          }
+        } else {
+          btn.style.backgroundImage = `url('${img.replace(/'/g, "\\'")}')`;
+        }
+      }
+    }
+    setBtnBg(prevBtnEl, projects[prevId]);
+    setBtnBg(nextBtnEl, projects[nextId]);
+
+    // Keyboard shortcuts for prev/next project (Shift + Arrow)
+    document.addEventListener('keydown', (e) => {
+      if (e.shiftKey && e.key === 'ArrowLeft') {
+        window.location.href = `project.html?id=${prevId}`;
+      } else if (e.shiftKey && e.key === 'ArrowRight') {
+        window.location.href = `project.html?id=${nextId}`;
+      }
+    });
+
     // Set tag
     const tagEl = document.getElementById('projectTag');
     tagEl.textContent = project.tag ? `${project.categoryLabel} · ${project.tag}` : project.categoryLabel;
@@ -1366,22 +1484,26 @@
     });
 
     // Navigation buttons
-    document.getElementById('prevBtn').addEventListener('click', () => {
+    const _prevBtn = document.getElementById('prevBtn'); if (_prevBtn) _prevBtn.addEventListener('click', () => {
       updateMainImage(currentIndex === 0 ? totalImages - 1 : currentIndex - 1);
     });
-    document.getElementById('nextBtn').addEventListener('click', () => {
+    const _nextBtn = document.getElementById('nextBtn'); if (_nextBtn) _nextBtn.addEventListener('click', () => {
       updateMainImage(currentIndex === totalImages - 1 ? 0 : currentIndex + 1);
     });
 
     // Keyboard
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') document.getElementById('prevBtn').click();
-      if (e.key === 'ArrowRight') document.getElementById('nextBtn').click();
+      if (e.key === 'ArrowLeft' && _prevBtn) _prevBtn.click();
+      if (e.key === 'ArrowRight' && _nextBtn) _nextBtn.click();
     });
 
     // Related projects (show 3 others, not current)
     const relatedGrid = document.getElementById('relatedGrid');
-    const others = projects.filter((_, i) => i !== projectId).slice(0, 3);
+    // Random 3 projects (excluding current)
+    const others = projects
+      .filter((_, i) => i !== projectId)
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 3);
     relatedGrid.innerHTML = others.map((p) => {
       const realIndex = projects.indexOf(p);
       return `
