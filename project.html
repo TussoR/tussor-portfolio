@@ -251,6 +251,45 @@
     z-index: 3;
   }
 
+  .video-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 6px 12px;
+    background: var(--accent);
+    color: #0a0a0b;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 3;
+  }
+
+  /* Thumbnail video play icon */
+  .thumb-video-icon {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    width: 22px;
+    height: 22px;
+    background: rgba(255, 87, 34, 0.95);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0a0a0b;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .thumb-video-icon svg {
+    width: 10px;
+    height: 10px;
+  }
+
   .thumbs {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -636,6 +675,15 @@
         <div class="img-counter" id="imgCounter">01 / 05</div>
         <img id="mainImg" src="" alt=""
              onerror="this.style.display='none'; document.getElementById('mainPlaceholder').style.display='flex';">
+        <video id="mainVideo" autoplay loop muted playsinline style="display:none; width:100%; height:100%; object-fit:cover;">
+          <source src="" type="video/mp4">
+        </video>
+        <div class="video-badge" id="videoBadge" style="display:none;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          Video
+        </div>
         <div class="placeholder" id="mainPlaceholder">
           <svg viewBox="0 0 100 100" fill="none" stroke-width="0.8">
             <path d="M50 10 L90 30 L90 70 L50 90 L10 70 L10 30 Z"/>
@@ -724,7 +772,7 @@
   // İki dosya senkron olmazsa detay sayfası yanlış proje gösterir.
   // ========================================
 
-const projects = [
+  const projects = [
     {
       name: "Serpent Executioner",
       categoryKey: "ugc",
@@ -738,7 +786,10 @@ const projects = [
       format: "FBX · OBJ",
       delivery: "2 Days",
       tools: ["Blender", "Substance Painter"],
-      extraImages: []
+      extraImages: [
+        "renders/2.png",
+        "renders/3.png"
+      ]
     }
   ];
 
@@ -800,38 +851,73 @@ const projects = [
 
     // Build thumbnails
     const thumbsContainer = document.getElementById('thumbs');
-    thumbsContainer.innerHTML = allImages.map((img, i) => `
-      <div class="thumb ${i === 0 ? 'active' : ''}" data-index="${i}">
-        <img src="${img}" alt="View ${i+1}"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="thumb-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <rect x="3" y="3" width="18" height="18" rx="2"/>
-            <circle cx="9" cy="9" r="2"/>
-            <path d="M21 15l-5-5L5 21"/>
-          </svg>
+    thumbsContainer.innerHTML = allImages.map((src, i) => {
+      const isVid = src.endsWith('.mp4') || src.endsWith('.webm') || src.endsWith('.mov');
+      // For video thumbnails, use poster image (same name with .png) or video as preview
+      const thumbContent = isVid 
+        ? `<video muted playsinline preload="metadata" style="width:100%; height:100%; object-fit:cover;">
+             <source src="${src}#t=0.5" type="video/mp4">
+           </video>
+           <div class="thumb-video-icon">
+             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+           </div>`
+        : `<img src="${src}" alt="View ${i+1}"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+           <div class="thumb-placeholder">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+               <rect x="3" y="3" width="18" height="18" rx="2"/>
+               <circle cx="9" cy="9" r="2"/>
+               <path d="M21 15l-5-5L5 21"/>
+             </svg>
+           </div>`;
+      
+      return `
+        <div class="thumb ${i === 0 ? 'active' : ''}" data-index="${i}">
+          ${thumbContent}
         </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
 
-    // Main image
+    // Main image / video
     const mainImg = document.getElementById('mainImg');
+    const mainVideo = document.getElementById('mainVideo');
+    const videoBadge = document.getElementById('videoBadge');
     const mainPlaceholder = document.getElementById('mainPlaceholder');
     const placeholderLabel = document.getElementById('placeholderLabel');
     const counter = document.getElementById('imgCounter');
 
+    function isVideo(src) {
+      return src && (src.endsWith('.mp4') || src.endsWith('.webm') || src.endsWith('.mov'));
+    }
+
     function updateMainImage(index) {
       currentIndex = index;
-      const imgSrc = allImages[index];
+      const src = allImages[index];
       
       document.querySelectorAll('.thumb').forEach((t, i) => {
         t.classList.toggle('active', i === index);
       });
       
-      mainImg.style.display = 'block';
       mainPlaceholder.style.display = 'none';
-      mainImg.src = imgSrc;
-      placeholderLabel.textContent = imgSrc;
+      
+      if (isVideo(src)) {
+        // Show video
+        mainImg.style.display = 'none';
+        mainVideo.style.display = 'block';
+        mainVideo.querySelector('source').src = src;
+        mainVideo.load();
+        mainVideo.play().catch(() => {});
+        videoBadge.style.display = 'inline-flex';
+      } else {
+        // Show image
+        mainVideo.style.display = 'none';
+        mainVideo.pause();
+        mainImg.style.display = 'block';
+        mainImg.src = src;
+        videoBadge.style.display = 'none';
+      }
+      
+      placeholderLabel.textContent = src;
       counter.textContent = `${String(index + 1).padStart(2, '0')} / ${String(totalImages).padStart(2, '0')}`;
     }
     updateMainImage(0);
