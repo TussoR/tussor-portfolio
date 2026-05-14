@@ -1090,6 +1090,8 @@
     z-index: 3;
     text-decoration: none;
     transition: all 0.2s;
+    cursor: pointer;
+    user-select: none;
   }
   .roblox-card-badge:hover {
     background: #c1180f;
@@ -3218,10 +3220,10 @@
     grid.innerHTML = pageProjects.map((p, i) => {
       const realIndex = p._realIndex;
       const robloxBadgeHtml = p.robloxUrl
-        ? `<a href="${p.robloxUrl}" target="_blank" rel="noopener" class="roblox-card-badge" onclick="event.stopPropagation();" title="Available on Roblox">
+        ? `<span class="roblox-card-badge" onclick="event.stopPropagation(); event.preventDefault(); window.open('${p.robloxUrl.replace(/'/g, "\\'")}', '_blank');" title="Available on Roblox">
              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.1L2.1 20.4l18.3 1.5L21.9 3.6 3.6 2.1zm10.86 14.27l-5.46-1.4 1.4-5.46 5.46 1.4-1.4 5.46z"/></svg>
              On Roblox
-           </a>`
+           </span>`
         : '';
       const tagHtml = p.tag ? `<div class="work-tag">${p.tag}</div>` : '';
       const isVideo = p.image && (p.image.endsWith('.mp4') || p.image.endsWith('.webm') || p.image.endsWith('.mov'));
