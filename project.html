@@ -198,10 +198,10 @@
   }
 
   main {
-    padding: 120px 48px 80px;
+    padding: 120px 32px 80px;
     position: relative;
     z-index: 2;
-    max-width: 1600px;
+    max-width: 1920px;
     margin: 0 auto;
   }
 
@@ -227,8 +227,8 @@
 
   .project {
     display: grid;
-    grid-template-columns: 1fr 420px;
-    gap: 48px;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 56px;
     margin-bottom: 120px;
   }
 
@@ -240,8 +240,9 @@
 
   .main-image {
     width: 100%;
-    aspect-ratio: 4 / 3;
-    max-height: 75vh;
+    aspect-ratio: 16 / 11;
+    max-height: 85vh;
+    min-height: 480px;
     background: var(--bg-card);
     border: 1px solid var(--line);
     position: relative;
@@ -368,8 +369,9 @@
 
   .thumbs {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 12px;
+    max-width: 900px;
   }
 
   .thumb {
@@ -887,9 +889,14 @@
     .project { grid-template-columns: 1fr; gap: 32px; }
     .info-panel { position: static; }
     .related-grid { grid-template-columns: 1fr; }
-    .thumbs { grid-template-columns: repeat(4, 1fr); }
+    .thumbs { grid-template-columns: repeat(4, 1fr); max-width: 100%; }
+    .main-image { aspect-ratio: 4 / 3; min-height: 280px; }
     footer { padding: 20px; flex-direction: column; gap: 8px; }
     .related-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+  }
+
+  @media (min-width: 1001px) and (max-width: 1400px) {
+    .thumbs { grid-template-columns: repeat(5, 1fr); }
   }
 </style>
 </head>
@@ -1841,8 +1848,9 @@
         "Substance Painter"
       ],
       extraImages: []
-    },
-  ];
+      },
+    
+    ];
 
   // ========================================
   // ⚙️ (Aşağıya dokunmayın)
