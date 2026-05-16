@@ -3,7 +3,30 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Primary Meta (dynamically updated by JS based on project) -->
 <title>Project — TussoR Portfolio</title>
+<meta name="description" content="View detailed renders, specs, and information about this 3D model by TussoR. Game-ready asset crafted for Roblox UGC and indie games.">
+<meta name="author" content="TussoR">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://tussorportfolio.com/project.html">
+<meta property="og:title" content="Project — TussoR Portfolio">
+<meta property="og:description" content="Detailed view of a 3D model by TussoR. Game-ready asset for Roblox and indie games.">
+<meta property="og:image" content="https://tussorportfolio.com/renders/og-image.jpg">
+<meta property="og:site_name" content="TussoR Portfolio">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ulqssor">
+<meta name="twitter:creator" content="@ulqssor">
+<meta name="twitter:title" content="Project — TussoR Portfolio">
+<meta name="twitter:image" content="https://tussorportfolio.com/renders/og-image.jpg">
+
+<meta name="theme-color" content="#0a0a0b">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -1116,7 +1139,7 @@
       ]
     },
     {
-      name: "Cursed Companion",
+      name: "Cursed Companion[48]",
       categoryKey: "ugc",
       categoryLabel: "UGC",
       image: "renders/cursed-companion-mp88033j-main.png",
@@ -1159,9 +1182,38 @@
     `;
   } else {
 
-    // Set title
-    document.title = `${project.name} — TussoR Portfolio`;
+    // Set title and meta tags dynamically
+    const projectTitle = `${project.name} — TussoR Portfolio`;
+    document.title = projectTitle;
     document.getElementById('breadcrumbName').textContent = project.name;
+
+    // Dynamic meta tags for social sharing
+    const desc = `${project.name} — ${project.categoryLabel || project.categoryKey} by TussoR. ${project.description || 'Game-ready 3D asset.'}`.substring(0, 200);
+    const projectUrl = `https://tussorportfolio.com/project.html?id=${projectId}`;
+    
+    // Determine preview image (skip videos)
+    let previewImg = 'https://tussorportfolio.com/renders/og-image.jpg';
+    if (project.image && !project.image.endsWith('.mp4') && !project.image.endsWith('.webm') && !project.image.endsWith('.mov')) {
+      if (project.image.includes('youtu')) {
+        const m = project.image.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([a-zA-Z0-9_-]{11})/);
+        if (m) previewImg = `https://img.youtube.com/vi/${m[1]}/maxresdefault.jpg`;
+      } else {
+        previewImg = `https://tussorportfolio.com/${project.image}`;
+      }
+    }
+    
+    // Update meta tags
+    function setMeta(selector, attr, value) {
+      const el = document.querySelector(selector);
+      if (el) el.setAttribute(attr, value);
+    }
+    setMeta('meta[name="description"]', 'content', desc);
+    setMeta('meta[property="og:title"]', 'content', projectTitle);
+    setMeta('meta[property="og:description"]', 'content', desc);
+    setMeta('meta[property="og:image"]', 'content', previewImg);
+    setMeta('meta[property="og:url"]', 'content', projectUrl);
+    setMeta('meta[name="twitter:title"]', 'content', projectTitle);
+    setMeta('meta[name="twitter:image"]', 'content', previewImg);
 
     // Set prev/next project navigation
     const totalProjects = projects.length;
