@@ -820,7 +820,7 @@
       ]
     },
     {
-      name: "Bullet Cross Bag",
+      name: "Bullet Cross Bag[44]",
       categoryKey: "ugc",
       categoryLabel: "UGC",
       image: "renders/bullet-cross-bag-mp6vp8o0-main.png",
