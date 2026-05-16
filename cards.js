@@ -6,7 +6,8 @@
 // Used by both index.html and project.html.
 // =============================================
 
-const projects = [
+  const projects = [
+    
       {
         name: "Serpent Executioner[1]",
         categoryKey: "ugc",
@@ -609,43 +610,29 @@ const projects = [
         "renders/2026-05-14 19-22-48.mp4",
         ]    
        }, 
-          {
-        name: "Pigtails w/ Star & Cross Cap[33]",
-        categoryKey: "ugc",
-        categoryLabel: "UGC",
-        image: "renders/Screenshot 2026-05-14 193316.png",
-        size: "small",
-        tag: "",
-        description: "Created for roblox group.",
-        polygons: "3,986",
-        texture: "1024 × 1024",
-        format: "FBX · OBJ",
-        delivery: "2 Days",
-        tools: ["Blender", "Substance Painter"],
-        extraImages: [
+    {
+      name: "Pigtails w/ Star & Cross Cap[33]",
+      categoryKey: "ugc",
+      categoryLabel: "UGC",
+      image: "renders/Screenshot 2026-05-14 193316.png",
+      size: "small",
+      tag: "",
+      robloxUrl: "https://www.roblox.com/catalog?Keyword=pigtails&taxonomy=tZsUsd2BqGViQrJ9Vs3Wah&CreatorName=Las+Nochesz&CreatorType=Group&salesTypeFilter=1",
+      description: "Created for roblox group.",
+      polygons: "3,986",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "2 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
         "renders/Screenshot 2026-05-14 193354.png",
         "renders/Screenshot 2026-05-14 193434.png",
         "renders/2026-05-14 19-34-48.mp4"
-        ]    
-       }, 
-         {
-        name: "Streetwear Hat Hair Set[34]",
-        categoryKey: "ugc",
-        categoryLabel: "UGC",
-        image: "renders/Screenshot 2026-05-14 194316.png",
-        size: "small",
-        tag: "",
-        description: "Created for roblox group.",
-        polygons: "3,895",
-        texture: "1024 × 1024",
-        format: "FBX · OBJ",
-        delivery: "3 Days",
-        tools: ["Blender", "Substance Painter"],
-        extraImages: [
-        "renders/Screenshot 2026-05-14 194340.png",
-        "renders/2026-05-14 19-44-05.mp4"
-        ]    
-       }, 
+      ]
+    },
         {
         name: "Clown Hair w/ Cowboy Hat[35]",
         categoryKey: "ugc",
@@ -664,5 +651,311 @@ const projects = [
         "renders/Screenshot 2026-05-14 203037.png",
         "renders/2026-05-14 20-33-00.mp4"
         ]    
-       },  
-    ];
+       }, 
+    {
+      name: "Cross Cap[36]",
+      categoryKey: "ugc",
+      categoryLabel: "UGC",
+      image: "renders/cross-cap-mp6dgj2c-main.png",
+      size: "small",
+      tag: "",
+      forSale: true,
+      price: "7.500 RBX // 30$",
+      description: "Created for roblox group.",
+      polygons: "3,812",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/cross-cap-mp6dgj2c-01.mp4"
+      ]
+    },
+    {
+      name: "Vkei Girl Hair[37]",
+      categoryKey: "girl-hair",
+      categoryLabel: "Girl Hair",
+      image: "renders/vkei-girl-hair-mp6e4jev-main.png",
+      size: "small",
+      tag: "",
+      forSale: true,
+      price: "20.000 RBX // 80$",
+      description: "Created for roblox group.",
+      polygons: "3,989",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "2 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/vkei-girl-hair-mp6e4jev-01.mp4"
+      ]
+    },
+    {
+      name: "Gojo Satoru Set[38]",
+      categoryKey: "anime-comms",
+      categoryLabel: "Anime Comms",
+      image: "renders/gojo-satoru-set-mp6e6vd8-main.png",
+      size: "small",
+      tag: "",
+      description: "Created for roblox group.",
+      polygons: "3,979",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "4 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/gojo-satoru-set-mp6e6vd8-01.png",
+        "renders/gojo-satoru-set-mp6e6vd8-02.mp4"
+      ]
+    },
+    {
+      name: "Dio Head Set[39]",
+      categoryKey: "anime-comms",
+      categoryLabel: "Anime Comms",
+      image: "renders/dio-head-set-mp6e9gh3-main.png",
+      size: "small",
+      tag: "",
+      description: "Created for roblox group.",
+      polygons: "3,712",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "3 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/dio-head-set-mp6e9gh3-01.png",
+        "renders/dio-head-set-mp6e9gh3-02.png"
+      ]
+    },
+    {
+      name: "Head Set[40]",
+      categoryKey: "anime-comms",
+      categoryLabel: "Anime Comms",
+      image: "renders/head-set-mp6eeifp-main.png",
+      size: "small",
+      tag: "",
+      description: "Created for roblox group.",
+      polygons: "3,912",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: []
+      },
+    {
+      name: "Izuku Midoriya set [41]",
+      categoryKey: "anime-comms",
+      categoryLabel: "Anime Comms",
+      image: "renders/izuku-midoriya-set-41-mp6twiy8-main.png",
+      size: "small",
+      tag: "",
+      description: "Created for roblox group.",
+      polygons: "3,942",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "5 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/izuku-midoriya-set-41-mp6twiy8-01.png",
+        "renders/izuku-midoriya-set-41-mp6twiy8-02.png"
+      ]
+    },
+    {
+      name: "Riyo Reaper [42]",
+      categoryKey: "anime-comms",
+      categoryLabel: "Anime Comms",
+      image: "renders/riyo-reaper-mp6u7t3f-main.png",
+      size: "small",
+      tag: "",
+      description: "Created for roblox group.",
+      polygons: "3,993",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "3 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/riyo-reaper-mp6u7t3f-01.png",
+        "renders/riyo-reaper-mp6u7t3f-02.png"
+      ]
+    },
+    {
+      name: "Johnny Joestar [43]",
+      categoryKey: "anime-comms",
+      categoryLabel: "Anime Comms",
+      image: "renders/johnny-joestar-mp6upw0m-main.png",
+      size: "small",
+      tag: "",
+      description: "Created for roblox group.",
+      polygons: "3,744",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "2 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/johnny-joestar-mp6upw0m-01.png",
+        "renders/johnny-joestar-mp6upw0m-02.png"
+      ]
+    },
+    {
+      name: "Bullet Cross Bag",
+      categoryKey: "ugc",
+      categoryLabel: "UGC",
+      image: "renders/bullet-cross-bag-mp6vp8o0-main.png",
+      size: "small",
+      tag: "",
+      robloxUrl: "https://www.roblox.com/catalog?Keyword=Military&taxonomy=tZsUsd2BqGViQrJ9Vs3Wah&CreatorName=Las+Nochesz&CreatorType=Group&salesTypeFilter=1",
+      description: "Created for roblox group.",
+      polygons: "3,836",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/bullet-cross-bag-mp6vp8o0-01.png",
+        "renders/bullet-cross-bag-mp6vp8o0-02.png"
+      ]
+    },
+    {
+      name: "Girl Hair [45]",
+      categoryKey: "girl-hair",
+      categoryLabel: "Girl Hair",
+      image: "renders/girl-hair-45-mp6wo4hn-main.png",
+      size: "small",
+      tag: "",
+      forSale: true,
+      price: "25.000 RBX // 95$",
+      description: "Created for roblox group.",
+      polygons: "3,983",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/girl-hair-45-mp6wo4hn-01.png",
+        "renders/girl-hair-45-mp6wo4hn-02.png",
+        "renders/girl-hair-45-mp6wo4hn-03.png"
+      ]
+    },
+    {
+      name: "Messy Hair [46]",
+      categoryKey: "male-hair",
+      categoryLabel: "Male Hair",
+      image: "renders/messy-hair-mp6wuf1d-main.png",
+      size: "small",
+      tag: "",
+      forSale: true,
+      price: "25.000 RBX // 95$",
+      description: "Created for roblox group.",
+      polygons: "3,960",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/messy-hair-mp6wuf1d-01.png",
+        "renders/messy-hair-mp6wuf1d-02.png"
+      ]
+    },
+    {
+      name: "Messy Hair [47]",
+      categoryKey: "male-hair",
+      categoryLabel: "Male Hair",
+      image: "renders/messy-hair-47-mp6x3291-main.png",
+      size: "small",
+      tag: "",
+      forSale: true,
+      price: "25.000 RBX // 95$",
+      description: "Created for roblox group.",
+      polygons: "3,988",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/messy-hair-47-mp6x3291-01.png",
+        "renders/messy-hair-47-mp6x3291-02.png"
+      ]
+    },
+    {
+      name: "Boy Hair[34]",
+      categoryKey: "male-hair",
+      categoryLabel: "Male Hair",
+      image: "renders/boy-hair-mp6xcdra-main.png",
+      size: "small",
+      tag: "",
+      forSale: true,
+      price: "25.000 RBX // 95$",
+      description: "Created for roblox group.",
+      polygons: "3,936",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/boy-hair-mp6xcdra-01.png",
+        "renders/boy-hair-mp6xcdra-02.png",
+        "renders/boy-hair-mp6xcdra-03.png"
+      ]
+    },
+    {
+      name: "Cursed Companion[48]",
+      categoryKey: "ugc",
+      categoryLabel: "UGC",
+      image: "renders/cursed-companion-mp88033j-main.png",
+      size: "small",
+      tag: "",
+      robloxUrl: "https://www.roblox.com/catalog?Keyword=companion&taxonomy=tZsUsd2BqGViQrJ9Vs3Wah&CreatorName=Ash+Born&CreatorType=Group&salesTypeFilter=1",
+      description: "Created for roblox group.",
+      polygons: "3,982",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/cursed-companion-mp88033j-01.png",
+        "renders/cursed-companion-mp88033j-02.png",
+        "renders/cursed-companion-mp88033j-03.png"
+      ]
+    },
+  ];
