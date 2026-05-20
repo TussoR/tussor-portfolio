@@ -620,24 +620,6 @@ const projects = [
         "renders/2026-05-14 19-34-48.mp4"
         ]    
        }, 
-         {
-        name: "Streetwear Hat Hair Set[34]",
-        categoryKey: "ugc",
-        categoryLabel: "UGC",
-        image: "renders/Screenshot 2026-05-14 194316.png",
-        size: "small",
-        tag: "",
-        description: "Created for roblox group.",
-        polygons: "3,895",
-        texture: "1024 × 1024",
-        format: "FBX · OBJ",
-        delivery: "3 Days",
-        tools: ["Blender", "Substance Painter"],
-        extraImages: [
-        "renders/Screenshot 2026-05-14 194340.png",
-        "renders/2026-05-14 19-44-05.mp4"
-        ]    
-       }, 
         {
         name: "Clown Hair w/ Cowboy Hat[35]",
         categoryKey: "ugc",
