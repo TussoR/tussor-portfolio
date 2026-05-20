@@ -194,24 +194,17 @@
 
 <footer>
   <div>© 2026 TussoR — All rights reserved</div>
-  <div>Crafted with intention · v1.0</div>
+  <div>Built by TussoR · 2026</div>
 </footer>
 
-<!-- Project data (external file — shared with index.html) -->
 <script src="cards.js"></script>
 
 <script>
-  // Projects loaded from cards.js (no manual sync needed)
-
-  // ========================================
-  // ⚙️ (Aşağıya dokunmayın)
-  // ========================================
-
   const urlParams = new URLSearchParams(window.location.search);
   const projectId = parseInt(urlParams.get('id')) || 0;
   const project = projects[projectId];
 
-  // Proje yoksa hata göster
+  // Show error if no project found
   if (!project) {
     document.querySelector('main').innerHTML = `
       <div style="text-align: center; padding: 80px 20px;">
@@ -423,7 +416,7 @@
     }
 
     function getYoutubeId(url) {
-      // Çeşitli YouTube URL formatlarını destekler:
+      // Handles various YouTube URL formats:
       // https://youtu.be/VIDEO_ID
       // https://www.youtube.com/watch?v=VIDEO_ID
       // https://www.youtube.com/embed/VIDEO_ID

@@ -1,13 +1,4 @@
-// =============================================
-// TussoR Portfolio — Cards Data
-// =============================================
-// This file contains ALL project data.
-// Update this file when adding/editing cards.
-// Used by both index.html and project.html.
-// =============================================
-
-  const projects = [
-    
+const projects = [
       {
         name: "Serpent Executioner[1]",
         categoryKey: "ugc",
@@ -610,29 +601,43 @@
         "renders/2026-05-14 19-22-48.mp4",
         ]    
        }, 
-    {
-      name: "Pigtails w/ Star & Cross Cap[33]",
-      categoryKey: "ugc",
-      categoryLabel: "UGC",
-      image: "renders/Screenshot 2026-05-14 193316.png",
-      size: "small",
-      tag: "",
-      robloxUrl: "https://www.roblox.com/catalog?Keyword=pigtails&taxonomy=tZsUsd2BqGViQrJ9Vs3Wah&CreatorName=Las+Nochesz&CreatorType=Group&salesTypeFilter=1",
-      description: "Created for roblox group.",
-      polygons: "3,986",
-      texture: "1024 × 1024",
-      format: "FBX · OBJ",
-      delivery: "2 Days",
-      tools: [
-        "Blender",
-        "Substance Painter"
-      ],
-      extraImages: [
+          {
+        name: "Pigtails w/ Star & Cross Cap[33]",
+        categoryKey: "ugc",
+        categoryLabel: "UGC",
+        image: "renders/Screenshot 2026-05-14 193316.png",
+        size: "small",
+        tag: "",
+        description: "Created for roblox group.",
+        polygons: "3,986",
+        texture: "1024 × 1024",
+        format: "FBX · OBJ",
+        delivery: "2 Days",
+        tools: ["Blender", "Substance Painter"],
+        extraImages: [
         "renders/Screenshot 2026-05-14 193354.png",
         "renders/Screenshot 2026-05-14 193434.png",
         "renders/2026-05-14 19-34-48.mp4"
-      ]
-    },
+        ]    
+       }, 
+         {
+        name: "Streetwear Hat Hair Set[34]",
+        categoryKey: "ugc",
+        categoryLabel: "UGC",
+        image: "renders/Screenshot 2026-05-14 194316.png",
+        size: "small",
+        tag: "",
+        description: "Created for roblox group.",
+        polygons: "3,895",
+        texture: "1024 × 1024",
+        format: "FBX · OBJ",
+        delivery: "3 Days",
+        tools: ["Blender", "Substance Painter"],
+        extraImages: [
+        "renders/Screenshot 2026-05-14 194340.png",
+        "renders/2026-05-14 19-44-05.mp4"
+        ]    
+       }, 
         {
         name: "Clown Hair w/ Cowboy Hat[35]",
         categoryKey: "ugc",
@@ -651,8 +656,8 @@
         "renders/Screenshot 2026-05-14 203037.png",
         "renders/2026-05-14 20-33-00.mp4"
         ]    
-       }, 
-    {
+       },  
+       {
       name: "Cross Cap[36]",
       categoryKey: "ugc",
       categoryLabel: "UGC",
@@ -958,4 +963,5 @@
         "renders/cursed-companion-mp88033j-03.png"
       ]
     },
+    
   ];
