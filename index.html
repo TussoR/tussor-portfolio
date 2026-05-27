@@ -79,12 +79,12 @@
 
 <nav>
   <div class="nav-inner">
-    <div class="logo">
+    <div class="logo" onclick="resetAllFilters()" style="cursor: pointer;">
       <span class="logo-dot"></span>
       TussoR<span style="color: var(--text-mute); font-weight: 400; margin-left: 4px;">/Portfolio</span>
     </div>
     <div class="nav-links">
-      <a href="#" onclick="event.preventDefault(); window.scrollTo({top:0, behavior:'smooth'});">Home</a>
+      <a href="#" onclick="event.preventDefault(); resetAllFilters();">Home</a>
       <a href="#shop" class="nav-shop-link" onclick="event.preventDefault(); setShopFilter();">Shop <span class="nav-shop-dot"></span></a>
       <a href="#work">Work</a>
       <a href="#categories">Categories</a>
@@ -633,6 +633,17 @@
     renderProjects();
     renderCategories();
     document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function resetAllFilters() {
+    currentShopFilter = false;
+    currentCategory = null;
+    currentPage = 1;
+    // Clear hash from URL without page jump
+    history.replaceState(null, '', window.location.pathname);
+    renderProjects();
+    renderCategories();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   // Read category from URL on load
