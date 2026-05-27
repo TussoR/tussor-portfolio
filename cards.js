@@ -1057,8 +1057,8 @@ const projects = [
     },
     {
       name: "Girl Hair",
-      categoryKey: "male-hair",
-      categoryLabel: "Male Hair",
+      categoryKey: "girl-hair",
+      categoryLabel: "Girl Hair",
       image: "renders/girl-hair-mpobilw4-main.png",
       size: "small",
       tag: "",
