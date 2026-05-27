@@ -943,5 +943,138 @@ const projects = [
         "renders/cursed-companion-mp88033j-03.png"
       ]
     },
-    
+    {
+      name: "Black Skeleton Clock",
+      categoryKey: "ugc",
+      categoryLabel: "Back Accessories",
+      image: "renders/black-skeleton-clock-mpoba7cc-main.png",
+      size: "small",
+      tag: "",
+      description: "Created for roblox group.",
+      polygons: "3,314",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/black-skeleton-clock-mpoba7cc-01.png",
+        "renders/black-skeleton-clock-mpoba7cc-02.png",
+        "renders/black-skeleton-clock-mpoba7cc-03.png",
+        "renders/black-skeleton-clock-mpoba7cc-04.png"
+      ]
+    },
+    {
+      name: "Letter of Condolence",
+      categoryKey: "ugc",
+      categoryLabel: "UGC",
+      image: "renders/letter-of-condolence-mpobblqy-main.png",
+      size: "small",
+      tag: "",
+      description: "Created for roblox group.",
+      polygons: "3,019",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/letter-of-condolence-mpobblqy-01.png",
+        "renders/letter-of-condolence-mpobblqy-02.png",
+        "renders/letter-of-condolence-mpobblqy-03.png"
+      ]
+    },
+    {
+      name: "Grunge Spider Eyepatch",
+      categoryKey: "ugc",
+      categoryLabel: "UGC",
+      image: "renders/grunge-spider-eyepatch-mpobdoku-main.png",
+      size: "small",
+      tag: "",
+      description: "Created for roblox group.",
+      polygons: "3,777",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/grunge-spider-eyepatch-mpobdoku-01.png",
+        "renders/grunge-spider-eyepatch-mpobdoku-02.png",
+        "renders/grunge-spider-eyepatch-mpobdoku-03.png"
+      ]
+    },
+    {
+      name: "Goth teased Messy Hair",
+      categoryKey: "male-hair",
+      categoryLabel: "Male Hair",
+      image: "renders/goth-teased-messy-hair-mpobh1li-main.png",
+      size: "small",
+      tag: "",
+      description: "Created for roblox group.",
+      polygons: "3,921",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/goth-teased-messy-hair-mpobh1li-01.png",
+        "renders/goth-teased-messy-hair-mpobh1li-02.png",
+        "renders/goth-teased-messy-hair-mpobh1li-03.png"
+      ]
+    },
+    {
+      name: "spiky messy goth emo hair",
+      categoryKey: "male-hair",
+      categoryLabel: "Male Hair",
+      image: "renders/spiky-messy-goth-emo-hair-mpobhymo-main.png",
+      size: "small",
+      tag: "",
+      description: "Created for roblox group.",
+      polygons: "3,712",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/spiky-messy-goth-emo-hair-mpobhymo-01.png",
+        "renders/spiky-messy-goth-emo-hair-mpobhymo-02.png",
+        "renders/spiky-messy-goth-emo-hair-mpobhymo-03.png",
+        "renders/spiky-messy-goth-emo-hair-mpobhymo-04.png"
+      ]
+    },
+    {
+      name: "Girl Hair",
+      categoryKey: "male-hair",
+      categoryLabel: "Male Hair",
+      image: "renders/girl-hair-mpobilw4-main.png",
+      size: "small",
+      tag: "",
+      description: "Created for roblox group.",
+      polygons: "3,712",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/girl-hair-mpobilw4-01.png",
+        "renders/girl-hair-mpobilw4-02.png",
+        "renders/girl-hair-mpobilw4-03.png"
+      ]
+    },
   ];
