@@ -976,7 +976,7 @@ const projects = [
       tag: "",
       robloxUrl: "https://www.roblox.com/catalog?Keyword=Condolence&taxonomy=tZsUsd2BqGViQrJ9Vs3Wah&CreatorName=Danse+Macabre%E1%85%A0&CreatorType=Group&salesTypeFilter=1",
       description: "Created for roblox group.",
-      polygons: "3,019",
+      polygons: "3,018",
       texture: "1024 × 1024",
       format: "FBX · OBJ",
       delivery: "1 Days",
