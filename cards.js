@@ -53,28 +53,31 @@ const projects = [
         "renders/2026-03-14_17-58-39-6c514c4ffa82bdb6.mp4",
         ]    
       },    
-      {
-        name: "Messy Boy Hair[4]",
-        categoryKey: "male-hair",
-        categoryLabel: "Male Hair",
-        image: "renders/image-c08e4930fe3f5c7e.png",
-        size: "small",
-        tag: "",
-        description: "Created for roblox group.",
-        polygons: "3,742",
-        texture: "1024 × 1024",
-        format: "FBX · OBJ",
-        forSale: true,           // ← BU SATIRI EKLE
-        price: "20.000 RBX // 80$",        // ← BU SATIRI EKLE (opsiyonel)
-        delivery: "1 Days",
-        tools: ["Blender", "Substance Painter"],
-        extraImages: [
+    {
+      name: "Messy Boy Hair[4]",
+      categoryKey: "male-hair",
+      categoryLabel: "Male Hair",
+      image: "renders/image-c08e4930fe3f5c7e.png",
+      size: "small",
+      tag: "",
+      forSale: true,
+      price: "18.000 RBX // $60",
+      description: "Created for roblox group.",
+      polygons: "3,742",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
         "renders/12.gif",
         "renders/image-318ecabc57091c32.png",
         "renders/Screenshot_2026-03-13_135953-37ce376bfa081c57.png",
         "renders/2026-03-13_13-48-40-c659c507cb13f6a2.mp4"
-        ]    
-      },    
+      ]
+    },
       {
         name: "Emo Hair[5]",
         categoryKey: "male-hair",
@@ -396,26 +399,29 @@ const projects = [
         "renders/Screenshot 2026-03-02 195812.png"
         ]    
        },
-       {
-        name: "VKEI Hair Style[22]",
-        categoryKey: "male-hair",
-        categoryLabel: "Male Hair",
-        image: "renders/image-a621a67a68c87e07.png",
-        size: "small",
-        tag: "",
-        description: "Created for roblox group.",
-        polygons: "3,999",
-        texture: "1024 × 1024",
-        format: "FBX · OBJ",
-        forSale: true,           // ← BU SATIRI EKLE
-        price: "20.000 RBX // 80$",        // ← BU SATIRI EKLE (opsiyonel)
-        delivery: "1 Days",
-        tools: ["Blender", "Substance Painter"],
-        extraImages: [
-         "renders/image-34c46ea35137be2d.png",
-         "renders/2025-11-28_12-06-28-c1fe1ecedf77e3d9.mp4"
-        ]    
-       },
+    {
+      name: "VKEI Hair Style[22]",
+      categoryKey: "male-hair",
+      categoryLabel: "Male Hair",
+      image: "renders/image-a621a67a68c87e07.png",
+      size: "small",
+      tag: "",
+      forSale: true,
+      price: "18.000 RBX // $60",
+      description: "Created for roblox group.",
+      polygons: "3,999",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/image-34c46ea35137be2d.png",
+        "renders/2025-11-28_12-06-28-c1fe1ecedf77e3d9.mp4"
+      ]
+    },
         {
         name: "Girl Hair[23]",
         categoryKey: "girl-hair",
@@ -667,7 +673,7 @@ const projects = [
       size: "small",
       tag: "",
       forSale: true,
-      price: "20.000 RBX // 80$",
+      price: "18.000 RBX // $60",
       description: "Created for roblox group.",
       polygons: "3,989",
       texture: "1024 × 1024",
@@ -834,7 +840,7 @@ const projects = [
       size: "small",
       tag: "",
       forSale: true,
-      price: "25.000 RBX // 95$",
+      price: "18.000 RBX // $60",
       description: "Created for roblox group.",
       polygons: "3,983",
       texture: "1024 × 1024",
@@ -858,7 +864,7 @@ const projects = [
       size: "small",
       tag: "",
       forSale: true,
-      price: "25.000 RBX // 95$",
+      price: "18.000 RBX // $60",
       description: "Created for roblox group.",
       polygons: "3,960",
       texture: "1024 × 1024",
@@ -881,7 +887,7 @@ const projects = [
       size: "small",
       tag: "",
       forSale: true,
-      price: "25.000 RBX // 95$",
+      price: "18.000 RBX // $60",
       description: "Created for roblox group.",
       polygons: "3,988",
       texture: "1024 × 1024",
@@ -904,7 +910,7 @@ const projects = [
       size: "small",
       tag: "",
       forSale: true,
-      price: "25.000 RBX // 95$",
+      price: "18.000 RBX // 60$",
       description: "Created for roblox group.",
       polygons: "3,936",
       texture: "1024 × 1024",
