@@ -886,8 +886,6 @@ const projects = [
       image: "renders/messy-hair-47-mp6x3291-main.png",
       size: "small",
       tag: "",
-      forSale: true,
-      price: "18.000 RBX // $60",
       description: "Created for roblox group.",
       polygons: "3,988",
       texture: "1024 × 1024",
