@@ -1084,4 +1084,49 @@ const projects = [
         "renders/girl-hair-mpobilw4-03.png"
       ]
     },
+    {
+      name: "Scene Emo Hair",
+      categoryKey: "male-hair",
+      categoryLabel: "Male Hair",
+      image: "renders/scene-emo-hair-mqlypi3c-main.png",
+      size: "small",
+      tag: "",
+      robloxUrl: "https://www.roblox.com/catalog?Keyword=scene&taxonomy=tZsUsd2BqGViQrJ9Vs3Wah&CreatorName=Las+Nochesz&CreatorType=Group&salesTypeFilter=1",
+      description: "Created for roblox group.",
+      polygons: "3,712",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Photoshop"
+      ],
+      extraImages: [
+        "renders/scene-emo-hair-mqlypi3c-01.png",
+        "renders/scene-emo-hair-mqlypi3c-02.png"
+      ]
+    },
+    {
+      name: "Messy Boy Hair",
+      categoryKey: "male-hair",
+      categoryLabel: "Male Hair",
+      image: "renders/messy-boy-hair-mqlysgn8-main.png",
+      size: "small",
+      tag: "",
+      description: "Created for roblox group.",
+      polygons: "3,920",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/messy-boy-hair-mqlysgn8-01.mp4",
+        "renders/messy-boy-hair-mqlysgn8-02.png",
+        "renders/messy-boy-hair-mqlysgn8-03.png",
+        "renders/messy-boy-hair-mqlysgn8-04.png"
+      ]
+    },
   ];
