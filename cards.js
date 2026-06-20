@@ -839,8 +839,6 @@ const projects = [
       image: "renders/girl-hair-45-mp6wo4hn-main.png",
       size: "small",
       tag: "",
-      forSale: true,
-      price: "18.000 RBX // $60",
       description: "Created for roblox group.",
       polygons: "3,983",
       texture: "1024 × 1024",
