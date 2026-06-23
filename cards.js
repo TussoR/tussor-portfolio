@@ -1129,4 +1129,26 @@ const projects = [
         "renders/messy-boy-hair-mqlysgn8-04.png"
       ]
     },
+    {
+      name: "Leather Backpack",
+      categoryKey: "ugc",
+      categoryLabel: "UGC",
+      image: "renders/leather-backpack-mqq987r6-main.png",
+      size: "small",
+      tag: "",
+      description: "Created for roblox group.",
+      polygons: "3,985",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Maya",
+        "Substance Painter",
+        "Rizom UV"
+      ],
+      extraImages: [
+        "renders/leather-backpack-mqq987r6-01.png",
+        "renders/leather-backpack-mqq987r6-02.png"
+      ]
+    },
   ];
