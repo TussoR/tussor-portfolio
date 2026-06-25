@@ -1091,7 +1091,7 @@ const projects = [
       image: "renders/scene-emo-hair-mqlypi3c-main.png",
       size: "small",
       tag: "",
-      robloxUrl: "https://www.roblox.com/catalog?Keyword=scene&taxonomy=tZsUsd2BqGViQrJ9Vs3Wah&CreatorName=Las+Nochesz&CreatorType=Group&salesTypeFilter=1",
+      robloxUrl: "https://www.roblox.com/catalog?Keyword=emo+scene&taxonomy=tZsUsd2BqGViQrJ9Vs3Wah&CreatorName=Las+Nochesz&CreatorType=Group&salesTypeFilter=1",
       description: "Created for roblox group.",
       polygons: "3,712",
       texture: "1024 × 1024",
