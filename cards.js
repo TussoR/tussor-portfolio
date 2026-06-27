@@ -1151,4 +1151,28 @@ const projects = [
         "renders/leather-backpack-mqq987r6-02.png"
       ]
     },
+    {
+      name: "Guitar Model",
+      categoryKey: "ugc",
+      categoryLabel: "UGC",
+      image: "renders/guitar-model-mqw8dyqa-main.png",
+      size: "small",
+      tag: "",
+      description: "Created for roblox group.",
+      polygons: "3,980",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "2 Days",
+      tools: [
+        "Maya",
+        "Substance Painter",
+        "Rizom UV"
+      ],
+      extraImages: [
+        "renders/guitar-model-mqw8dyqa-01.png",
+        "renders/guitar-model-mqw8dyqa-02.png",
+        "renders/guitar-model-mqw8dyqa-03.png",
+        "renders/guitar-model-mqw8dyqa-04.png"
+      ]
+    },
   ];
