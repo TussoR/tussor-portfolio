@@ -1175,4 +1175,28 @@ const projects = [
         "renders/guitar-model-mqw8dyqa-04.png"
       ]
     },
+    {
+      name: "Male Hair",
+      categoryKey: "male-hair",
+      categoryLabel: "Male Hair",
+      image: "renders/male-hair-mqwaetmd-main.png",
+      size: "small",
+      tag: "",
+      description: "Created for roblox group.",
+      polygons: "3702",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender"
+      ],
+      extraImages: [
+        "renders/male-hair-mqwaetmd-01.png",
+        "renders/male-hair-mqwaetmd-02.png",
+        "renders/male-hair-mqwaetmd-03.png",
+        "renders/male-hair-mqwaetmd-04.png",
+        "renders/male-hair-mqwaetmd-05.png",
+        "renders/male-hair-mqwaetmd-06.mp4"
+      ]
+    },
   ];
