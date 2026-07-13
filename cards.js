@@ -1199,4 +1199,51 @@ const projects = [
         "renders/male-hair-mqwaetmd-06.mp4"
       ]
     },
+    {
+      name: "Golden Coin Sword",
+      categoryKey: "ugc",
+      categoryLabel: "UGC",
+      image: "renders/golden-coin-sword-mriulzpu-main.png",
+      size: "small",
+      tag: "",
+      description: "Created for roblox group.",
+      polygons: "3010",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "2 Day",
+      tools: [
+        "Maya",
+        "Blender",
+        "RizomUV",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/golden-coin-sword-mriulzpu-01.png",
+        "renders/golden-coin-sword-mriulzpu-02.png"
+      ]
+    },
+    {
+      name: "Leather Bag",
+      categoryKey: "ugc",
+      categoryLabel: "UGC",
+      image: "renders/leather-bag-mriun2rj-main.png",
+      size: "small",
+      tag: "",
+      description: "Created for roblox group.",
+      polygons: "3,980",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "2",
+      tools: [
+        "Maya",
+        "Blender",
+        "Substance Painter",
+        "RizomUV"
+      ],
+      extraImages: [
+        "renders/leather-bag-mriun2rj-01.png",
+        "renders/leather-bag-mriun2rj-02.png",
+        "renders/leather-bag-mriun2rj-03.png"
+      ]
+    },
   ];
