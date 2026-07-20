@@ -60,8 +60,6 @@ const projects = [
       image: "renders/image-c08e4930fe3f5c7e.png",
       size: "small",
       tag: "",
-      forSale: true,
-      price: "18.000 RBX // $60",
       description: "Created for roblox group.",
       polygons: "3,742",
       texture: "1024 × 1024",
@@ -74,8 +72,7 @@ const projects = [
       extraImages: [
         "renders/12.gif",
         "renders/image-318ecabc57091c32.png",
-        "renders/Screenshot_2026-03-13_135953-37ce376bfa081c57.png",
-        "renders/2026-03-13_13-48-40-c659c507cb13f6a2.mp4"
+        "renders/Screenshot_2026-03-13_135953-37ce376bfa081c57.png"
       ]
     },
       {
