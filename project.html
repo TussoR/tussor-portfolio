@@ -9,6 +9,7 @@
 <meta name="description" content="View detailed renders, specs, and information about this 3D model by TussoR. Game-ready asset crafted for Roblox UGC and indie games.">
 <meta name="author" content="TussoR">
 <meta name="robots" content="index, follow">
+<link rel="canonical" href="https://tussorportfolio.com/project.html" id="canonicalLink">
 
 <!-- Open Graph -->
 <meta property="og:type" content="article">
@@ -23,18 +24,20 @@
 <meta name="twitter:site" content="@ulqssor">
 <meta name="twitter:creator" content="@ulqssor">
 <meta name="twitter:title" content="Project — TussoR Portfolio">
+<meta name="twitter:description" content="Detailed view of a 3D model by TussoR. Game-ready asset for Roblox and indie games.">
 <meta name="twitter:image" content="https://tussorportfolio.com/renders/og-image.jpg">
 
-<meta name="theme-color" content="#0a0a0b">
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23000000'/%3E%3Ccircle cx='16' cy='16' r='8' fill='%23a3e635'/%3E%3C/svg%3E">
+
+<meta name="theme-color" content="#000000">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="project.css">
 </head>
 <body>
-
-<div class="grid-bg"></div>
 
 <nav>
   <div class="nav-inner">
@@ -86,7 +89,7 @@
       <div class="main-image" id="mainImage">
         <div class="img-counter" id="imgCounter">01 / 05</div>
         <img id="mainImg" src="" alt=""
-             onerror="this.style.display='none'; document.getElementById('mainPlaceholder').style.display='flex';">
+             onerror="this.style.display='none'; const ph=document.getElementById('mainPlaceholder'); if(ph) ph.style.display='flex';">
         <video id="mainVideo" autoplay loop muted playsinline style="display:none; width:100%; height:100%; object-fit:cover;">
           <source src="" type="video/mp4">
         </video>
@@ -246,7 +249,9 @@
     setMeta('meta[property="og:image"]', 'content', previewImg);
     setMeta('meta[property="og:url"]', 'content', projectUrl);
     setMeta('meta[name="twitter:title"]', 'content', projectTitle);
+    setMeta('meta[name="twitter:description"]', 'content', desc);
     setMeta('meta[name="twitter:image"]', 'content', previewImg);
+    document.getElementById('canonicalLink').setAttribute('href', projectUrl);
 
     // Set prev/next project navigation
     const totalProjects = projects.length;
@@ -324,6 +329,31 @@
       salePriceEl.textContent = project.price || 'Inquire for price';
       // Pass product name to contact via hash
       buyBtn.href = `index.html?buy=${encodeURIComponent(project.name)}&price=${encodeURIComponent(project.price || '')}#contact`;
+
+      // Product structured data (Google rich results)
+      const priceMatch = (project.price || '').match(/\$\s*([\d.,]+)|([\d.,]+)\s*\$/);
+      const usdPrice = priceMatch ? (priceMatch[1] || priceMatch[2]).replace(/,/g, '') : null;
+      const offer = {
+        "@type": "Offer",
+        "url": projectUrl,
+        "availability": "https://schema.org/InStock"
+      };
+      if (usdPrice) {
+        offer.price = usdPrice;
+        offer.priceCurrency = "USD";
+      }
+      const productSchema = document.createElement('script');
+      productSchema.type = 'application/ld+json';
+      productSchema.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": project.name,
+        "image": previewImg,
+        "description": project.description || desc,
+        "brand": { "@type": "Brand", "name": "TussoR" },
+        "offers": offer
+      });
+      document.head.appendChild(productSchema);
     }
 
     // Roblox availability button (only if robloxUrl exists)
@@ -361,7 +391,7 @@
           if (m) { ytId = m[1]; break; }
         }
         thumbContent = ytId
-          ? `<img src="https://img.youtube.com/vi/${ytId}/mqdefault.jpg" alt="YouTube View ${i+1}"
+          ? `<img src="https://img.youtube.com/vi/${ytId}/mqdefault.jpg" alt="YouTube View ${i+1}" loading="lazy"
                   style="width:100%; height:100%; object-fit:cover;">
              <div class="thumb-video-icon" style="background: #ff0000;">
                <svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
@@ -379,7 +409,7 @@
              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
            </div>`;
       } else {
-        thumbContent = `<img src="${src}" alt="View ${i+1}"
+        thumbContent = `<img src="${src}" alt="View ${i+1}" loading="lazy"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
            <div class="thumb-placeholder">
              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -472,6 +502,7 @@
         // Show image
         mainImg.style.display = 'block';
         mainImg.src = src;
+        mainImg.alt = `${project.name} — view ${index + 1}`;
         videoBadge.style.display = 'none';
       }
       
@@ -511,7 +542,7 @@
       return `
         <a href="project.html?id=${realIndex}" class="related-card">
           <div class="related-thumb">
-            <img src="${p.image}" alt="${p.name}"
+            <img src="${p.image}" alt="${p.name}" loading="lazy"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <svg class="placeholder-svg" viewBox="0 0 100 100" fill="none" stroke="#f4f4f5" stroke-width="0.6">
               <rect x="25" y="25" width="50" height="50"/>

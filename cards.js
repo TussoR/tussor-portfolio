@@ -595,8 +595,8 @@ const projects = [
         polygons: "3,485",
         texture: "1024 × 1024",
         format: "FBX · OBJ",
-        forSale: true,           // ← BU SATIRI EKLE
-        price: "10.000 RBX // 40$",        // ← BU SATIRI EKLE (opsiyonel)
+        forSale: true,
+        price: "10.000 RBX // 40$",
         delivery: "1 Days",
         tools: ["Blender", "Substance Painter"],
         extraImages: [

@@ -32,8 +32,11 @@
 <meta name="twitter:description" content="3D artist crafting game-ready assets, Roblox UGC, characters, and headwear. Available for commissions.">
 <meta name="twitter:image" content="https://tussorportfolio.com/renders/og-image.jpg">
 
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23000000'/%3E%3Ccircle cx='16' cy='16' r='8' fill='%23a3e635'/%3E%3C/svg%3E">
+
 <!-- Theme -->
-<meta name="theme-color" content="#0f0f0f">
+<meta name="theme-color" content="#000000">
 
 <!-- Schema.org structured data (Google rich results) -->
 <script type="application/ld+json">
@@ -73,20 +76,18 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div class="grid-bg"></div>
-
 <nav>
   <div class="nav-inner">
-    <div class="logo" onclick="resetAllFilters()" style="cursor: pointer;">
+    <div class="logo" onclick="resetAllFilters()" style="cursor: pointer;" role="button" tabindex="0" aria-label="Reset filters and go to top">
       <span class="logo-dot"></span>
       TussoR<span style="color: var(--text-mute); font-weight: 400; margin-left: 4px;">/Portfolio</span>
     </div>
-    <div class="nav-links">
+    <div class="nav-links" id="navLinks">
       <a href="#" onclick="event.preventDefault(); resetAllFilters();">Home</a>
       <a href="#shop" class="nav-shop-link" onclick="event.preventDefault(); setShopFilter();">Shop <span class="nav-shop-dot"></span></a>
       <a href="#work">Work</a>
@@ -98,6 +99,10 @@
       <span class="status-dot"></span>
       Available for work
     </div>
+    <button class="nav-toggle" id="navToggle" onclick="toggleNav()" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+      <svg class="icon-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
   </div>
 </nav>
 
@@ -118,15 +123,55 @@
     <span>Est. 2022</span>
     <span>Based in TR</span>
   </div>
-  <h1>
-    3D models. <span class="italic">Roblox</span> UGC.<br>
-    Indie game assets.
-  </h1>
-  <p class="hero-desc">
-    <strong>I make 3D assets for games.</strong> 
-    Characters, hair, hats, weapons, environments. Mostly Roblox UGC and indie projects.
-    Available for commissions.
-  </p>
+  <h1>Portfolio<span class="sr-only"> — TussoR, 3D Artist &amp; Roblox UGC Creator making game-ready assets</span></h1>
+  <div class="hero-signature">
+    <div class="hero-name">TussoR</div>
+    <p class="hero-desc">
+      <strong>I make 3D assets for games.</strong>
+      Characters, hair, hats, weapons, environments. Mostly Roblox UGC and indie projects.
+      Available for commissions.
+    </p>
+  </div>
+
+  <div class="hero-socials">
+    <a href="https://x.com/ulqssor" target="_blank" class="hero-social-card">
+      <span class="hero-social-icon" style="background:#000;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </span>
+      <span class="hero-social-label">@ulqssor</span>
+    </a>
+    <a href="https://www.tiktok.com/@tussor4" target="_blank" class="hero-social-card">
+      <span class="hero-social-icon" style="background:#000;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+      </span>
+      <span class="hero-social-label">TikTok</span>
+    </a>
+    <a href="https://www.roblox.com/users/2257838391/profile" target="_blank" class="hero-social-card">
+      <span class="hero-social-icon" style="background:#e2231a;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M3.6 2.1L2.1 20.4l18.3 1.5L21.9 3.6 3.6 2.1zm10.86 14.27l-5.46-1.4 1.4-5.46 5.46 1.4-1.4 5.46z"/></svg>
+      </span>
+      <span class="hero-social-label">tussor4</span>
+    </a>
+    <a href="https://www.roblox.com/communities/35965009/Las-Nochesz#!/about" target="_blank" class="hero-social-card">
+      <span class="hero-social-icon" style="background:#00a2ff;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+      </span>
+      <span class="hero-social-label">Las Nochesz</span>
+    </a>
+    <a href="https://www.roblox.com/communities/35075842/Ash-Born#!/about" target="_blank" class="hero-social-card">
+      <span class="hero-social-icon" style="background:#00a2ff;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+      </span>
+      <span class="hero-social-label">Ash Born</span>
+    </a>
+    <a href="https://discord.gg/b2vr6hjXvD" target="_blank" rel="noopener" class="hero-social-card">
+      <span class="hero-social-icon" style="background:#5865f2;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+      </span>
+      <span class="hero-social-label">Discord</span>
+    </a>
+  </div>
+
   <div class="hero-actions">
     <a href="#work" class="btn btn-primary">View Work →</a>
     <a href="#contact" class="btn">Start a Project</a>
@@ -134,7 +179,7 @@
 
   <div class="hero-stats">
     <div>
-      <div class="stat-num">40+</div>
+      <div class="stat-num">60+</div>
       <div class="stat-label">Models Made</div>
     </div>
     <div>
@@ -145,7 +190,7 @@
       <div class="stat-label" style="margin-top:0;">Payment</div>
       <div class="payment-methods">
         <div class="payment-chip">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="3"/><text x="12" y="16" text-anchor="middle" font-family="serif" font-size="10" font-weight="bold" fill="#0a0a0b">R$</text></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="3"/><text x="12" y="16" text-anchor="middle" font-family="serif" font-size="10" font-weight="bold" fill="#000000">R$</text></svg>
           Robux
         </div>
         <div class="payment-chip">
@@ -196,6 +241,8 @@
       Click any item<br>to view details
     </div>
   </div>
+
+  <div class="work-filters" id="workFilters"></div>
 
   <div class="filter-banner" id="filterBanner" style="display:none;"></div>
 
@@ -289,8 +336,6 @@
 </section>
 
 <!-- CONTACT -->
-
-<!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="contact-pre reveal">— 04 / Let's Build Something</div>
   <h2 class="contact-title reveal">
@@ -318,7 +363,7 @@
     </div>
   </a>
 
-  <div class="discord-card reveal" id="discordCard">
+  <div class="discord-card reveal" id="discordCard" role="button" tabindex="0" aria-label="Copy Discord username tussor to clipboard">
     <div class="discord-icon">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
         <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
@@ -573,7 +618,7 @@
     "anime-comms":  { name: "Anime Comms",  desc: "Custom anime-style character commissions and high-detail artwork." }
   };
 
-  const PROJECTS_PER_PAGE = 9;
+  const PROJECTS_PER_PAGE = 15;
 
   let currentPage = 1;
   let currentCategory = null;
@@ -596,6 +641,7 @@
     }
     renderProjects();
     renderCategories();
+    renderWorkFilters();
     document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
   }
 
@@ -606,6 +652,7 @@
     window.location.hash = 'shop';
     renderProjects();
     renderCategories();
+    renderWorkFilters();
     document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
   }
 
@@ -617,6 +664,7 @@
     history.replaceState(null, '', window.location.pathname);
     renderProjects();
     renderCategories();
+    renderWorkFilters();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -737,7 +785,7 @@
           if (m) { ytId = m[1]; break; }
         }
         mediaHtml = ytId
-          ? `<img src="https://img.youtube.com/vi/${ytId}/maxresdefault.jpg" alt="${p.name}"
+          ? `<img src="https://img.youtube.com/vi/${ytId}/maxresdefault.jpg" alt="${p.name}" loading="lazy"
                   onerror="this.src='https://img.youtube.com/vi/${ytId}/hqdefault.jpg'"
                   style="width:100%; height:100%; object-fit:cover;">`
           : `<div class="placeholder-fallback" style="display:flex;">
@@ -758,7 +806,7 @@
              Video
            </div>`;
       } else {
-        mediaHtml = `<img src="${p.image}" alt="${p.name}"
+        mediaHtml = `<img src="${p.image}" alt="${p.name}" loading="lazy"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
            <div class="placeholder-fallback">
              <div class="shape-grad"></div>
@@ -857,11 +905,35 @@
     document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
   }
 
+  function renderWorkFilters() {
+    const container = document.getElementById('workFilters');
+    if (!container) return;
+
+    const counts = {};
+    projects.forEach(p => {
+      if (p.categoryKey) counts[p.categoryKey] = (counts[p.categoryKey] || 0) + 1;
+    });
+    const forSaleCount = projects.filter(p => p.forSale).length;
+
+    let html = `<button class="work-filter-btn ${!currentCategory && !currentShopFilter ? 'active' : ''}" onclick="setCategory(null)">All <span>${projects.length}</span></button>`;
+
+    Object.entries(categoryMeta).forEach(([key, meta]) => {
+      const count = counts[key] || 0;
+      if (!count) return;
+      html += `<button class="work-filter-btn ${currentCategory === key ? 'active' : ''}" onclick="setCategory('${key}')">${meta.name} <span>${count}</span></button>`;
+    });
+
+    if (forSaleCount > 0) {
+      html += `<button class="work-filter-btn ${currentShopFilter ? 'active' : ''}" onclick="setShopFilter()">For Sale <span>${forSaleCount}</span></button>`;
+    }
+
+    container.innerHTML = html;
+  }
+
   function renderCategories() {
     const grid = document.querySelector('.cat-grid');
     if (!grid) return;
 
-    // Her kategoriyi say
     const counts = {};
     const projectsByCategory = {};
     projects.forEach(p => {
@@ -888,14 +960,13 @@
       
       const slideshowHtml = bgImages.length > 0
         ? `<div class="cat-slideshow">
-             ${bgImages.map((img, i) => `<img src="${img}" alt="" class="cat-slide ${i === 0 ? 'active' : ''}" data-slide="${i}">`).join('')}
+             ${bgImages.map((img, i) => `<img src="${img}" alt="" loading="lazy" class="cat-slide ${i === 0 ? 'active' : ''}" data-slide="${i}">`).join('')}
            </div>`
         : '';
       
       return `
-        <div class="cat-card reveal ${isActive ? 'active' : ''} ${!isClickable ? 'disabled' : ''}" 
-             ${isClickable ? `onclick="setCategory('${key}')"` : ''}
-             data-slides="${bgImages.length}">
+        <div class="cat-card reveal ${isActive ? 'active' : ''} ${!isClickable ? 'disabled' : ''}"
+             ${isClickable ? `onclick="setCategory('${key}')" role="button" tabindex="0" aria-label="Filter by ${meta.name}"` : ''}>
           ${slideshowHtml}
           <div class="cat-content">
             <div class="cat-icon">${iconSvg}</div>
@@ -918,12 +989,12 @@
       .map(p => p.image)
       .filter(img => img && !img.includes('youtube.com') && !img.includes('youtu.be') && !img.endsWith('.mp4') && !img.endsWith('.webm') && !img.endsWith('.gif'));
     const forSaleSlideshow = forSaleBgImages.length > 0
-      ? `<div class="cat-slideshow">${forSaleBgImages.map((img, i) => `<img src="${img}" alt="" class="cat-slide ${i === 0 ? 'active' : ''}" data-slide="${i}">`).join('')}</div>`
+      ? `<div class="cat-slideshow">${forSaleBgImages.map((img, i) => `<img src="${img}" alt="" loading="lazy" class="cat-slide ${i === 0 ? 'active' : ''}" data-slide="${i}">`).join('')}</div>`
       : '';
     const forSaleIcon = `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M25 30 L75 30 L70 75 L30 75 Z"/><path d="M38 30 L38 22 Q38 14 50 14 Q62 14 62 22 L62 30"/><circle cx="42" cy="50" r="2" fill="currentColor"/><circle cx="58" cy="50" r="2" fill="currentColor"/></svg>`;
     grid.innerHTML += `
       <div class="cat-card cat-card-sale reveal ${forSaleIsActive ? 'active' : ''} ${!forSaleClickable ? 'disabled' : ''}"
-           ${forSaleClickable ? `onclick="setShopFilter()"` : ''}>
+           ${forSaleClickable ? `onclick="setShopFilter()" role="button" tabindex="0" aria-label="Filter by For Sale"` : ''}>
         ${forSaleSlideshow}
         <div class="cat-content">
           <div class="cat-icon">${forSaleIcon}</div>
@@ -984,6 +1055,7 @@
   readCategoryFromUrl();
   renderProjects();
   renderCategories();
+  renderWorkFilters();
   initHeroSlideshow();
   initShopBanner();
 
@@ -1034,7 +1106,7 @@
       }
       return `
         <a href="project.html?id=${realIndex}" class="shop-item">
-          <img src="${imgSrc}" alt="${p.name}" class="shop-item-img" onerror="this.style.opacity=0.3">
+          <img src="${imgSrc}" alt="${p.name}" class="shop-item-img" loading="lazy" onerror="this.style.opacity=0.3">
           <div class="shop-item-info">
             <div class="shop-item-name">${p.name}</div>
             <div class="shop-item-price">${p.price || 'Inquire'}</div>
@@ -1266,6 +1338,28 @@
   // Close modal on Escape
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeInquiryModal();
+  });
+
+  // Activate any role="button" element with Enter/Space (keyboard parity with click)
+  document.addEventListener('keydown', (e) => {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[role="button"]')) {
+      e.preventDefault();
+      e.target.click();
+    }
+  });
+
+  // Mobile nav menu toggle
+  function toggleNav(forceClose) {
+    const links = document.getElementById('navLinks');
+    const btn = document.getElementById('navToggle');
+    const isOpen = forceClose ? false : !links.classList.contains('open');
+    links.classList.toggle('open', isOpen);
+    btn.setAttribute('aria-expanded', String(isOpen));
+    btn.querySelector('.icon-menu').style.display = isOpen ? 'none' : 'block';
+    btn.querySelector('.icon-close').style.display = isOpen ? 'block' : 'none';
+  }
+  document.getElementById('navLinks').addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') toggleNav(true);
   });
 
 </script>
