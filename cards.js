@@ -1326,4 +1326,48 @@ const projects = [
         "renders/emo-hair-ms2n3rwv-02.png"
       ]
     },
+    {
+      name: "Skull Bag",
+      categoryKey: "ugc",
+      categoryLabel: "UGC",
+      image: "renders/skull-bag-ms2nca4d-main.png",
+      size: "small",
+      tag: "",
+      description: "Created for roblox group.",
+      polygons: "3,712",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/skull-bag-ms2nca4d-01.png",
+        "renders/skull-bag-ms2nca4d-02.png",
+        "renders/skull-bag-ms2nca4d-03.png",
+        "renders/skull-bag-ms2nca4d-04.png"
+      ]
+    },
+    {
+      name: "Bat Bag",
+      categoryKey: "ugc",
+      categoryLabel: "UGC",
+      image: "renders/bat-bag-ms2nf02n-main.png",
+      size: "small",
+      tag: "",
+      description: "Created for roblox group.",
+      polygons: "3,712",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/bat-bag-ms2nf02n-01.png",
+        "renders/bat-bag-ms2nf02n-02.png"
+      ]
+    },
   ];
