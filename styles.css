@@ -1,15 +1,15 @@
 :root {
-    --bg: #0a0a0b;
-    --bg-elev: #131316;
-    --bg-card: #1a1a1f;
-    --line: #26262c;
-    --text: #f4f4f5;
-    --text-dim: #8a8a93;
-    --text-mute: #5a5a63;
-    --accent: #ff5722;
-    --accent-glow: rgba(255, 87, 34, 0.15);
-    --display: 'Fraunces', serif;
-    --mono: 'JetBrains Mono', monospace;
+    --bg: #0f0f0f;
+    --bg-elev: #181818;
+    --bg-card: #1c1c1c;
+    --line: #2e2e2e;
+    --text: #f2f0eb;
+    --text-dim: #8a8a84;
+    --text-mute: #555;
+    --accent: #c8ff2f;
+    --accent-glow: rgba(200, 255, 47, 0.12);
+    --display: 'Archivo', sans-serif;
+    --mono: 'Archivo', sans-serif;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -380,7 +380,7 @@
   }
 
   h1 .italic {
-    font-style: italic;
+    font-weight: 800; color: var(--accent);
     font-weight: 400;
     color: var(--accent);
   }
@@ -430,14 +430,14 @@
   .btn-primary {
     background: var(--accent);
     border-color: var(--accent);
-    color: #0a0a0b;
+    color: #0f0f0f;
     font-weight: 500;
   }
 
   .btn-primary:hover {
-    background: #ff7043;
-    border-color: #ff7043;
-    color: #0a0a0b;
+    background: #b8ee28;
+    border-color: #b8ee28;
+    color: #0f0f0f;
   }
 
   .hero-stats {
@@ -530,7 +530,7 @@
   }
 
   .section-title .italic {
-    font-style: italic;
+    font-weight: 800; color: var(--accent);
     color: var(--accent);
   }
 
@@ -773,7 +773,7 @@
     top: auto;
     right: auto;
     background: rgba(74, 222, 128, 0.95);
-    color: #0a0a0b;
+    color: #0f0f0f;
     padding: 4px 10px;
     font-size: 9px;
     text-transform: uppercase;
@@ -788,7 +788,7 @@
   }
 
   .for-sale-badge svg {
-    color: #0a0a0b;
+    color: #0f0f0f;
     animation: pulse-dot 2s ease-in-out infinite;
   }
 
@@ -813,7 +813,7 @@
     padding: 8px 12px;
     background: #4ade80;
     border: 1px solid #4ade80;
-    color: #0a0a0b;
+    color: #0f0f0f;
     font-family: var(--mono);
     font-size: 10px;
     text-transform: uppercase;
@@ -870,8 +870,6 @@
     align-items: center;
   }
 
-  
-
   /* Floating message button */
   .floating-msg-btn {
     position: fixed;
@@ -884,23 +882,23 @@
     padding: 14px 20px;
     background: var(--accent);
     border: 1px solid var(--accent);
-    color: #0a0a0b;
+    color: #0f0f0f;
     font-family: var(--mono);
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.2em;
     font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 8px 32px rgba(255, 87, 34, 0.35);
+    box-shadow: 0 8px 32px rgba(200, 255, 47, 0.25);
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     transform: translateY(0);
   }
 
   .floating-msg-btn:hover {
-    background: #ff7043;
-    border-color: #ff7043;
+    background: #b8ee28;
+    border-color: #b8ee28;
     transform: translateY(-3px);
-    box-shadow: 0 12px 36px rgba(255, 87, 34, 0.5);
+    box-shadow: 0 12px 36px rgba(200, 255, 47, 0.35);
   }
 
   .floating-msg-btn svg {
@@ -1167,7 +1165,7 @@
   .page-num.active {
     background: var(--accent);
     border-color: var(--accent);
-    color: #0a0a0b;
+    color: #0f0f0f;
     font-weight: 500;
   }
 
@@ -1398,7 +1396,7 @@
   .work-item:hover .work-arrow {
     background: var(--accent);
     border-color: var(--accent);
-    color: #0a0a0b;
+    color: #0f0f0f;
     transform: rotate(-45deg);
   }
 
@@ -1575,7 +1573,7 @@
   }
 
   .about-text p { margin-bottom: 24px; }
-  .about-text em { color: var(--accent); font-style: italic; }
+  .about-text em { color: var(--accent); font-weight: 800; color: var(--accent); }
 
   .about-side {
     border-left: 1px solid var(--line);
@@ -1645,7 +1643,7 @@
     margin-bottom: 48px;
   }
 
-  .contact-title .italic { font-style: italic; color: var(--accent); }
+  .contact-title .italic { font-weight: 800; color: var(--accent); }
 
   .discord-card {
     display: inline-flex;
@@ -1992,7 +1990,7 @@
     padding: 16px 28px;
     background: var(--accent);
     border: 1px solid var(--accent);
-    color: #0a0a0b;
+    color: #0f0f0f;
     font-family: var(--mono);
     font-size: 12px;
     text-transform: uppercase;
@@ -2008,8 +2006,8 @@
   }
 
   .form-submit:hover {
-    background: #ff7043;
-    border-color: #ff7043;
+    background: #b8ee28;
+    border-color: #b8ee28;
     transform: translateY(-2px);
   }
 
