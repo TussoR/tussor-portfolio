@@ -6,10 +6,11 @@
     --text: #f4f4f5;
     --text-dim: #8a8a93;
     --text-mute: #5a5a63;
-    --accent: #ff5722;
-    --accent-glow: rgba(255, 87, 34, 0.15);
-    --display: 'Fraunces', serif;
-    --mono: 'JetBrains Mono', monospace;
+    --accent: #a3e635;
+    --accent-hover: #8fcf1f;
+    --accent-glow: rgba(163, 230, 53, 0.15);
+    --display: 'Nunito', sans-serif;
+    --mono: 'Nunito', sans-serif;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -63,8 +64,10 @@
     width: 100%;
     max-width: 1600px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    gap: 48px;
+    text-align: center;
   }
 
   .logo {
@@ -342,7 +345,7 @@
     right: 6px;
     width: 22px;
     height: 22px;
-    background: rgba(255, 87, 34, 0.95);
+    background: rgba(163, 230, 53, 0.95);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -738,8 +741,8 @@
   }
 
   .btn:hover {
-    background: #ff7043;
-    border-color: #ff7043;
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
     transform: translateY(-2px);
   }
 
