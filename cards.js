@@ -1243,4 +1243,87 @@ const projects = [
         "renders/leather-bag-mriun2rj-03.png"
       ]
     },
+    {
+      name: "Male Hair",
+      categoryKey: "male-hair",
+      categoryLabel: "Male Hair",
+      image: "renders/male-hair-ms2n2gzp-main.png",
+      size: "small",
+      tag: "",
+      description: "Created for roblox group.",
+      polygons: "3,712",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/male-hair-ms2n2gzp-01.png",
+        "renders/male-hair-ms2n2gzp-02.png"
+      ]
+    },
+    {
+      name: "Male Hair",
+      categoryKey: "male-hair",
+      categoryLabel: "Male Hair",
+      image: "renders/male-hair-ms2n2x6g-main.png",
+      size: "small",
+      tag: "",
+      description: "Created for roblox group.",
+      polygons: "3,712",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/male-hair-ms2n2x6g-01.png"
+      ]
+    },
+    {
+      name: "VKEI Hair",
+      categoryKey: "male-hair",
+      categoryLabel: "Male Hair",
+      image: "renders/vkei-hair-ms2n3ck3-main.png",
+      size: "small",
+      tag: "",
+      description: "Created for roblox group.",
+      polygons: "3,712",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/vkei-hair-ms2n3ck3-01.png",
+        "renders/vkei-hair-ms2n3ck3-02.png"
+      ]
+    },
+    {
+      name: "Emo Hair",
+      categoryKey: "male-hair",
+      categoryLabel: "Male Hair",
+      image: "renders/emo-hair-ms2n3rwv-main.png",
+      size: "small",
+      tag: "",
+      description: "Created for roblox group.",
+      polygons: "3,712",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/emo-hair-ms2n3rwv-01.png",
+        "renders/emo-hair-ms2n3rwv-02.png"
+      ]
+    },
   ];
