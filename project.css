@@ -6,9 +6,9 @@
     --text: #f4f4f5;
     --text-dim: #9a9a9e;
     --text-mute: #7a7a7a;
-    --accent: #a3e635;
-    --accent-hover: #8fcf1f;
-    --accent-glow: rgba(163, 230, 53, 0.15);
+    --accent: #c9ccd2;
+    --accent-hover: #a8acb4;
+    --accent-glow: rgba(201, 204, 210, 0.15);
     --display: 'Inter', sans-serif;
     --mono: 'Inter', sans-serif;
   }
@@ -50,9 +50,9 @@
     pointer-events: none;
     z-index: 0;
     background:
-      radial-gradient(640px circle at 12% 18%, rgba(163, 230, 53, 0.18), transparent 60%),
-      radial-gradient(720px circle at 88% 78%, rgba(163, 230, 53, 0.13), transparent 60%),
-      radial-gradient(520px circle at 55% 45%, rgba(163, 230, 53, 0.07), transparent 70%);
+      radial-gradient(640px circle at 12% 18%, rgba(201, 204, 210, 0.18), transparent 60%),
+      radial-gradient(720px circle at 88% 78%, rgba(201, 204, 210, 0.13), transparent 60%),
+      radial-gradient(520px circle at 55% 45%, rgba(201, 204, 210, 0.07), transparent 70%);
     filter: blur(80px);
     animation: bgGlowDrift 24s ease-in-out infinite;
   }
@@ -331,7 +331,7 @@
     right: 6px;
     width: 22px;
     height: 22px;
-    background: rgba(163, 230, 53, 0.95);
+    background: rgba(201, 204, 210, 0.95);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -492,8 +492,8 @@
   .sale-banner {
     margin-bottom: 32px;
     padding: 24px;
-    background: linear-gradient(135deg, rgba(74, 222, 128, 0.15) 0%, rgba(34, 197, 94, 0.08) 100%);
-    border: 1px solid #4ade80;
+    background: linear-gradient(135deg, rgba(201, 204, 210, 0.15) 0%, rgba(34, 197, 94, 0.08) 100%);
+    border: 1px solid #c9ccd2;
     position: relative;
     overflow: hidden;
   }
@@ -504,7 +504,7 @@
     top: 0; left: 0;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #4ade80, transparent);
+    background: linear-gradient(90deg, transparent, #c9ccd2, transparent);
     animation: salebar 2.5s ease-in-out infinite;
   }
 
@@ -519,7 +519,7 @@
     right: -30%;
     width: 200px;
     height: 200px;
-    background: radial-gradient(circle, rgba(74, 222, 128, 0.4) 0%, transparent 60%);
+    background: radial-gradient(circle, rgba(201, 204, 210, 0.4) 0%, transparent 60%);
     pointer-events: none;
     animation: salepulse 3s ease-in-out infinite;
   }
@@ -543,7 +543,7 @@
     align-items: center;
     gap: 8px;
     padding: 6px 12px;
-    background: #4ade80;
+    background: #c9ccd2;
     color: #000000;
     font-family: var(--mono);
     font-size: 11px;
@@ -569,7 +569,7 @@
     font-family: var(--display);
     font-size: 22px;
     font-weight: 400;
-    color: #4ade80;
+    color: #c9ccd2;
     letter-spacing: -0.01em;
   }
 
@@ -580,8 +580,8 @@
     gap: 10px;
     width: 100%;
     padding: 16px 24px;
-    background: #4ade80;
-    border: 1px solid #4ade80;
+    background: #c9ccd2;
+    border: 1px solid #c9ccd2;
     color: #000000;
     font-family: var(--mono);
     font-size: 12px;
@@ -595,10 +595,10 @@
   }
 
   .buy-now-btn:hover {
-    background: #22c55e;
-    border-color: #22c55e;
+    background: #a8acb4;
+    border-color: #a8acb4;
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(74, 222, 128, 0.4);
+    box-shadow: 0 8px 24px rgba(201, 204, 210, 0.4);
   }
 
   /* Roblox available button (detail page) */
