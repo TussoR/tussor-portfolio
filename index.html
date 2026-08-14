@@ -864,7 +864,7 @@
            </div>`;
         }
       } else if (isVideo) {
-        mediaHtml = `<video muted loop playsinline autoplay preload="metadata" style="width:100%; height:100%; object-fit:cover;">
+        mediaHtml = `<video class="card-video" muted loop playsinline preload="none" style="width:100%; height:100%; object-fit:cover;">
              <source src="${p.image}" type="video/mp4">
            </video>`;
         videoBadgeHtml = `<div class="card-video-badge">
@@ -927,6 +927,7 @@
 
     renderPagination(totalPages);
     document.querySelectorAll('#workGrid .reveal').forEach(el => observer.observe(el));
+    document.querySelectorAll('#workGrid video.card-video').forEach(el => videoObserver.observe(el));
   }
 
   function renderPagination(totalPages) {
@@ -1101,6 +1102,19 @@
   }, { threshold: 0.1 });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Play/pause card videos only while they're in view — avoids every
+  // video on the page (or a paginated slice of it) buffering/playing at once.
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const video = entry.target;
+      if (entry.isIntersecting) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  }, { rootMargin: '150px' });
 
   // Render projects from the data array above
   readCategoryFromUrl();
