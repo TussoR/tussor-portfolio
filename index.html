@@ -680,7 +680,7 @@
     "male-hair":    { name: "Male Hair",    desc: "Stylized hair models for male Roblox avatars and UGC marketplace." },
     "girl-hair":    { name: "Girl Hair",    desc: "Stylized hair models for female Roblox avatars and UGC marketplace." },
     "ugc":          { name: "UGC",          desc: "Wearable accessories: hats, weapons, accessories, ready for Marketplace." },
-    "environment":  { name: "Environment",  desc: "Maps, terrains, and modular asset packs for full Roblox game worlds." },
+    "environment":  { name: "Dynamic Head",  desc: "Maps, terrains, and modular asset packs for full Roblox game worlds." },
     "anime-comms":  { name: "Anime Comms",  desc: "Custom anime-style character commissions and high-detail artwork." }
   };
 
@@ -1022,7 +1022,7 @@
       const bgImages = shuffled.slice(0, 4)
         .map(p => p.image)
         .filter(img => img && !img.includes('youtube.com') && !img.includes('youtu.be') && !img.endsWith('.mp4') && !img.endsWith('.webm') && !img.endsWith('.gif'));
-      
+
       const slideshowHtml = bgImages.length > 0
         ? `<div class="cat-slideshow">
              ${bgImages.map((img, i) => `<img src="${img}" alt="" loading="lazy" class="cat-slide ${i === 0 ? 'active' : ''}" data-slide="${i}">`).join('')}
@@ -1210,9 +1210,6 @@
       roll: 0,
       perspective: 1200,
       depth: 100,
-      speed: 24,
-      direction: 'up',
-      variance: 0.4,
       planeScale: 1.15
     };
 
@@ -1224,24 +1221,11 @@
       return 6;
     }
 
-    function columnFactor(index, variance) {
-      const pseudo = ((index * 0.6180339887 + 0.35) % 1) * 2 - 1;
-      return 1 + variance * pseudo;
-    }
-
-    const reducedMotionMq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let reduced = reducedMotionMq.matches;
-    reducedMotionMq.addEventListener('change', (e) => { reduced = e.matches; });
-
     let columns = pickColumns();
     let columnItems = [];
     let columnMeta = [];
     let tracks = [];
     let offsets = [];
-    let velocities = [];
-    let baseVelocities = [];
-    let lastTs = null;
-    let rafId = null;
 
     function buildTile(item) {
       // Purely decorative now — no href, no focus target, no listeners.
@@ -1289,14 +1273,7 @@
         return { copyHeight, copies };
       });
 
-      const dirSign = cfg.direction === 'up' ? 1 : -1;
-      baseVelocities = columnItems.map((_, c) => {
-        const altSign = c % 2 === 0 ? 1 : -1;
-        return cfg.speed * columnFactor(c, cfg.variance) * dirSign * altSign;
-      });
-
       offsets = columnMeta.map((meta, c) => meta.copyHeight * ((c * 0.37) % 1));
-      velocities = columnItems.map(() => 0);
 
       columnItems.forEach((col, c) => {
         const colEl = document.createElement('div');
@@ -1318,27 +1295,6 @@
       applyPlaneTransform();
     }
 
-    // Purely ambient now: no pointer tracking, no hit-testing, no clicks.
-    function animate(ts) {
-      if (lastTs === null) lastTs = ts;
-      const dt = Math.min(0.05, Math.max(0, ts - lastTs) / 1000);
-      lastTs = ts;
-
-      for (let c = 0; c < tracks.length; c++) {
-        const meta = columnMeta[c];
-        if (!meta) continue;
-        const target = baseVelocities[c];
-        const ease = 1 - Math.exp(-dt / 0.28);
-        velocities[c] += (target - velocities[c]) * ease;
-        let next = (offsets[c] ?? 0) + velocities[c] * dt;
-        next = ((next % meta.copyHeight) + meta.copyHeight) % meta.copyHeight;
-        offsets[c] = next;
-        tracks[c].style.transform = `translate3d(0, ${-next}px, 0)`;
-      }
-
-      rafId = requestAnimationFrame(animate);
-    }
-
     let resizeTimer = null;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
@@ -1348,9 +1304,6 @@
     });
 
     build();
-    if (!reduced) {
-      rafId = requestAnimationFrame(animate);
-    }
   }
 
   // Discord copy
@@ -1625,6 +1578,8 @@
     }
 
     let activePointer = false;
+    let heroVisible = true;
+    let rafId = null;
     const startTime = performance.now();
     const current = { x: baseRotation.x, y: baseRotation.y };
     const target = { x: baseRotation.x, y: baseRotation.y };
@@ -1634,6 +1589,7 @@
     }
 
     function handlePointerMove(e) {
+      if (!heroVisible) return;
       const rect = root.getBoundingClientRect();
       if (!rect.width || !rect.height) return;
       activePointer = true;
@@ -1666,11 +1622,30 @@
       current.x += (target.x - current.x) * cfg.smoothing;
       current.y += (target.y - current.y) * cfg.smoothing;
       applyTransform();
-      requestAnimationFrame(tick);
+      rafId = requestAnimationFrame(tick);
     }
 
+    function startLoop() {
+      if (rafId == null) rafId = requestAnimationFrame(tick);
+    }
+
+    function stopLoop() {
+      if (rafId != null) { cancelAnimationFrame(rafId); rafId = null; }
+    }
+
+    // Only run the continuous rotation loop (and track pointermove) while the
+    // hero title is actually on screen — this was previously running forever,
+    // site-wide, even after scrolling away, which was a real source of jank.
+    const heroVisibilityObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        heroVisible = entry.isIntersecting;
+        if (heroVisible) startLoop(); else stopLoop();
+      });
+    }, { threshold: 0 });
+    heroVisibilityObserver.observe(root);
+
     applyTransform();
-    requestAnimationFrame(tick);
+    startLoop();
   }
 
   // Work cards: mouse-follow spotlight + subtle 3D tilt
@@ -1836,11 +1811,15 @@
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const proximityRadius = 260;
+    let rafId = null;
+    let pendingX = 0;
+    let pendingY = 0;
 
-    function update(clientX, clientY) {
+    function update() {
+      rafId = null;
       const rect = wrap.getBoundingClientRect();
-      const x = clientX - rect.left;
-      const y = clientY - rect.top;
+      const x = pendingX - rect.left;
+      const y = pendingY - rect.top;
       glow.style.setProperty('--gx', x + 'px');
       glow.style.setProperty('--gy', y + 'px');
 
@@ -1857,11 +1836,14 @@
 
     wrap.addEventListener('pointermove', (e) => {
       wrap.classList.add('glow-active');
-      update(e.clientX, e.clientY);
+      pendingX = e.clientX;
+      pendingY = e.clientY;
+      if (rafId == null) rafId = requestAnimationFrame(update);
     });
 
     wrap.addEventListener('pointerleave', () => {
       wrap.classList.remove('glow-active');
+      if (rafId != null) { cancelAnimationFrame(rafId); rafId = null; }
       grid.querySelectorAll('.cat-card').forEach((card) => card.style.setProperty('--card-glow', 0));
     });
   }

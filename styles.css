@@ -388,7 +388,6 @@
     flex-direction: row;
     transform-style: preserve-3d;
     transform-origin: 50% 50%;
-    will-change: transform;
     --dw-tile-w: 200px;
     --dw-tile-h: 132px;
     --dw-gap: 16px;
@@ -404,7 +403,6 @@
   .drift-wall-track {
     display: flex;
     flex-direction: column;
-    will-change: transform;
   }
 
   .drift-wall-tile {
@@ -433,13 +431,6 @@
     filter: saturate(0.9);
     user-select: none;
     -webkit-user-drag: none;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .drift-wall-plane,
-    .drift-wall-track {
-      will-change: auto;
-    }
   }
 
   .hero::after {
@@ -2488,7 +2479,7 @@
     right: auto;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 400;
+    z-index: 1;
     padding: 0;
     justify-content: flex-start;
     align-items: flex-start;
@@ -2498,8 +2489,14 @@
     width: auto;
   }
 
+  /* Page content is centered at max-width 1920px with no gutter reserved for
+     this sidebar, so from 1280px up we carve out real space for it on
+     .section (categories/work/about/contact) instead of letting it float on
+     top of card content — grid columns are all `fr`-based, so they shrink to
+     fit rather than overflowing. */
   @media (min-width: 1280px) {
     .line-sidebar { display: flex; }
+    .section { padding-left: 220px; }
   }
 
   .line-sidebar-list {
