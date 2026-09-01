@@ -1424,7 +1424,6 @@ const projects = [
       image: "renders/vkei-emo-hair-mtj3kp1q-main.png",
       size: "small",
       tag: "",
-      robloxUrl: "https://www.roblox.com/catalog?Keyword=Following&taxonomy=tZsUsd2BqGViQrJ9Vs3Wah&CreatorName=Las+Nochesz&CreatorType=Group&salesTypeFilter=1",
       description: "Created for roblox group.",
       polygons: "3,712",
       texture: "1024 × 1024",
