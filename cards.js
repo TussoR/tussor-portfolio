@@ -1417,4 +1417,55 @@ const projects = [
         "renders/emo-moe-dynamic-head-mtj3ib61-04.mp4"
       ]
     },
+    {
+      name: "VKEI Emo Hair",
+      categoryKey: "male-hair",
+      categoryLabel: "Male Hair",
+      image: "renders/vkei-emo-hair-mtj3kp1q-main.png",
+      size: "small",
+      tag: "",
+      robloxUrl: "https://www.roblox.com/catalog?Keyword=Following&taxonomy=tZsUsd2BqGViQrJ9Vs3Wah&CreatorName=Las+Nochesz&CreatorType=Group&salesTypeFilter=1",
+      description: "Created for roblox group.",
+      polygons: "3,712",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "2",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/vkei-emo-hair-mtj3kp1q-01.png",
+        "renders/vkei-emo-hair-mtj3kp1q-02.png",
+        "renders/vkei-emo-hair-mtj3kp1q-03.jpg",
+        "renders/vkei-emo-hair-mtj3kp1q-04.png",
+        "renders/vkei-emo-hair-mtj3kp1q-05.png",
+        "renders/vkei-emo-hair-mtj3mzkv-01.png"
+      ]
+    },
+    {
+      name: "Windy Girl Hair",
+      categoryKey: "girl-hair",
+      categoryLabel: "Girl Hair",
+      image: "renders/windy-girl-hair-mtj3lgf4-main.png",
+      size: "small",
+      tag: "",
+      description: "Created for roblox group.",
+      polygons: "3,712",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/windy-girl-hair-mtj3lgf4-01.png",
+        "renders/windy-girl-hair-mtj3lgf4-02.png",
+        "renders/windy-girl-hair-mtj3lgf4-03.png",
+        "renders/windy-girl-hair-mtj3lgf4-04.png",
+        "renders/windy-girl-hair-mtj3lgf4-05.png",
+        "renders/windy-girl-hair-mtj3lgf4-06.png"
+      ]
+    },
   ];
