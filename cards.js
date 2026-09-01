@@ -1370,4 +1370,27 @@ const projects = [
         "renders/bat-bag-ms2nf02n-02.png"
       ]
     },
+    {
+      name: "NaNa Dynamic Head",
+      categoryKey: "dynamic-head",
+      categoryLabel: "Dynamic Head",
+      image: "renders/nana-dynamic-head-mti52iuu-main.png",
+      size: "small",
+      tag: "",
+      robloxUrl: "https://www.roblox.com/bundles/218025521346690/ANIMATED-Nana-Face",
+      description: "Created for roblox group.",
+      polygons: "3,999",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "4 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/nana-dynamic-head-mti52iuu-01.png",
+        "renders/nana-dynamic-head-mti52iuu-02.png",
+        "renders/nana-dynamic-head-mti52iuu-03.mp4"
+      ]
+    },
   ];
