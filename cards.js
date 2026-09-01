@@ -1393,4 +1393,28 @@ const projects = [
         "renders/nana-dynamic-head-mti52iuu-03.mp4"
       ]
     },
+    {
+      name: "Emo moe Dynamic Head",
+      categoryKey: "dynamic-head",
+      categoryLabel: "Dynamic Head",
+      image: "renders/emo-moe-dynamic-head-mtj3ib61-main.png",
+      size: "small",
+      tag: "",
+      robloxUrl: "https://www.roblox.com/catalog?Keyword=Following&taxonomy=tZsUsd2BqGViQrJ9Vs3Wah&CreatorName=Las+Nochesz&CreatorType=Group&salesTypeFilter=1",
+      description: "Created for roblox group.",
+      polygons: "3,712",
+      texture: "1024 × 1024",
+      format: "FBX · OBJ",
+      delivery: "1 Days",
+      tools: [
+        "Blender",
+        "Substance Painter"
+      ],
+      extraImages: [
+        "renders/emo-moe-dynamic-head-mtj3ib61-01.png",
+        "renders/emo-moe-dynamic-head-mtj3ib61-02.png",
+        "renders/emo-moe-dynamic-head-mtj3ib61-03.png",
+        "renders/emo-moe-dynamic-head-mtj3ib61-04.mp4"
+      ]
+    },
   ];
